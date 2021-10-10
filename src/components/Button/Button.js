@@ -6,9 +6,9 @@ const Button = ({ kind = 'fill', size = 'md', children, element: CustomTag, clas
   const kindClass = styles[`btn--${kind}`];
   const sizeClass = styles[`btn--${size}`];
   if(CustomTag) {
-    return <CustomTag className={`${styles.btn} ${kindClass} ${sizeClass} ${classes}`} {...props}>{children}</CustomTag>
+    return <CustomTag className={`${styles.btn} ${kindClass} ${sizeClass} ${classes || ''}`} {...props}>{children}</CustomTag>
   } else {
-    return <button className={`${styles.btn} ${kindClass} ${sizeClass} ${classes}`} {...props}>{children}</button>
+    return <button className={`${styles.btn} ${kindClass} ${sizeClass} ${classes || ''}`} {...props}>{children}</button>
   }
 }
 
