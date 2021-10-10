@@ -6,6 +6,14 @@
   padding: 24px 16px;
   border-radius: 8px;
   background-color: $colorPrimaryWhite;
+  @media(max-width: 1023px) {
+    width: 100%;
+    flex-direction: row;
+    padding: 16px;
+  }
+  @media(max-width: 1023px) {
+    padding: 8px 16px;
+  }
 }
 
 @mixin NavLink {
@@ -16,8 +24,14 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  svg {
-    margin-right: 8px;
+  @media(max-width: 1023px) {
+    flex: 1 0 25%;
+    max-width: 25%;
+    justify-content: center;
+    flex-direction: column;
+  }
+  @media(max-width: 767px) {
+    padding: 8px 12px;
   }
 }
 
@@ -27,13 +41,22 @@
   path {
     fill: rgba($colorPrimaryBlack, 0.5);
   }
-}
-
-.linkActive {
-  @include NavLink;
-  color: $colorPrimaryWhite;
-  background-color: $colorPrimaryGold;
-  path {
-    fill: $colorPrimaryWhite;
+  &Active {
+    @include NavLink;
+    color: $colorPrimaryWhite;
+    background-color: $colorPrimaryGold;
+    path {
+      fill: $colorPrimaryWhite;
+    }
+  }
+  &Text {
+    margin-left: 8px;
+    @media(max-width: 1023px) {
+      margin-left: 0;
+      margin-top: 4px;
+    }
+    @media(max-width: 767px) {
+      @include CaptionSmall-REGULAR;
+    }
   }
 }

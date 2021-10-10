@@ -1,10 +1,21 @@
 .layout {
   position: relative;
+  @media(max-width: 1023px) {
+    padding-bottom: 80px;
+  }
 }
 
 .nav {
   width: 220px;
   margin-right: 8px;
+  @media(max-width: 1023px) {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 10;
+  }
 }
 
 .grid {
@@ -16,4 +27,7 @@
 
 .content {
   flex: 1 0 auto;
+  @media(max-width: 767px) {
+    padding: 0 8px;
+  }
 }

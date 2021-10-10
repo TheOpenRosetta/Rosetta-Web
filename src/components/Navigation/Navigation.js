@@ -24,7 +24,7 @@ const NavLink = ({ icon, text, to, activeOnlyWhenExact }) => {
     exact: activeOnlyWhenExact
   });
 
-  return <Link to={to} className={`${match ? styles.linkActive : styles.link}`}>{icon} {text}</Link>
+  return <Link to={to} className={`${match ? styles.linkActive : styles.link}`}>{icon} <span className={styles.linkText}>{text}</span></Link>
 }
 
 const Navigation = () => {

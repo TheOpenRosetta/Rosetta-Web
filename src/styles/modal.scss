@@ -1,0 +1,14 @@
+@import '@styles/variables';
+
+.ReactModal{
+  &__Overlay {
+    background-color: rgba($colorPrimaryBlack, 0.7) !important;
+    z-index: 100;
+  }
+  &__Content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}

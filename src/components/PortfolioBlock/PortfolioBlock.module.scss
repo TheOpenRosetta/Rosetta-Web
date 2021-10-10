@@ -4,6 +4,10 @@
   width: 220px;
   margin-left: 8px;
   margin-bottom: 8px;
+  @media(max-width: 767px) {
+    width: 100%;
+    margin: 0 0 16px;
+  }
 }
 
 .header {
@@ -17,6 +21,12 @@
   background-color: $colorPrimaryWhite;
   padding: 8px;
   border-radius: 0 0 8px 8px;
+  @media(max-width: 767px) {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
 }
 
 @mixin item {
@@ -39,6 +49,10 @@
   @include item;
   background-color: $colorPrimaryBlue;
   margin-bottom: 8px;
+  @media(max-width: 767px) {
+    margin-bottom: 0;
+    margin-right: 4px;
+  }
   &Count {
     color: $colorPrimaryWhite;
   }
@@ -50,6 +64,9 @@
 .yieldPayment {
   @include item;
   background-color: $colorPrimaryGray;
+  @media(max-width: 767px) {
+    margin-left: 4px;
+  }
   &Count {
     color: $colorPrimaryBlack;
   }

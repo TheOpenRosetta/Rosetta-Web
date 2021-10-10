@@ -19,11 +19,6 @@
   justify-content: space-between;
 }
 
-.searchForm {
-  margin-left: 24px;
-  margin-right: auto;
-}
-
 .user {
   display: flex;
   flex-direction: row;
@@ -37,4 +32,18 @@
   color: $colorPrimaryGold;
   margin-right: 8px;
   text-decoration: none;
+}
+
+.popover {
+  &Btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    svg {
+      margin-left: 8px;
+      path {
+        fill: rgba($colorPrimaryGray, 0.5);
+      }
+    }
+  }
 }

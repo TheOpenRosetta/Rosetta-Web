@@ -1,0 +1,42 @@
+@import '@styles/variables';
+
+.searchForm {
+  margin-left: 24px;
+  margin-right: auto;
+  width: 53.5%;
+}
+
+.searchFormModal {
+  width: 100%;
+}
+
+.searchBtn {
+  display: flex;
+  margin-left: auto;
+}
+
+.closeBtn {
+  display: flex;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+}
+
+.modalTitle {
+  @include HeadingSmall-MEDIUM;
+}
+
+.content {
+  background-color: $colorPrimaryWhite;
+  padding: 16px 24px;
+  border-radius: 0 0 8px 8px;
+  width: 80vw;
+}

@@ -64,7 +64,7 @@ const WeeklyStats = () => {
       <span className={styles.blockSubtitle}>Total people read</span>
       <ul className={styles.blockUsers}>
         {
-          data.read.people.map(item => <li key={item.usedId} className={styles.blockUsersItem}>
+          data.read.people.map(item => <li key={item.userId} className={styles.blockUsersItem}>
             <Avatar src={AvatarImg} title={item.name} kind="bordered" size="sm" classes={styles.avatar} />
           </li>)
         }
@@ -78,7 +78,7 @@ const WeeklyStats = () => {
       <span className={styles.blockSubtitle}>New investors</span>
       <ul className={styles.blockUsers}>
         {
-          data.investors.people.map(item => <li key={item.usedId} className={styles.blockUsersItem}>
+          data.investors.people.map(item => <li key={`investor-${item.userId}`} className={styles.blockUsersItem}>
             <Avatar src={AvatarImg} title={item.name} kind="bordered" size="sm" classes={styles.avatar} />
           </li>)
         }

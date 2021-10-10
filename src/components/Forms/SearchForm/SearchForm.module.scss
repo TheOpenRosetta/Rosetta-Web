@@ -2,7 +2,6 @@
 
 .form {
   position: relative;
-  width: 53.5%;
   display: flex;
   flex-direction: row;
 }
@@ -16,9 +15,10 @@
 .field {
   height: 42px;
   padding: 14px 50px;
-  border-radius: 6px 0 0 6px;
   border: none;
+  border-radius: 6px 0 0 6px;
   flex: 1 0;
+  background-color: $colorPrimaryGray;
   caret-color: $colorPrimaryGold;
   &:focus {
     outline: none;

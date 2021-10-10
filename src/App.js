@@ -6,11 +6,16 @@ import {
 } from "react-router-dom";
 
 import '@styles/global.scss';
+import '@styles/modal.scss';
 
 import Home from '@containers/Home';
 import Inbox from '@containers/Inbox';
 import Help from '@containers/Help';
+import Notification from '@containers/Notification';
 import Search from '@containers/Search';
+import CreateAccount from '@containers/CreateAccount';
+import Profile from '@containers/Profile';
+import SignIn from '@containers/SignIn';
 
 function App() {
   return (
@@ -20,11 +25,23 @@ function App() {
           <Route path="/help">
             <Help />
           </Route>
+          <Route path="/notification">
+            <Notification />
+          </Route>
           <Route path="/search">
             <Search />
           </Route>
           <Route path="/inbox">
             <Inbox />
+          </Route>
+          <Route path="/sign_in">
+            <SignIn />
+          </Route>
+          <Route path="/profile">
+            <Profile />
+          </Route>
+          <Route path="/create_account">
+            <CreateAccount />
           </Route>
           <Route path="/">
             <Home />

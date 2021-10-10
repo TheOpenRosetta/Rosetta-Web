@@ -18,19 +18,36 @@
     padding: 13px 24px;
     border-radius: 8px;
   }
-  &--outline {
+  &--link {
+    background-color: transparent;
+    color: $colorPrimaryGold;
+    border-color: transparent;
+    path {
+      fill: $colorPrimaryGold;
+    }
+  }
+  &--disabled {
     background-color: $colorPrimaryGray;
     color: rgba($colorPrimaryBlack, 0.6);
     border-color: $colorPrimaryGray;
+    path {
+      fill: rgba($colorPrimaryBlack, 0.6);
+    }
   }
-  &--disabled {
-    background-color: $colorPrimaryWhite;
+  &--outline {
+    background-color: transparent;
     color: $colorPrimaryGold;
     border-color: $colorPrimaryGold;
+    path {
+      fill: $colorPrimaryGold;
+    }
   }
   &--fill {
     background-color: $colorPrimaryGold;
     color: $colorPrimaryWhite;
     border-color: $colorPrimaryGold;
+    path {
+      fill: $colorPrimaryWhite;
+    }
   }
 }
