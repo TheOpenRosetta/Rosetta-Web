@@ -1,0 +1,39 @@
+@import "@styles/variables";
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 16px;
+  border-radius: 8px;
+  background-color: $colorPrimaryWhite;
+}
+
+@mixin NavLink {
+  padding: 11px 12px;
+  border-radius: 8px;
+  @include BodyLarge-MEDIUM;
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  svg {
+    margin-right: 8px;
+  }
+}
+
+.link {
+  @include NavLink;
+  color: rgba($colorPrimaryBlack, 0.5);
+  path {
+    fill: rgba($colorPrimaryBlack, 0.5);
+  }
+}
+
+.linkActive {
+  @include NavLink;
+  color: $colorPrimaryWhite;
+  background-color: $colorPrimaryGold;
+  path {
+    fill: $colorPrimaryWhite;
+  }
+}

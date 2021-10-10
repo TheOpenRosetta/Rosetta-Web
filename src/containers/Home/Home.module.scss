@@ -1,0 +1,9 @@
+.grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.main {
+  flex: 1 0 auto;
+}

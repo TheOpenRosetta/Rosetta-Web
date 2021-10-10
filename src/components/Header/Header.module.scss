@@ -1,0 +1,40 @@
+@import '@styles/variables';
+
+.header {
+  width: 100%;
+  background-color: $colorPrimaryBlack;
+  box-shadow: 0px 2px 1px rgba(33, 30, 53, 0.05);
+  padding: 0 8px;
+  height: 90px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.grid {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.searchForm {
+  margin-left: 24px;
+  margin-right: auto;
+}
+
+.user {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.signIn {
+  @include BodySmall-REGULAR;
+  padding: 16px 24px;
+  color: $colorPrimaryGold;
+  margin-right: 8px;
+  text-decoration: none;
+}

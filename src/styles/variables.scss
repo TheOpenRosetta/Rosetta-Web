@@ -1,0 +1,278 @@
+// COLORS
+// Primary colors
+$colorPrimaryGold: #B68E5C;
+$colorPrimaryBlue: #2C77C0;
+$colorPrimaryBlack: #131416;
+$colorPrimaryGray: #F2F3F7;
+$colorPrimaryWhite: #FFFFFF;
+
+// Supporting colors
+$colorSupportRed: #E92044;
+$colorSupportGreen: #33BB6D;
+$colorSupportYellow: #FFC82E;
+$colorSupportBlack: #24272C;
+
+// TYPOGRAPHY
+@mixin bold {
+  font-family: 'Inter', sans-serif;
+  font-weight: bold;
+}
+
+@mixin medium {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+}
+
+@mixin regular {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}
+
+@mixin light {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+}
+
+// DisplayXXLarge
+@mixin DisplayXXLarge-BOLD {
+  @include bold;
+  font-size: 64px;
+  line-height: 120%;
+}
+
+@mixin DisplayXXLarge-MEDIUM {
+  @include medium;
+  font-size: 64px;
+  line-height: 120%;
+}
+
+@mixin DisplayXXLarge-REGULAR {
+  @include regular;
+  font-size: 64px;
+  line-height: 120%;
+}
+
+@mixin DisplayXXLarge-LIGHT {
+  @include light;
+  font-size: 64px;
+  line-height: 120%;
+}
+
+// DisplayXLarge
+@mixin DisplayXLarge-BOLD {
+  @include bold;
+  font-size: 48px;
+  line-height: 120%;
+}
+
+@mixin DisplayXLarge-MEDIUM {
+  @include medium;
+  font-size: 48px;
+  line-height: 120%;
+}
+
+@mixin DisplayXLarge-REGULAR {
+  @include regular;
+  font-size: 48px;
+  line-height: 120%;
+}
+
+@mixin DisplayXLarge-LIGHT {
+  @include light;
+  font-size: 48px;
+  line-height: 120%;
+}
+
+// DisplaySmall
+@mixin DisplaySmall-BOLD {
+  @include bold;
+  font-size: 28px;
+  line-height: 120%;
+}
+
+@mixin DisplaySmall-MEDIUM {
+  @include medium;
+  font-size: 28px;
+  line-height: 120%;
+}
+
+@mixin DisplaySmall-REGULAR {
+  @include regular;
+  font-size: 28px;
+  line-height: 120%;
+}
+
+@mixin DisplaySmall-LIGHT {
+  @include light;
+  font-size: 28px;
+  line-height: 120%;
+}
+
+// HeadingLarge
+@mixin HeadingLarge-BOLD {
+  @include bold;
+  font-size: 24px;
+  line-height: 120%;
+}
+
+@mixin HeadingLarge-MEDIUM {
+  @include medium;
+  font-size: 24px;
+  line-height: 120%;
+}
+
+@mixin HeadingLarge-REGULAR {
+  @include regular;
+  font-size: 24px;
+  line-height: 120%;
+}
+
+@mixin HeadingLarge-LIGHT {
+  @include light;
+  font-size: 24px;
+  line-height: 120%;
+}
+
+// HeadingSmall
+@mixin HeadingSmall-BOLD {
+  @include bold;
+  font-size: 20px;
+  line-height: 120%;
+}
+
+@mixin HeadingSmall-MEDIUM {
+  @include medium;
+  font-size: 20px;
+  line-height: 120%;
+}
+
+@mixin HeadingSmall-REGULAR {
+  @include regular;
+  font-size: 20px;
+  line-height: 120%;
+}
+
+@mixin HeadingSmall-LIGHT {
+  @include light;
+  font-size: 20px;
+  line-height: 120%;
+}
+
+// BodyLarge
+@mixin BodyLarge-BOLD {
+  @include bold;
+  font-size: 16px;
+  line-height: 160%;
+}
+
+@mixin BodyLarge-MEDIUM {
+  @include medium;
+  font-size: 16px;
+  line-height: 160%;
+}
+
+@mixin BodyLarge-REGULAR {
+  @include regular;
+  font-size: 16px;
+  line-height: 160%;
+}
+
+@mixin BodyLarge-LIGHT {
+  @include light;
+  font-size: 16px;
+  line-height: 160%;
+}
+
+// BodySmall
+@mixin BodySmall-BOLD {
+  @include bold;
+  font-size: 14px;
+  line-height: 120%;
+}
+
+@mixin BodySmall-MEDIUM {
+  @include medium;
+  font-size: 14px;
+  line-height: 160%;
+}
+
+@mixin BodySmall-REGULAR {
+  @include regular;
+  font-size: 14px;
+  line-height: 160%;
+}
+
+@mixin BodySmall-LIGHT {
+  @include light;
+  font-size: 14px;
+  line-height: 160%;
+}
+
+// CaptionLarge
+@mixin CaptionLarge-BOLD {
+  @include bold;
+  font-size: 12px;
+  line-height: 160%;
+}
+
+@mixin CaptionLarge-MEDIUM {
+  @include medium;
+  font-size: 12px;
+  line-height: 160%;
+}
+
+@mixin CaptionLarge-REGULAR {
+  @include regular;
+  font-size: 12px;
+  line-height: 160%;
+}
+
+@mixin CaptionLarge-LIGHT {
+  @include light;
+  font-size: 12px;
+  line-height: 160%;
+}
+
+// CaptionSmall
+@mixin CaptionSmall-BOLD {
+  @include bold;
+  font-size: 12px;
+  line-height: 160%;
+}
+
+@mixin CaptionSmall-MEDIUM {
+  @include medium;
+  font-size: 12px;
+  line-height: 160%;
+}
+
+@mixin CaptionSmall-REGULAR {
+  @include regular;
+  font-size: 12px;
+  line-height: 160%;
+}
+
+@mixin CaptionSmall-LIGHT {
+  @include light;
+  font-size: 12px;
+  line-height: 160%;
+}
+
+
+// SHADOW
+@mixin shadow-XLarge {
+  box-shadow: 20px 18px 80px rgba(75, 81, 114, 0.16);
+  border-radius: 8px;
+}
+
+@mixin shadow-Large {
+  box-shadow: 1.46411px 7.32057px 21.9617px rgba(75, 81, 114, 0.16);
+}
+
+@mixin shadow-Medium {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+@mixin shadow-Small {
+  box-shadow: 1px 2px 2px rgba(75, 81, 114, 0.16);
+}

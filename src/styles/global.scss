@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap');
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #E5E5E5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+.container {
+  width: 1186px;
+  margin: 0 auto;
+  @media(max-width: 1199px) {
+    width: 992px;
+  }
+  @media(max-width: 1023px) {
+    width: 752px;
+  }
+  @media(max-width: 767) {
+    width: 100%;
+    padding: 0 8px;
+  }
+}

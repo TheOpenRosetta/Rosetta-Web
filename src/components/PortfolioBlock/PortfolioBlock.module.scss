@@ -1,0 +1,76 @@
+@import "@styles/variables";
+
+.block {
+  width: 220px;
+  margin-left: 8px;
+  margin-bottom: 8px;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.content {
+  background-color: $colorPrimaryWhite;
+  padding: 8px;
+  border-radius: 0 0 8px 8px;
+}
+
+@mixin item {
+  width: 100%;
+  padding: 6px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  &Count {
+    @include HeadingSmall-MEDIUM
+  }
+  &Subtitle {
+    @include CaptionSmall-REGULAR
+  }
+}
+
+.balance {
+  @include item;
+  background-color: $colorPrimaryBlue;
+  margin-bottom: 8px;
+  &Count {
+    color: $colorPrimaryWhite;
+  }
+  &Subtitle {
+    color: rgba($colorPrimaryWhite, 0.8);
+  }
+}
+
+.yieldPayment {
+  @include item;
+  background-color: $colorPrimaryGray;
+  &Count {
+    color: $colorPrimaryBlack;
+  }
+  &Subtitle {
+    color: rgba($colorPrimaryBlack, 0.7);
+  }
+}
+
+.link {
+  @include CaptionLarge-REGULAR
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: rgba($colorPrimaryBlack, 0.7);
+  svg {
+    width: 16px;
+    height: 16px;
+    margin-left: 4px;
+    path {
+      fill: rgba($colorPrimaryBlack, 0.7);
+    }
+  }
+}

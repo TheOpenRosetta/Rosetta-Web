@@ -1,0 +1,37 @@
+@import '@styles/variables';
+
+.form {
+  position: relative;
+  width: 53.5%;
+  display: flex;
+  flex-direction: row;
+}
+
+.icon {
+  position: absolute;
+  left: 16px;
+  top: 9px;
+}
+
+.field {
+  height: 42px;
+  padding: 14px 50px;
+  border-radius: 6px 0 0 6px;
+  border: none;
+  flex: 1 0;
+  caret-color: $colorPrimaryGold;
+  &:focus {
+    outline: none;
+  }
+}
+
+.submit {
+  padding: 10px 24px;
+  @include BodySmall-REGULAR;
+  background-color: $colorPrimaryGold;
+  color: $colorPrimaryWhite;
+  border: none;
+  box-shadow: none;
+  border-radius: 0px 6px 6px 0px;
+  cursor: pointer;
+}

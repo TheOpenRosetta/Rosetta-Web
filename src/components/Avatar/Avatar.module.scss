@@ -1,0 +1,25 @@
+@import '@styles/variables';
+
+.avatar {
+  border-radius: 50%;
+  overflow: hidden;
+  img {
+    display: block;
+    width: 100%;
+  }
+  &--xl {
+    width: 170px;
+  }
+  &--lg {
+    width: 48px;
+  }
+  &--md {
+    width: 42px;
+  }
+  &--sm {
+    width: 32px;
+  }
+  &--bordered {
+    border: 1px solid $colorPrimaryGray;
+  }
+}

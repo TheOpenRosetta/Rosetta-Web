@@ -1,0 +1,72 @@
+@import '@styles/variables';
+
+.area {
+  width: 220px;
+  margin-left: 8px;
+  margin-bottom: 8px;
+}
+
+.content {
+  background-color: $colorPrimaryWhite;
+  padding: 8px;
+  border-radius: 0 0 8px 8px;
+}
+
+.block {
+  background-color: $colorPrimaryGray;
+  padding: 8px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  &:last-child {
+    margin-bottom: 0;
+  }
+  &Count {
+    @include HeadingSmall-MEDIUM;
+    color: $colorPrimaryBlack;
+  }
+  &Subtitle {
+    @include CaptionSmall-REGULAR;
+    color: rgba($colorPrimaryBlack, 0.7);
+  }
+  &Users {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+    &Item {
+      margin-left: -8px;
+    }
+    &More {
+      background-color: $colorPrimaryBlue;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      margin-left: -8px;
+      border: 1px solid $colorPrimaryGray;
+      color: $colorPrimaryWhite;
+      svg {
+        width: 18px;
+        height: 18px;
+      }
+      path {
+        fill: $colorPrimaryWhite;
+      }
+    }
+  }
+}
+
+.avatar {
+  // width: 23px;
+  // height: 32px;
+}

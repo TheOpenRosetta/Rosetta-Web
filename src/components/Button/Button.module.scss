@@ -1,0 +1,36 @@
+@import '@styles/variables';
+
+.btn {
+  position: static;
+  @include BodySmall-REGULAR;
+  border: 1px solid;
+  text-decoration: none;
+  cursor: pointer;
+  &--sm {
+    padding: 5px 24px;
+    border-radius: 4px;
+  }
+  &--md {
+    padding: 10px 24px;
+    border-radius: 6px;
+  }
+  &--lg {
+    padding: 13px 24px;
+    border-radius: 8px;
+  }
+  &--outline {
+    background-color: $colorPrimaryGray;
+    color: rgba($colorPrimaryBlack, 0.6);
+    border-color: $colorPrimaryGray;
+  }
+  &--disabled {
+    background-color: $colorPrimaryWhite;
+    color: $colorPrimaryGold;
+    border-color: $colorPrimaryGold;
+  }
+  &--fill {
+    background-color: $colorPrimaryGold;
+    color: $colorPrimaryWhite;
+    border-color: $colorPrimaryGold;
+  }
+}
