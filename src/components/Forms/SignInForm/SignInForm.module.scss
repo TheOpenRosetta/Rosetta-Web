@@ -1,0 +1,20 @@
+@import '@styles/variables';
+
+.form {
+  padding: 40px 60px;
+  background-color: $colorPrimaryWhite;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  @include DisplaySmall-BOLD;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.submit {
+  margin: 0 auto;
+}

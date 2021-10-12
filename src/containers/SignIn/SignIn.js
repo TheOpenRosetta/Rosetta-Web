@@ -1,8 +1,12 @@
 import React from 'react';
-import Layout from '@components/Layout';
+import SignInForm from '@forms/SignInForm';
+
+import styles from './SignIn.module.scss';
 
 const SignIn = () => {
-  return <Layout navigation={false}>SignIn</Layout>
+  return <div className={styles.page}>
+    <SignInForm className={styles.form} />
+  </div>
 }
 
 export default SignIn;
