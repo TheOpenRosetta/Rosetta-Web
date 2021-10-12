@@ -6,7 +6,7 @@ const aliases = (prefix = `src`) => ({
   '@styles': `${prefix}/styles`,
   '@utils': `${prefix}/utils`,
   '@containers': `${prefix}/containers`,
-  '@features': `${prefix}/features`,
+  '@services': `${prefix}/services`,
 });
 
 module.exports = aliases;

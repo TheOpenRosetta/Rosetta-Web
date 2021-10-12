@@ -13,7 +13,7 @@ import Inbox from '@containers/Inbox';
 import Help from '@containers/Help';
 import Notification from '@containers/Notification';
 import Search from '@containers/Search';
-import CreateAccount from '@containers/CreateAccount';
+import Onboarding from '@containers/Onboarding';
 import Profile from '@containers/Profile';
 import SignIn from '@containers/SignIn';
 
@@ -40,8 +40,8 @@ function App() {
           <Route path="/profile">
             <Profile />
           </Route>
-          <Route path="/create_account">
-            <CreateAccount />
+          <Route path="/onboarding">
+            <Onboarding />
           </Route>
           <Route path="/">
             <Home />

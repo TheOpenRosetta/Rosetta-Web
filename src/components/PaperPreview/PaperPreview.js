@@ -31,3 +31,5 @@ const PaperPreview = () => {
     <div className={styles.footer}></div>
   </div>;
 }
+
+export default PaperPreview;

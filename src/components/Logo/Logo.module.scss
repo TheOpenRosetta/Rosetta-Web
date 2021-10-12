@@ -1,3 +1,5 @@
+@import '@styles/variables';
+
 .logo {
   position: relative;
   font-family: Inter;
@@ -8,4 +10,9 @@
   letter-spacing: 0.004em;
   color: #FFFFFF;
   text-decoration: none;
+  text-transform: uppercase;
+}
+
+.inverse {
+  color: $colorPrimaryBlack;
 }

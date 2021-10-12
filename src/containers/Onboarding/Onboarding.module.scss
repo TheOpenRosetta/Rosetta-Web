@@ -1,0 +1,49 @@
+@import "@styles/variables";
+
+.grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  background-color: $colorPrimaryWhite;
+}
+
+.image {
+  width: 28%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  @media(max-width: 1279px) {
+    display: none;
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(179.9deg, rgba(0, 0, 0, 0) 0.08%, rgba(0, 0, 0, 0.6) 99.92%);
+    height: 50%;
+    z-index: 1;
+  }
+  img {
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.wrapper {
+  flex: 1 0;
+  height: 100vh;
+  @media(max-width: 767px) {
+    height: auto;
+  }
+}
+
+.content {
+  max-width: 900px;
+  margin: 0 auto;
+}
