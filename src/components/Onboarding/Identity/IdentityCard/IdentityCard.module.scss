@@ -1,0 +1,89 @@
+@import "@styles/variables";
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.photo {
+  margin-right: 12px;
+}
+
+.user {
+  flex: 1 0;
+}
+
+.avatar {
+  width: 55px;
+  height: 55px;
+  display: block;
+  border-radius: 50%;
+}
+
+.name {
+  @include HeadingSmall-BOLD;
+  color: $colorPrimaryBlack;
+  margin-bottom: 4px;
+}
+
+.institute {
+  @include CaptionLarge-REGULAR;
+  color: rgba($colorPrimaryBlack, 0.9);
+  margin-bottom: 16px;
+}
+
+.tokens {
+  &Value {
+    @include BodySmall-MEDIUM;
+    color: $colorPrimaryBlack;
+  }
+  &Subtitle {
+    @include BodySmall-REGULAR;
+    font-size: 10px;
+    color: rgba($colorPrimaryBlack, 0.6);
+  }
+}
+
+.papers {
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.paper {
+  padding: 12px 0 8px;
+  border-top: 1px solid $colorPrimaryGray;
+}
+
+.score {
+  @include CaptionSmall-REGULAR;
+  color: rgba($colorSupportBlack, 0.6);
+  margin-bottom: 2px;
+  span {
+    @include CaptionSmall-MEDIUM;
+    color: rgba($colorSupportBlack, 0.8);
+  }
+}
+
+.title {
+  @include BodySmall-MEDIUM;
+  color: $colorSupportBlack;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.authors {
+  @include CaptionSmall-REGULAR;
+  font-size: 10px;
+  color: rgba($colorPrimaryBlack, 0.6);
+}

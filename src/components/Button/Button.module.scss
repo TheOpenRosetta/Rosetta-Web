@@ -42,6 +42,14 @@
       fill: $colorPrimaryGold;
     }
   }
+  &--secondary {
+    background-color: transparent;
+    color: rgba($colorPrimaryBlack, 0.5);
+    border-color: transparent;
+    path {
+      fill: rgba($colorPrimaryBlack, 0.5);
+    }
+  }
   &--fill {
     background-color: $colorPrimaryGold;
     color: $colorPrimaryWhite;

@@ -6,7 +6,7 @@ import {
 
 import Start from '@components/Onboarding/Start';
 import UserData from '@components/Onboarding/UserData';
-import Indentity from '@components/Onboarding/Indentity';
+import Identity from '@components/Onboarding/Identity';
 import Papers from '@components/Onboarding/Papers';
 import Wallet from '@components/Onboarding/Wallet';
 import FollowPeople from '@components/Onboarding/FollowPeople';
@@ -29,7 +29,8 @@ const Onboarding = () => {
       <div className={styles.content}>
         {step === 0 && <Start />}
         {step === 1 && <UserData />}
-        {step === 2 && <Indentity />}
+        {step === 2 && <Identity />}
+
         {step === 3 && <Papers />}
         {step === 4 && <Wallet />}
         {step === 5 && <FollowPeople />}

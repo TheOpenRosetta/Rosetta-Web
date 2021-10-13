@@ -6,13 +6,18 @@
   flex-wrap: nowrap;
   align-items: center;
   background-color: $colorPrimaryWhite;
-  min-height: 100vh;
+  @media(max-width: 1279px) {
+    display: inline-block;
+    width: 100%;
+  }
 }
 
 .image {
   width: 28%;
   height: 100vh;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
   overflow: hidden;
   @media(max-width: 1279px) {
     display: none;
@@ -38,9 +43,11 @@
 
 .wrapper {
   flex: 1 0;
-  height: 100vh;
-  @media(max-width: 767px) {
+  margin-left: 28%;
+  min-height: 100vh;
+  @media(max-width: 1279px) {
     height: auto;
+    margin: 0;
   }
 }
 

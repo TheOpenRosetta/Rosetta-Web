@@ -16,6 +16,9 @@ export const onboardingSlice = createSlice({
     nextStep: (state) => {
       state.step += 1;
     },
+    prevStep: (state) => {
+      state.step -= 1;
+    },
     sendFirstData: (state, action) => {
       state.firstName = action.payload.firstName || state.firstName;
       state.lastName = action.payload.lastName || state.lastName;
@@ -25,7 +28,7 @@ export const onboardingSlice = createSlice({
   }
 });
 
-export const { nextStep, sendFirstData } = onboardingSlice.actions;
+export const { nextStep, prevStep, sendFirstData } = onboardingSlice.actions;
 
 export const selectStep = (state) => state.onboarding.step;
 

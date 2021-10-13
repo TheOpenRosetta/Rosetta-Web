@@ -1,0 +1,66 @@
+@import "@styles/variables";
+
+.pagination {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: relative;
+}
+
+.el {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 0 4px;
+}
+
+@mixin item {
+  @include CaptionSmall-REGULAR;
+  font-size: 10px;
+  color: $colorPrimaryBlack;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.dots {
+  @include item;
+  height: 16px;
+  width: 16px;
+  margin-right: 4px;
+}
+
+.item {
+  @include item;
+  height: 16px;
+  width: 16px;
+  &Current {
+    @include item;
+    color: $colorPrimaryWhite;
+    background-color: $colorPrimaryGold;
+    height: 16px;
+    width: 16px;
+  }
+  &Prev {
+    @include item;
+    font-size: 12px;
+    line-height: 16px;
+    color: $colorPrimaryGold;
+    margin-right: 16px;
+  }
+  &Next {
+    @include item;
+    font-size: 12px;
+    line-height: 16px;
+    color: $colorPrimaryGold;
+    margin-left: 16px;
+  }
+}
