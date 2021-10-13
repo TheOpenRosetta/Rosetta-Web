@@ -6,6 +6,7 @@
   flex-wrap: nowrap;
   align-items: center;
   background-color: $colorPrimaryWhite;
+  min-height: 100vh;
 }
 
 .image {
@@ -46,4 +47,7 @@
 .content {
   max-width: 900px;
   margin: 0 auto;
+  @media(max-width: 767px) {
+    padding: 0 16px;
+  }
 }

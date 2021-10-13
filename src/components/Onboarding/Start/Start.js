@@ -26,7 +26,7 @@ const Start = () => {
   return <div className={styles.start}>
     <div className={styles.logo}><Logo inverse={true} /></div>
     <div className={styles.steps}>
-      { steps.map(item => <div className={styles.step}>
+      { steps.map(item => <div className={styles.step} key={item.title}>
         <div className={styles.stepIcon}>{item.icon}</div>
         <div className={styles.stepTitle}>{item.title}</div>
         <div className={styles.stepSubtitle}>{item.subtitle}</div>

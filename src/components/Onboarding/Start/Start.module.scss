@@ -33,10 +33,12 @@
   flex-wrap: nowrap;
   align-items: center;
   justify-content: center;
+  text-align: center;
   @media(max-width: 767px) {
     flex: 1 0 50%;
     max-width: 50%;
-    margin-bottom: 48px;
+    margin-bottom: 24px;
+    padding: 0 8px;
   }
   &Icon {
     background-color: rgba($colorPrimaryGold, 0.1);
@@ -51,6 +53,7 @@
     @media(max-width: 767px) {
       height: 48px;
       width: 48px;
+      margin-bottom: 16px;
       svg {
         height: 32px;
         width: 32px;
@@ -62,11 +65,17 @@
     @include BodyLarge-MEDIUM;
     color: rgba($colorPrimaryBlack, 0.8);
     margin-bottom: 4px;
+    @media(max-width: 767px) {
+      @include BodySmall-BOLD;
+    }
   }
 
   &Subtitle {
     @include CaptionLarge-REGULAR;
     color: rgba($colorPrimaryBlack, 0.5);
+    @media(max-width: 767px) {
+      @include CaptionSmall-REGULAR;
+    }
   }
 }
 

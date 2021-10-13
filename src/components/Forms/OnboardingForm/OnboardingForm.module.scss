@@ -1,0 +1,61 @@
+@import '@styles/variables';
+
+.form {
+  max-width: 430px;
+  margin: 0 auto;
+}
+
+.title {
+  @include HeadingLarge-BOLD;
+  color: $colorPrimaryBlack;
+  margin-bottom: 40px;
+  text-align: center;
+  @media(max-width: 767px) {
+    margin-bottom: 24px;
+  }
+}
+
+.group {
+  padding-top: 24px;
+  position: relative;
+  border-bottom: 1px solid rgba($colorPrimaryBlack, 0.1);
+  margin-bottom: 16px;
+}
+
+.label {
+  position: absolute;
+  top: 24px;
+  left: 2px;
+  transition: top 0.3s ease;
+  @include CaptionLarge-REGULAR;
+  color: rgba($colorPrimaryBlack, 0.6);
+}
+
+.field {
+  border: none;
+  padding-bottom: 10px;
+  left: 0;
+  width: 100%;
+  position: relative;
+  border-bottom: 2px solid transparent;
+  @include BodySmall-MEDIUM;
+  color: $colorPrimaryBlack;
+  &:focus {
+    outline: none;
+    border-bottom: 2px solid $colorPrimaryGold;
+  }
+  &:valid, &:focus {
+    & + .label {
+      top: 0;
+    }
+  }
+}
+
+.submit {
+  margin: 48px auto;
+  width: 300px;
+  display: block;
+  @media(max-width: 767px) {
+    width: 240px;
+  }
+}

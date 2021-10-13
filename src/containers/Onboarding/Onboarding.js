@@ -1,7 +1,6 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {
-  nextStep,
   selectStep,
 } from '@services/Onboarding/onboardingSlice';
 
@@ -21,7 +20,6 @@ import styles from './Onboarding.module.scss';
 
 const Onboarding = () => {
   const step = useSelector(selectStep);
-  const dispatch = useDispatch();
 
   return <div className={styles.grid}>
     <div className={styles.image}>
