@@ -9,7 +9,7 @@ const PapersItem = ({ data, className }) => {
     <div className={styles.content}>
       <div className={styles.score}><span className={styles.scoreHeading}>ImpactScore</span> <span className={styles.scoreValue}>{data.impactScore}</span></div>
       <div className={styles.title}>{data.title}</div>
-      <div className={styles.authors}>{data.authors[0]}, {data.authors[1]} {data.timestamp}</div>
+      <div className={styles.authors}>{data.authors[0]}, {data.authors[1]} {new Intl.DateTimeFormat('en-GB', { dateStyle: 'medium' }).format(data.timestamp)}</div>
     </div>
     <div className={styles.actions}>
       <Button classes={styles.btn} kind="fill" size="sm">I am the author</Button>
