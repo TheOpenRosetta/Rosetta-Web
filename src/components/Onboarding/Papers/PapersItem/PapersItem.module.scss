@@ -1,0 +1,76 @@
+@import '@styles/variables';
+
+.papersItem {
+  padding: 16px 24px;
+  border: 1px solid rgba($colorPrimaryBlack, 0.2);
+  border-radius: 12px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  @media(max-width: 767px) {
+    flex-direction: column;
+    padding: 16px;
+  }
+}
+
+.content {
+  @media(max-width: 767px) {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 175px;
+  @media(max-width: 767px) {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+.score {
+  &Heading {
+    @include CaptionLarge-REGULAR;
+    color: rgba($colorSupportBlack, 0.6);
+    margin-bottom: 4px;
+  }
+  &Value {
+    @include CaptionLarge-MEDIUM;
+    color: rgba($colorSupportBlack, 0.8);
+  }
+}
+
+.title {
+  @include BodySmall-MEDIUM;
+  color: $colorSupportBlack;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 4px;
+}
+
+.authors {
+  @include BodySmall-REGULAR;
+  font-size: 10px;
+  color: rgba($colorPrimaryBlack, 0.6);
+}
+
+.btn {
+  padding: 4px 16px;
+}
+
+.close {
+  width: 32px;
+  height: 32px;
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,89 @@
+@import '@styles/variables';
+
+.papers {
+  padding-bottom: 44px;
+}
+
+.title {
+  @include HeadingLarge-BOLD;
+  color: $colorPrimaryBlack;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.photo {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto 16px;
+  img {
+    display: block;
+    width: 100%;
+  }
+}
+
+.name {
+  text-align: center;
+  @include HeadingSmall-BOLD;
+  color: $colorPrimaryBlack;
+  margin-bottom: 4px;
+}
+
+.score {
+  @include BodySmall-REGULAR;
+  color: rgba($colorSupportBlack, 0.6);
+  margin-bottom: 24px;
+  text-align: center;
+  span {
+    @include BodyLarge-MEDIUM;
+  }
+}
+
+.list {
+  max-width: 610px;
+  padding: 0 8px;
+  margin: 0 auto;
+  @media(max-width: 767px) {
+    padding: 0;
+  }
+}
+
+.pagination {
+  max-width: 610px;
+  padding: 0 8px;
+  margin: 0 auto 48px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.actions {
+  max-width: 300px;
+  position: relative;
+  margin: 0 auto;
+  @media(max-width: 767px) {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.back {
+  position: absolute;
+  right: calc(100% + 32px);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  @media(max-width: 767px) {
+    margin-top: 16px;
+    position: static;
+  }
+}
+
+.next {
+  width: 100%;
+}
