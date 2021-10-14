@@ -33,8 +33,8 @@ const Onboarding = () => {
         {step === 3 && <Papers />}
         {step === 4 && <FollowPeople />}
         {step === 5 && <Wallet />}
-
         {step === 6 && <Photo />}
+
         {step === 7 && <Skills />}
         {step === 8 && <Discipline />}
         {step === 9 && <Leaders />}

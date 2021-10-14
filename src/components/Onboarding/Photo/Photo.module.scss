@@ -1,0 +1,51 @@
+@import '@styles/variables';
+
+.photo {
+  padding-bottom: 40px;
+}
+
+.title {
+  @include HeadingLarge-BOLD;
+  color: $colorSupportBlack;
+  margin-top: 64px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.subtitle {
+  max-width: 506px;
+  text-align: center;
+  margin: 0 auto;
+  @include BodyLarge-REGULAR;
+  color: rgba($colorPrimaryBlack, 0.7);
+  margin-bottom: 40px;
+}
+
+.actions {
+  max-width: 300px;
+  position: relative;
+  margin: 0 auto;
+  @media(max-width: 767px) {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.back {
+  position: absolute;
+  right: calc(100% + 32px);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  @media(max-width: 767px) {
+    margin-top: 16px;
+    position: static;
+  }
+}
+
+.next {
+  width: 100%;
+}
