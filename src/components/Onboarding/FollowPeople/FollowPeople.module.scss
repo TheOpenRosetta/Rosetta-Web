@@ -1,0 +1,187 @@
+@import "@styles/variables";
+
+.followPeople {
+  padding-bottom: 48px;
+}
+
+.title {
+  @include HeadingLarge-BOLD;
+  color: $colorPrimaryBlack;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.followGroups {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  @media(max-width: 991px) {
+    padding: 0 6px;
+  }
+  @media(max-width: 767px) {
+    flex-direction: column;
+    padding: 0;
+  }
+}
+
+.followItem {
+  flex: 1 0 calc(50% - 20px);
+  max-width: calc(50% - 20px);
+  margin: 0 10px 20px;
+  border: 1px solid rgba(0,0,0, 0.06);
+  padding: 12px 18px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  @media(max-width: 767px) {
+    flex: 1 0 100%;
+    max-width: 100%;
+    margin: 0 0 20px;
+    padding: 12px 12px;
+  }
+  &Icon {
+    display: none;
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+    height: 16px;
+    width: 16px;
+    path {
+      fill: $colorPrimaryGold;
+    }
+  }
+  &:hover {
+    border-color: $colorPrimaryGold;
+  }
+  &:hover &Icon {
+    display: block;
+  }
+  img {
+    margin-right: 10px;
+  }
+  &Title {
+    @include BodyLarge-REGULAR;
+    color: $colorSupportBlack;
+    @media(max-width: 767px) {
+      @include BodySmall-REGULAR;
+    }
+  }
+}
+
+.categories{
+  padding: 0 10px;
+  margin-bottom: 30px;
+  @media(max-width: 991px) {
+    padding: 0 16px;
+  }
+  @media(max-width: 767px) {
+    padding: 0;
+  }
+  &Title {
+    @include HeadingSmall-BOLD;
+    color: $colorSupportBlack;
+    margin-bottom: 20px;
+  }
+  &List {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    @media(max-width: 767px) {
+      justify-content: flex-start;
+    }
+  }
+  &Item {
+    padding: 7px 18px;
+    @include BodySmall-REGULAR;
+    border: 1px solid rgba(0,0,0, 0.06);
+    margin-right: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    @media(max-width: 767px) {
+      margin-right: 12px;
+      margin-bottom: 12px;
+    }
+    input {
+      display: none;
+    }
+    &Active {
+      border-color: $colorPrimaryGold;
+    }
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.suggestions {
+  padding: 0 10px;
+  @media(max-width: 991px) {
+    padding: 0 16px;
+  }
+  @media(max-width: 767px) {
+    padding: 0;
+  }
+  &Title {
+    @include HeadingSmall-BOLD;
+    color: $colorSupportBlack;
+    margin-bottom: 20px;
+  }
+  &List {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 40px;
+    @media(max-width: 767px) {
+      flex-wrap: wrap;
+    }
+  }
+  &Item {
+    margin-right: 20px;
+    @media(max-width: 767px) {
+      width: calc(50% - 8px);
+      margin-right: 0;
+      margin-bottom: 16px;
+    }
+  }
+}
+
+.actions {
+  max-width: 300px;
+  position: relative;
+  margin: 0 auto;
+  @media(max-width: 767px) {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.back {
+  position: absolute;
+  right: calc(100% + 32px);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  @media(max-width: 767px) {
+    margin-top: 16px;
+    position: static;
+  }
+}
+
+.next {
+  width: 100%;
+}

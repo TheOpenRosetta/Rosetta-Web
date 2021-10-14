@@ -27,13 +27,16 @@ const Onboarding = () => {
     </div>
     <div className={styles.wrapper}>
       <div className={styles.content}>
-        {step === 0 && <Start />}
-        {step === 1 && <UserData />}
-        {step === 2 && <Identity />}
-        {step === 3 && <Papers />}
+        {
+          // {step === 0 && <Start />}
+          // {step === 1 && <UserData />}
+          // {step === 2 && <Identity />}
+          // {step === 3 && <Papers />}
+          // {step === 4 && <FollowPeople />}
+        }
 
-        {step === 4 && <Wallet />}
-        {step === 5 && <FollowPeople />}
+        <FollowPeople />
+        {step === 5 && <Wallet />}
         {step === 6 && <Photo />}
         {step === 7 && <Skills />}
         {step === 8 && <Discipline />}

@@ -1,0 +1,32 @@
+@import "@styles/variables";
+
+.followCard {
+  border: 1px solid $colorPrimaryGray;
+  border-radius: 8px;
+  text-align: center;
+  padding: 24px;
+  width: 164px;
+  @media(max-width: 767px) {
+    width: 100%;
+  }
+  &:hover {
+    border-color: $colorPrimaryGold;
+  }
+}
+
+.photo {
+  margin: 0 auto 8px;
+}
+
+.name {
+  @include BodyLarge-MEDIUM;
+  color: $colorSupportBlack;
+  margin-bottom: 4px;
+}
+
+.description {
+  @include CaptionSmall-REGULAR;
+  font-size: 10px;
+  color: $colorSupportBlack;
+  margin-bottom: 16px;
+}
