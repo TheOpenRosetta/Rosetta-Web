@@ -37,6 +37,7 @@ const Onboarding = () => {
 
         {step === 7 && <Skills />}
         {step === 8 && <Discipline />}
+
         {step === 9 && <Leaders />}
       </div>
     </div>

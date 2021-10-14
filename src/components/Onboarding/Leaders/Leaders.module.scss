@@ -1,0 +1,72 @@
+@import '@styles/variables';
+
+.leaders {
+  padding-bottom: 48px;
+  &List {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    @media(max-width: 991px) {
+      padding: 0 16px;
+      justify-content: space-around;
+    }
+    @media(max-width: 767px) {
+      padding: 0;
+      justify-content: space-between;
+    }
+  }
+  &Item {
+    margin-bottom: 28px;
+    @media(max-width: 767px) {
+      flex: 1 0 50%;
+      max-width: calc(50% - 8px);
+    }
+  }
+}
+
+.title {
+  @include HeadingLarge-BOLD;
+  color: $colorPrimaryBlack;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.subtitle {
+  @include BodyLarge-REGULAR;
+  color: rgba($colorPrimaryBlack, 0.7);
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+
+.actions {
+  max-width: 300px;
+  position: relative;
+  margin: 0 auto;
+  @media(max-width: 767px) {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.back {
+  position: absolute;
+  right: calc(100% + 32px);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  @media(max-width: 767px) {
+    margin-top: 16px;
+    position: static;
+  }
+}
+
+.next {
+  width: 100%;
+}
