@@ -7,8 +7,6 @@ import {ReactComponent as CloseIcon}  from '@assets/icons/close-outline.svg';
 
 const SelectItemsForm = ({ name, className, addToList, removeFromList, addToSuggestList, list, suggestList }) => {
   const [newItem, setNewItem] = useState('');
-  console.log(suggestList);
-  console.log(list);
 
   const handleChange = (ev) => setNewItem(ev.target.value);
 
