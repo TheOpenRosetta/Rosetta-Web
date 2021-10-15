@@ -50,7 +50,7 @@ const Header = () => {
               </Popover>
             </> : <>
               <Link to="/sign_in" className={styles.signIn}>Sign in</Link>
-              <Button element={Link} to="onboarding" size="lg" kind="fill" classes={styles.createAccount}>Create Free account</Button>
+              <Button element={Link} to="/onboarding" size="lg" kind="fill" classes={styles.createAccount}>Create Free account</Button>
             </>
           }
         </div>
