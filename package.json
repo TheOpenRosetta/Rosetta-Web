@@ -2,7 +2,7 @@
   "name": "rosetta",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://TheOpenRosetta.github.io/Rosetta-Web",
+  "homepage": "https://TheOpenRosetta.github.io/Rosetta-Web",
   "dependencies": {
     "@craco/craco": "^6.3.0",
     "@reduxjs/toolkit": "^1.5.1",
