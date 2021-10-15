@@ -1,0 +1,26 @@
+@import '@styles/variables';
+
+.title {
+  @include HeadingLarge-BOLD;
+  color: $colorSupportBlack;
+  margin-top: 64px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.subtitle {
+  max-width: 506px;
+  text-align: center;
+  margin: 0 auto;
+  @include BodyLarge-REGULAR;
+  color: rgba($colorPrimaryBlack, 0.7);
+  margin-bottom: 40px;
+}
+
+.actions {
+  text-align: center;
+}
+
+.btn {
+  width: 180px;
+}
