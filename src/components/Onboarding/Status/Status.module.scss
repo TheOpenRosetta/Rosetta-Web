@@ -6,58 +6,206 @@
   align-items: center;
   justify-content: center;
   margin: 72px auto 40px;
+  position: relative;
   @media(max-width: 767px) {
     margin: 32px auto 48px;
     align-items: flex-start;
   }
   &[data-step='2'] {
+    .step:first-child .dot:before {
+      left: 17.5%;
+    }
+    .step:first-child .dot:after {
+      content: '';
+      position: absolute;
+      top: 10px;
+      border-bottom: 1px solid $colorPrimaryBlue;
+      left: 12.5%;
+      right: 82.5%;
+    }
+  }
+  &[data-step='3'] {
+    .step:first-child .dot:before {
+      left: 22.5%;
+    }
+    .step:first-child .dot:after {
+      content: '';
+      position: absolute;
+      top: 10px;
+      border-bottom: 1px solid $colorPrimaryBlue;
+      left: 12.5%;
+      right: 77.5%;
+    }
+  }
+  &[data-step='4'] {
+    .step:first-child .dot:before {
+      left: 27.5%;
+    }
+    .step:first-child .dot:after {
+      content: '';
+      position: absolute;
+      top: 10px;
+      border-bottom: 1px solid $colorPrimaryBlue;
+      left: 12.5%;
+      right: 72.5%;
+    }
+  }
+  &[data-step='5'] {
+    .step:first-child .dot:before {
+      left: 32.5%;
+    }
+    .step:first-child .dot:after {
+      content: '';
+      position: absolute;
+      top: 10px;
+      border-bottom: 1px solid $colorPrimaryBlue;
+      left: 12.5%;
+      right: 67.5%;
+    }
+  }
+  &[data-step='6'] {
+    .step:first-child .dot:after {
+      content: '';
+      position: absolute;
+      top: 10px;
+      border-bottom: 1px solid $colorSupportGreen;
+      left: 12.5%;
+      right: 62.5%;
+    }
+    .step:first-child .dot:before {
+      left: 42.5%;
+    }
+    .step:nth-child(2) .dot:after {
+      content: '';
+      position: absolute;
+      top: 10px;
+      border-bottom: 1px solid $colorPrimaryBlue;
+      left: 37.5%;
+      right: 55.25%;
+    }
+  }
+  &[data-step='7'] {
+    .step:first-child .dot:after {
+      content: '';
+      position: absolute;
+      top: 10px;
+      border-bottom: 1px solid $colorSupportGreen;
+      left: 12.5%;
+      right: 62.5%;
+    }
+    .step:first-child .dot:before {
+      left: 48.75%;
+    }
+    .step:nth-child(2) .dot:after {
+      content: '';
+      position: absolute;
+      top: 10px;
+      border-bottom: 1px solid $colorPrimaryBlue;
+      left: 37.5%;
+      right: 49%;
+    }
+  }
+  &[data-step='8'] {
+    .step:first-child .dot:after {
+      content: '';
+      position: absolute;
+      top: 10px;
+      border-bottom: 1px solid $colorSupportGreen;
+      left: 12.5%;
+      right: 62.5%;
+    }
+    .step:first-child .dot:before {
+      left: 55%;
+    }
+    .step:nth-child(2) .dot:after {
+      content: '';
+      position: absolute;
+      top: 10px;
+      border-bottom: 1px solid $colorPrimaryBlue;
+      left: 37.5%;
+      right: 42.75%;
+    }
+  }
+  &[data-step='9'], &[data-step='10'] {
+    .step:first-child .dot:after {
+      content: '';
+      position: absolute;
+      top: 10px;
+      border-bottom: 1px solid $colorSupportGreen;
+      left: 12.5%;
+      right: 62.5%;
+    }
+    .step:nth-child(2) .dot:after {
+      content: '';
+      position: absolute;
+      top: 10px;
+      border-bottom: 1px solid $colorSupportGreen;
+      left: 37.5%;
+      right: 36.5%;
+    }
+  }
+}
 
+.done {
+  .dot {
+    border-color: $colorSupportGreen !important;
+    background-color: $colorPrimaryWhite !important;
+    span {
+      background-color: $colorPrimaryWhite;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width: 100%;
+      z-index: 1;
+      svg {
+        height: 12px;
+        width: 12px;
+      }
+      path {
+        fill: $colorSupportGreen;
+      }
+    }
   }
 }
 
 .step {
   flex: 1 0 25%;
   text-align: center;
-  position: relative;
   &:first-child {
     .dot {
       background-color: $colorPrimaryBlue;
       border-color: $colorPrimaryBlue;
       &:before {
-        display: none;
-      }
-    }
-  }
-  &:last-child {
-    .dot {
-      &:after {
-        display: none;
+        content: '';
+        position: absolute;
+        top: 10px;
+        border-bottom: 1px solid #E7E7E8;
+        left: 12.5%;
+        right: 12.5%;
       }
     }
   }
 }
 
 .dot {
-  display: block;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   margin: 0 auto;
   height: 20px;
   width: 20px;
   border-radius: 50%;
   margin-bottom: 12px;
-  background-color: $colorPrimaryWhite;
-  border: 1px solid rgba($colorPrimaryBlack, 0.5);
-  &:before, &:after {
-    content: '';
-    position: absolute;
-    top: 10px;
-    border-bottom: 1px solid rgba($colorPrimaryBlack, 0.1);
-    width: calc(50% - 10px);
-  }
-  &:before {
-    right: calc(50% + 10px);
-  }
-  &:after {
-    left: calc(50% + 10px);
+  border: 1px solid #E7E7E8;
+  @include CaptionSmall-REGULAR;
+  font-size: 8px;
+  color: rgba($colorPrimaryBlack, 0.4);
+  background-color: #E7E7E8;
+  span {
+    position: relative;
   }
 }
 
