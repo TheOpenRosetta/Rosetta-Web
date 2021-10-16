@@ -22,13 +22,13 @@ const user = {
   score: 10000,
 }
 
-const papersList = [1,1,1,1,1,1,1,1,1,1].fill({
-  paperid: 1111,
+const papersList = [1,1,1,1,1,1,1,1,1,1].map(() => ({
   title: "New Measurement for Impact in Academic Research",
   impactScore: 5.676,
   authors: ['Paola Peynetti Velázquez', 'G. Gupta'],
-  timestamp: 1351351616
-});
+  timestamp: 1351351616,
+  paperid: Math.floor(Math.random() * (1000000 - 10000 + 1)) + 10000
+}));
 
 const Papers = () => {
   const dispatch = useDispatch();

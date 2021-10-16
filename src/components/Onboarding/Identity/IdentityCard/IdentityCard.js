@@ -3,7 +3,7 @@ import Button from '@components/Button';
 import {priceFormat} from '@utils/numbers';
 import styles from './IdentityCard.module.scss';
 
-const IdentityCard = ({ data }) => {
+const IdentityCard = ({ data, claimed, toggleClaimed }) => {
   return <div className={styles.card}>
     <header className={styles.header}>
       <div className={styles.photo}>
@@ -15,7 +15,12 @@ const IdentityCard = ({ data }) => {
             <div className={styles.name}>{data.firstName} {data.lastName}</div>
             <div className={styles.institute}>{data.institute}</div>
           </div>
-          <Button classes={styles.btn} kind="outline" size="sm">Claim</Button>
+          {
+            claimed ?
+            <Button classes={styles.btn} kind="bordered" size="sm" onClick={() => toggleClaimed(data.authorid)}>Unclaim</Button>
+            :
+            <Button classes={styles.btn} kind="outline" size="sm" onClick={() => toggleClaimed(data.authorid)}>Claim</Button>
+          }
         </div>
         <div className={styles.row}>
           <div className={styles.tokens}>
