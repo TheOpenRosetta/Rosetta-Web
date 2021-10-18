@@ -75,8 +75,10 @@ const Identity = () => {
     const exist = claimed.indexOf(id);
     if (exist >= 0) {
       setClaimed(claimed.filter(el => el !== id));
+      notInListToggle(claimed.length === 1);
     } else {
       setClaimed([...claimed, id]);
+      notInListToggle(false);
     }
   }
 
@@ -112,7 +114,7 @@ const Identity = () => {
     </MediaQuery>
 
     <label className={styles.checkboxContainer}>
-      <input type="checkbox" onChange={handleCheckbox} value={false} />
+      <input type="checkbox" onChange={handleCheckbox} value={notInList} />
       <span className={styles.checkbox}></span>
       I am not in this list
     </label>

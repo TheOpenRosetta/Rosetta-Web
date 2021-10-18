@@ -14,7 +14,7 @@ const initialState = {
   duplicate_author_ids: [],
   papers_incorrectly_attributed: [],
   papers_which_should_have_been_attributed: [],
-  category: null,
+  category: [],
   followGroups: [],
   followUsers: []
 };
@@ -50,17 +50,29 @@ export const onboardingSlice = createSlice({
     addDisciplines: (state, actions) => {
       state.disciplines = [...state.disciplines, actions.payload];
     },
-    addFollowUsers: (state, actions) => {
-      state.followUsers = [...state.followUsers, actions.payload];
+    setFollowUsers: (state, actions) => {
+      if (state.followUsers.some(n => n === actions.payload)) {
+        state.followUsers = state.followUsers.filter(el => el !== actions.payload)
+      } else {
+        state.followUsers = [...state.followUsers, actions.payload];
+      }
     },
-    addFollowGroups: (state, actions) => {
-      state.followGroups = [...state.followGroups, actions.payload];
+    setFollowGroups: (state, actions) => {
+      if (state.followGroups.some(n => n === actions.payload)) {
+        state.followGroups = state.followGroups.filter(el => el !== actions.payload)
+      } else {
+        state.followGroups = [...state.followGroups, actions.payload];
+      }
     },
     setPublicKey: (state, actions) => {
       state.publickey = actions.payload;
     },
     setCategory: (state, actions) => {
-      state.category = actions.payload;
+      if (state.category.some(n => n === actions.payload)) {
+        state.category = state.category.filter(el => el !== actions.payload)
+      } else {
+        state.category = [...state.category, actions.payload];
+      }
     },
     setPhoto: (state, actions) => {
       state.photo = actions.payload;
@@ -77,14 +89,21 @@ export const {
   addShouldAttributedPaper,
   addSkills,
   addDisciplines,
-  addFollowUsers,
-  addFollowGroups,
+  setFollowUsers,
+  setFollowGroups,
   setPublicKey,
   setCategory,
   setPhoto
 } = onboardingSlice.actions;
 
 export const selectStep = (state) => state.onboarding.step;
+export const selectCategory = (state) => state.onboarding.category;
+export const selectGroups = (state) => state.onboarding.followGroups;
+export const selectUsers = (state) => state.onboarding.followUsers;
+export const selectPapers = (state) => ({
+  incorrectlyAttr: state.onboarding.papers_incorrectly_attributed,
+  shouldAttr: state.onboarding.papers_which_should_have_been_attributed
+});
 export const selectDublicatedAuthors = (state) => state.onboarding.duplicate_author_ids;
 
 export default onboardingSlice.reducer;

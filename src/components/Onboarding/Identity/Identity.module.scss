@@ -72,12 +72,12 @@
   transition: background .3s;
   margin-right: 8px;
 
-  input:checked ~ & {
+  input[value="true"] ~ & {
     background: $colorPrimaryGold;
     border: 0;
   }
 
-  input:checked ~ &::after {
+  input[value="true"] ~ &::after {
     display: block;
   }
 

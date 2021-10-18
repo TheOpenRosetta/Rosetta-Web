@@ -40,6 +40,9 @@
   align-items: center;
   cursor: pointer;
   position: relative;
+  input[type="checkbox"] {
+    display: none;
+  }
   @media(max-width: 767px) {
     flex: 1 0 100%;
     max-width: 100%;
@@ -58,10 +61,10 @@
       fill: $colorPrimaryGold;
     }
   }
-  &:hover {
+  &Active {
     border-color: $colorPrimaryGold;
   }
-  &:hover &Icon {
+  &Active &Icon {
     display: block;
   }
   img {

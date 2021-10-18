@@ -3,10 +3,13 @@ import Status from '../Status';
 import Button from '@components/Button';
 import Pagination from '@components/Pagination';
 import PapersItem from './PapersItem';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   prevStep,
-  nextStep
+  nextStep,
+  selectPapers,
+  addIncorrectPaper,
+  addShouldAttributedPaper
 } from '@services/Onboarding/onboardingSlice';
 
 import {ReactComponent as ArrowBackIcon}  from '@assets/icons/arrow-ios-back-outline.svg'
@@ -34,10 +37,18 @@ const Papers = () => {
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
   const [data, setData] = useState(papersList.slice(0, 3));
+  const attrPapers = useSelector(selectPapers);
 
   const changePage = (n) => {
     setPage(n);
-    setData(papersList.slice((n - 1)*3, n*3));
+    setData(papersList.slice((n - 1)*3, n*3)); // save data to state of shown papers
+  }
+
+  const processedPaper = (id) => {
+    let paper = null;
+    attrPapers.incorrectlyAttr.some(el => el === id) && (paper = 'incorrect');
+    attrPapers.shouldAttr.some(el => el === id) && (paper = 'should');
+    return paper;
   }
 
   return <div className={styles.papers}>
@@ -50,7 +61,14 @@ const Papers = () => {
     <div className={styles.score}>ImpactScore <span>{user.score}</span></div>
     <div className={styles.list}>
       {
-        data.map((item, index) => <PapersItem data={item} className={styles.item} key={item.paperid + index} />)
+        data.map((item) => <PapersItem
+          data={item}
+          className={styles.item}
+          key={item.paperid}
+          processedPaper={processedPaper}
+          approve={() => dispatch(addShouldAttributedPaper(item.paperid))}
+          remove={() => dispatch(addIncorrectPaper(item.paperid))}
+        />)
       }
     </div>
     <Pagination data={papersList} maxItems={papersList.length} itemsPerPage={3} currentPage={page} changePage={changePage} prev="Previous" next="Next" className={styles.pagination} />
