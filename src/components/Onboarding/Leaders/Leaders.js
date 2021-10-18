@@ -2,8 +2,10 @@ import React from 'react';
 import Status from '../Status';
 import Button from '@components/Button';
 import FollowCard from '@components/FollowCard';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
+  setFollowUsers,
+  selectUsers,
   prevStep,
   nextStep
 } from '@services/Onboarding/onboardingSlice';
@@ -29,6 +31,8 @@ const followUsers = [
 
 const Leaders = () => {
   const dispatch = useDispatch();
+  const users = useSelector(selectUsers);
+
   return <div className={styles.leaders}>
     <Status />
     <div className={styles.title}>Choose some key thought leaders from those new industries</div>
@@ -39,7 +43,8 @@ const Leaders = () => {
           key={item.authorid}
           name={`${item.firstName} ${item.lastName}`}
           photo={item.photo}
-          click={() => console.log(item.authorid)}
+          followed={users.some(u => u === item.authorid)}
+          click={() => dispatch(setFollowUsers(item.authorid))}
           description={item.description}
           className={styles.leadersItem}
         />)
