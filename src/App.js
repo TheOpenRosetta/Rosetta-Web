@@ -20,7 +20,7 @@ import SignIn from '@containers/SignIn';
 function App() {
   return (
     <div className="app">
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <Switch>
           <Route path="/help">
             <Help />
