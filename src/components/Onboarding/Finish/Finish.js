@@ -1,24 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
+import {
+  useHistory
+} from "react-router-dom";
 import Button from '@components/Button';
 import Status from '../Status';
-import { useDispatch } from 'react-redux';
+import axios from 'axios';
+import { useSelector } from 'react-redux';
 import {
-  prevStep,
-  nextStep
+  selectPublishData,
 } from '@services/Onboarding/onboardingSlice';
 
 import styles from './Finish.module.scss';
 
 const Finish = () => {
+  const history = useHistory();
+  const [error, setError] = useState(null);
+  const publishData = useSelector(selectPublishData);
   const publishAction = () => {
-    alert("Publish");
+    axios.get(`https://rosetta.eastus.cloudapp.azure.com/api/v1/onboarduser/${JSON.stringify(publishData)}`)
+      .then((response) => {
+        const { data } = response;
+        if (data.statusCode === 200) {
+          history.push("/");
+        } else {
+          setError(data.message);
+        }
+      })
+      .catch(function (error) {
+        setError(error.message);
+      });
   }
 
   const exploreAction = () => {
     alert("Explore");
   }
 
-  return <div className={styles.photo}>
+  return <div className={styles.finish}>
     <Status />
     <div className={styles.title}>Ready to publish your first paper?</div>
     <div className={styles.subtitle}>Start exploring, or publish your first paper on Rosetta.</div>
@@ -27,6 +44,10 @@ const Finish = () => {
       <Button classes={styles.btn} kind="fill" size="lg" onClick={publishAction}>Publish</Button>
       <Button classes={styles.btn} kind="secondary" size="lg" onClick={exploreAction}>Explore</Button>
     </div>
+
+    {
+      error && <div className={styles.error}>{error}</div>
+    }
   </div>;
 }
 

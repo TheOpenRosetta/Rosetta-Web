@@ -16,7 +16,7 @@ const Photo = () => {
   const [file, saveFile] = useState(null);
   const dispatch = useDispatch();
   const loadPhoto = (file) => {
-    saveFile(file);
+    saveFile(window.URL.createObjectURL(file));
   }
   const next = () => {
     if (file) {

@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
+import Arweave from 'arweave';
 import {
+  setPublicKey,
   prevStep,
   nextStep
 } from '@services/Onboarding/onboardingSlice';
@@ -12,7 +14,23 @@ import styles from './Wallet.module.scss';
 import {ReactComponent as ArrowBackIcon}  from '@assets/icons/arrow-ios-back-outline.svg'
 
 const Wallet = () => {
+  const [publickey, setPublickey] = useState('');
   const dispatch = useDispatch();
+  const arweave = Arweave.init({});
+
+  useEffect(() => {
+    arweave.wallets.generate().then((key) => {
+      arweave.wallets.jwkToAddress(key).then((address) => {
+          setPublickey(address);
+      });
+    });
+  }, []);
+
+  const next = () => {
+    dispatch(setPublicKey(publickey));
+    dispatch(nextStep());
+  }
+
   return <div className={styles.wallet}>
     <Status />
     <div className={styles.title}>Create Rosetta Wallet</div>
@@ -51,7 +69,7 @@ const Wallet = () => {
 
     <div className={styles.actions}>
       <Button classes={styles.back} kind="secondary" size="lg" onClick={() => dispatch(prevStep())}><ArrowBackIcon /> Back</Button>
-      <Button classes={styles.next} kind="fill" size="lg" onClick={() => dispatch(nextStep())}>Next</Button>
+      <Button classes={styles.next} kind="fill" size="lg" onClick={next}>Next</Button>
       <Button classes={styles.skip} kind="secondary" size="lg" onClick={() => dispatch(nextStep())}>Skip</Button>
     </div>
   </div>;

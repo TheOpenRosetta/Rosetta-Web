@@ -19,7 +19,6 @@ const OnboardingForm = ({ className: classes }) => {
        email: ''
      },
      onSubmit: values => {
-       alert(JSON.stringify(values, null, 2));
        dispatch(sendFirstData(values));
        dispatch(nextStep());
      },

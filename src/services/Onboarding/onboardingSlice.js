@@ -9,11 +9,11 @@ const initialState = {
   email: '',
   photo: null,
   skills: [],
-  desciplines: [],
+  disciplines: [],
   publickey: null,
   duplicate_author_ids: [],
   papers_incorrectly_attributed: [],
-  papers_which_should_have_been_attributed: [],
+  papers_claimed_by_this_author: [],
   category: [],
   followGroups: [],
   followUsers: []
@@ -36,19 +36,19 @@ export const onboardingSlice = createSlice({
       state.email = action.payload.email || state.email;
     },
     addDuplicatedAuthor: (state, actions) => {
-      state.duplicate_author_ids = [...state.duplicate_author_ids, actions.payload];
+      state.duplicate_author_ids = [...actions.payload];
     },
     addIncorrectPaper: (state, actions) => {
       state.papers_incorrectly_attributed = [...state.papers_incorrectly_attributed, actions.payload];
     },
     addShouldAttributedPaper: (state, actions) => {
-      state.papers_which_should_have_been_attributed = [...state.papers_which_should_have_been_attributed, actions.payload];
+      state.papers_claimed_by_this_author = [...state.papers_claimed_by_this_author, actions.payload];
     },
-    addSkills: (state, actions) => {
-      state.skills = [...state.skills, actions.payload];
+    setSkills: (state, actions) => {
+      state.skills = [...actions.payload];
     },
-    addDisciplines: (state, actions) => {
-      state.disciplines = [...state.disciplines, actions.payload];
+    setDisciplines: (state, actions) => {
+      state.disciplines = [...actions.payload];
     },
     setFollowUsers: (state, actions) => {
       if (state.followUsers.some(n => n === actions.payload)) {
@@ -87,8 +87,8 @@ export const {
   addDuplicatedAuthor,
   addIncorrectPaper,
   addShouldAttributedPaper,
-  addSkills,
-  addDisciplines,
+  setSkills,
+  setDisciplines,
   setFollowUsers,
   setFollowGroups,
   setPublicKey,
@@ -102,8 +102,24 @@ export const selectGroups = (state) => state.onboarding.followGroups;
 export const selectUsers = (state) => state.onboarding.followUsers;
 export const selectPapers = (state) => ({
   incorrectlyAttr: state.onboarding.papers_incorrectly_attributed,
-  shouldAttr: state.onboarding.papers_which_should_have_been_attributed
+  shouldAttr: state.onboarding.papers_claimed_by_this_author
 });
 export const selectDublicatedAuthors = (state) => state.onboarding.duplicate_author_ids;
+
+export const selectPublishData = (state) => ({
+  email: state.onboarding.email,
+  firstName: state.onboarding.firstName,
+  lastName: state.onboarding.lastName,
+  publickey: state.onboarding.publickey,
+  duplicate_author_ids: state.onboarding.duplicate_author_ids,
+  papers_claimed_by_this_author: state.onboarding.papers_claimed_by_this_author,
+  institution: state.onboarding.institution,
+  photo: state.onboarding.photo,
+  skills: state.onboarding.skills,
+  disciplines: state.onboarding.disciplines,
+  category: state.onboarding.category,
+  followGroups: state.onboarding.followGroups,
+  followUsers: state.onboarding.followUsers,
+});
 
 export default onboardingSlice.reducer;

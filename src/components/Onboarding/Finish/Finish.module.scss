@@ -24,3 +24,11 @@
 .btn {
   width: 180px;
 }
+
+.error {
+  @include CaptionSmall-MEDIUM;
+  color: $colorSupportRed;
+  margin-top: 64px;
+  margin-bottom: 16px;
+  text-align: center;
+}

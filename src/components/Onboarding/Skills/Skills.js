@@ -4,6 +4,7 @@ import Button from '@components/Button';
 import SelectItemsForm from '@forms/SelectItemsForm';
 import { useDispatch } from 'react-redux';
 import {
+  setSkills,
   prevStep,
   nextStep
 } from '@services/Onboarding/onboardingSlice';
@@ -14,6 +15,7 @@ import styles from './Skills.module.scss';
 const suggestDefault = ['Some skill', 'Some skill', 'Some skill', 'Some skill'];
 
 const Skills = () => {
+  const dispatch = useDispatch();
   const [suggestList, setSuggestList] = useState(suggestDefault);
   const [list, setList] = useState([]);
 
@@ -41,7 +43,11 @@ const Skills = () => {
     setSuggestList([...suggestList, el]);
   }
 
-  const dispatch = useDispatch();
+  const next = () => {
+    dispatch(setSkills(list));
+    dispatch(nextStep());
+  }
+
   return <div className={styles.skills}>
     <Status />
     <div className={styles.title}>Add your skills & expertise</div>
@@ -59,7 +65,7 @@ const Skills = () => {
 
     <div className={styles.actions}>
       <Button classes={styles.back} kind="secondary" size="lg" onClick={() => dispatch(prevStep())}><ArrowBackIcon /> Back</Button>
-      <Button classes={styles.next} kind="fill" size="lg" onClick={() => dispatch(nextStep())}>Next</Button>
+      <Button classes={styles.next} kind="fill" size="lg" onClick={next}>Next</Button>
     </div>
   </div>;
 }

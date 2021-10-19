@@ -4,6 +4,7 @@ import Button from '@components/Button';
 import SelectItemsForm from '@forms/SelectItemsForm';
 import { useDispatch } from 'react-redux';
 import {
+  setDisciplines,
   prevStep,
   nextStep
 } from '@services/Onboarding/onboardingSlice';
@@ -14,6 +15,7 @@ import styles from './Discipline.module.scss';
 const suggestDefault = ['Some discipline', 'Some discipline', 'Some discipline', 'Some discipline'];
 
 const Discipline = () => {
+  const dispatch = useDispatch();
   const [suggestList, setSuggestList] = useState(suggestDefault);
   const [list, setList] = useState([]);
 
@@ -41,7 +43,11 @@ const Discipline = () => {
     setSuggestList([...suggestList, el]);
   }
 
-  const dispatch = useDispatch();
+  const next = () => {
+    dispatch(setDisciplines(list));
+    dispatch(nextStep());
+  }
+
   return <div className={styles.discipline}>
     <Status />
     <div className={styles.title}>Select your discipline</div>
@@ -59,7 +65,7 @@ const Discipline = () => {
 
     <div className={styles.actions}>
       <Button classes={styles.back} kind="secondary" size="lg" onClick={() => dispatch(prevStep())}><ArrowBackIcon /> Back</Button>
-      <Button classes={styles.next} kind="fill" size="lg" onClick={() => dispatch(nextStep())}>Next</Button>
+      <Button classes={styles.next} kind="fill" size="lg" onClick={next}>Next</Button>
     </div>
   </div>;
 }
