@@ -11,7 +11,7 @@ const SelectItemsForm = ({ name, className, addToList, removeFromList, list, sug
   const [suggest, setSuggest] = useState(suggestList);
 
   const handleChange = (ev) => {
-    setSuggest(suggestList.filter(el => el.toLowerCase().indexOf(ev.target.value) >= 0));
+    setSuggest(suggestList.filter(el => el.toLowerCase().indexOf(ev.target.value.toLowerCase()) >= 0));
     setNewItem(ev.target.value);
   };
 

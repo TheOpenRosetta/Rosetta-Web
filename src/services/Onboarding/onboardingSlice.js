@@ -114,7 +114,7 @@ export const selectPublishData = (state) => ({
   duplicate_author_ids: state.onboarding.duplicate_author_ids,
   papers_claimed_by_this_author: state.onboarding.papers_claimed_by_this_author,
   institution: state.onboarding.institution,
-  photo: state.onboarding.photo,
+  photo: new File([state.onboarding.photo], "photo"),
   skills: state.onboarding.skills,
   disciplines: state.onboarding.disciplines,
   category: state.onboarding.category,
