@@ -8,20 +8,15 @@ import {
   prevStep,
   nextStep
 } from '@services/Onboarding/onboardingSlice';
+import skillList from '@config/skills';
 
 import {ReactComponent as ArrowBackIcon}  from '@assets/icons/arrow-ios-back-outline.svg';
 import styles from './Skills.module.scss';
 
-const suggestDefault = ['Some skill', 'Some skill', 'Some skill', 'Some skill'];
-
 const Skills = () => {
   const dispatch = useDispatch();
-  const [suggestList, setSuggestList] = useState(suggestDefault);
+  const [suggestList, setSuggestList] = useState(skillList);
   const [list, setList] = useState([]);
-
-  const addToSuggestList = (el) => {
-    setSuggestList([...suggestList, el]);
-  }
 
   const addToList = (el) => {
     const tempList = suggestList;
@@ -56,7 +51,6 @@ const Skills = () => {
     <SelectItemsForm
       name="Skill"
       className={styles.form}
-      addToSuggestList={addToSuggestList}
       addToList={addToList}
       removeFromList={removeFromList}
       list={list}

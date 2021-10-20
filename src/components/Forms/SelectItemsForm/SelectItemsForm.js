@@ -3,18 +3,16 @@ import Button from '@components/Button';
 import styles from './SelectItemsForm.module.scss';
 
 import {ReactComponent as PlusIcon}  from '@assets/icons/plus-outline.svg';
+import {ReactComponent as SearchIcon} from '@assets/icons/search-outline.svg';
 import {ReactComponent as CloseIcon}  from '@assets/icons/close-outline.svg';
 
-const SelectItemsForm = ({ name, className, addToList, removeFromList, addToSuggestList, list, suggestList }) => {
+const SelectItemsForm = ({ name, className, addToList, removeFromList, list, suggestList }) => {
   const [newItem, setNewItem] = useState('');
+  const [suggest, setSuggest] = useState(suggestList);
 
-  const handleChange = (ev) => setNewItem(ev.target.value);
-
-  const addNewItem = () => {
-    if (newItem.length > 1) {
-      addToSuggestList(newItem);
-      setNewItem('');
-    }
+  const handleChange = (ev) => {
+    setSuggest(suggestList.filter(el => el.toLowerCase().indexOf(ev.target.value) >= 0));
+    setNewItem(ev.target.value);
   };
 
   return <div className={`${styles.row} ${className}`}>
@@ -22,24 +20,27 @@ const SelectItemsForm = ({ name, className, addToList, removeFromList, addToSugg
       <header className={styles.header}>Suggested {name}</header>
       <div className={styles.content}>
         {
-          suggestList.map((item, index) => <div className={styles.item} key={index}>
+          suggest.slice(0, 6).map((item, index) => <div className={styles.item} key={index}>
             <div className={styles.text}>{item}</div>
             <Button classes={`${styles.btn} ${styles.add}`} kind="outline" size="sm" onClick={() => addToList(item)}>
               <PlusIcon />
             </Button>
           </div>)
         }
+        {
+          suggest.length > 6 && (<div className={styles.itemText}><div className={styles.text}>Too long list of skills. Filter it using field below</div></div>)
+        }
         <div className={`${styles.item} ${styles.addNew}`}>
           <input
             name="item"
             type="text"
-            placeholder={`Add new ${name}`}
+            placeholder={`Search ${name}`}
             className={styles.field}
             onChange={handleChange}
             value={newItem}
           />
-          <Button classes={`${styles.btn} ${styles.add}`} kind="outline" size="sm" onClick={addNewItem}>
-            <PlusIcon />
+          <Button classes={`${styles.btn} ${styles.add}`} kind="outline" size="sm">
+            <SearchIcon />
           </Button>
         </div>
       </div>
