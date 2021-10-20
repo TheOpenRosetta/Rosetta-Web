@@ -1,0 +1,205 @@
+@import '@styles/variables.scss';
+
+.portfolio {
+  margin: 6px 15px 15px;
+  display: flex;
+  flex-direction: row;
+  @media(max-width: 1199px) {
+    flex-direction: column;
+  }
+  @media(max-width: 767px) {
+    margin: 0 15px 16px;
+  }
+}
+
+.profile {
+  flex: 1 0 270px;
+  max-width: 270px;
+  margin: 0 15px;
+  background-color: $colorPrimaryWhite;
+  padding: 16px;
+  border-radius: 8px;
+  text-align: center;
+  position: relative;
+  @media(max-width: 1199px) and (min-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex: 1 0 176px;
+    margin: 0 15px 16px;
+    max-width: none;
+  }
+  @media(max-width: 767px) {
+    flex: 1 0 100%;
+    max-width: 100%;
+    margin: 0 0 16px;
+  }
+}
+
+.user {
+  @media(max-width: 1199px) and (min-width: 768px) {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-left: 176px;
+    &Info {
+      text-align: left;
+    }
+  }
+}
+
+.photo {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto 16px;
+  @media(max-width: 1199px) and (min-width: 768px) {
+    width: 144px;
+    height: 144px;
+    margin-right: 32px;
+    position: absolute;
+    left: 16px;
+    top: 16px;
+  }
+}
+
+.name {
+  @include HeadingLarge-MEDIUM;
+  color: $colorPrimaryBlack;
+  margin-bottom: 8px;
+}
+
+.description {
+  @include BodySmall-REGULAR;
+  color: rgba($colorPrimaryBlack, 0.6);
+  width: 80%;
+  margin: 0 auto 24px;
+  @media(max-width: 1199px) and (min-width: 768px) {
+    width: auto;
+  }
+}
+
+.groups {
+  @media(max-width: 1199px) and (min-width: 768px) {
+    display: flex;
+    flex-direction: row;
+    width: calc(100% - 176px);
+    margin-left: 176px;
+  }
+}
+
+.group {
+  padding: 24px;
+  margin-bottom: 10px;
+  background-color: $colorPrimaryGray;
+  text-align: center;
+  border-radius: 4px;
+  @media(max-width: 1199px) {
+    flex: 1 0;
+    padding: 16px;
+    margin-right: 16px;
+  }
+  @media(max-width: 767px) {
+    margin-right: 0;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  &Value {
+    @include DisplaySmall-BOLD;
+    margin-bottom: 4px;
+    color: $colorPrimaryBlack;
+    @media(max-width: 1199px) {
+      @include HeadingSmall-MEDIUM;
+      margin-bottom: 0;
+    }
+    .balance & {
+      color: $colorPrimaryWhite;
+    }
+  }
+  &Text {
+    @include BodyLarge-REGULAR;
+    color: rgba($colorPrimaryBlack, 0.6);
+    @media(max-width: 1199px) {
+      @include CaptionSmall-REGULAR;
+    }
+    .balance & {
+      color: rgba($colorPrimaryWhite, 0.8);
+    }
+  }
+}
+
+.balance {
+  background-color: $colorPrimaryBlue;
+}
+
+.data {
+  flex: 1 0;
+  margin: 0 15px;
+  @media(max-width: 767px) {
+    margin: 0;
+  }
+}
+
+.graph {
+  padding: 16px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  background-color: $colorPrimaryWhite;
+}
+
+.paper {
+  padding: 12px 16px;
+  background-color: $colorPrimaryWhite;
+  margin-bottom: 1px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  @media(max-width: 767px) {
+    flex-direction: column;
+  }
+  &Title {
+    @include HeadingSmall-REGULAR;
+    color: $colorPrimaryBlue;
+    margin-bottom: 4px;
+    text-decoration: none;
+    @media(max-width: 767px) {
+      display: block;
+    }
+  }
+  &Balance {
+    @include BodySmall-MEDIUM;
+    color: $colorPrimaryBlack;
+  }
+  &Tokens {
+    width: 200px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    @include BodyLarge-MEDIUM;
+    @media(max-width: 767px) {
+      margin-top: 12px;
+      width: 100%;
+    }
+    &Current {
+      color: $colorPrimaryGold;
+    }
+    svg {
+      margin-right: 4px;
+    }
+  }
+}
+
+.delta {
+  &Plus {
+    color: $colorSupportGreen;
+  }
+  &Minus {
+    color: $colorSupportRed;
+  }
+}

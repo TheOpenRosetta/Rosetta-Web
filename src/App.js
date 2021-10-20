@@ -15,12 +15,13 @@ import Notification from '@containers/Notification';
 import Search from '@containers/Search';
 import Onboarding from '@containers/Onboarding';
 import Profile from '@containers/Profile';
+import Portfolio from '@containers/Portfolio';
 import SignIn from '@containers/SignIn';
 
 function App() {
   return (
     <div className="app">
-      <Router basename={process.env.PUBLIC_URL}>
+      <Router>
         <Switch>
           <Route path="/help">
             <Help />
@@ -39,6 +40,9 @@ function App() {
           </Route>
           <Route path="/profile">
             <Profile />
+          </Route>
+          <Route path="/portfolio">
+            <Portfolio />
           </Route>
           <Route path="/onboarding">
             <Onboarding />

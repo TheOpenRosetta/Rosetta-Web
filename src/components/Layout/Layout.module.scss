@@ -1,3 +1,5 @@
+@import "@styles/variables";
+
 .layout {
   position: relative;
   @media(max-width: 1023px) {
@@ -5,28 +7,59 @@
   }
 }
 
-.nav {
+@mixin nav {
   width: 220px;
-  margin-right: 8px;
+  background-color: $colorPrimaryWhite;
   @media(max-width: 1023px) {
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
+    top: auto;
+    height: auto;
     width: 100%;
     z-index: 10;
   }
 }
 
-.grid {
+.nav {
+  @include nav;
+  margin-right: 8px;
+  border-radius: 8px;
+  &Full {
+    @include nav;
+    height: calc(100vh - 90px);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    top: -24px;
+    z-index: 10;
+  }
+}
+
+@mixin grid {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: flex-start;
+  position: relative;
+}
+
+.grid {
+  @include grid;
 }
 
 .content {
   flex: 1 0 auto;
+  &Full {
+    flex: 1 0 auto;
+    margin-left: 220px;
+    max-width: calc(100vw - 220px);
+    @media(max-width: 1023px) {
+      margin-left: 0;
+      max-width: 100%;
+    }
+  }
   @media(max-width: 767px) {
     padding: 0 8px;
   }
