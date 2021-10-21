@@ -8,15 +8,14 @@ import {
   prevStep,
   nextStep
 } from '@services/Onboarding/onboardingSlice';
+import disciplinesList from '@config/disciplines';
 
 import {ReactComponent as ArrowBackIcon}  from '@assets/icons/arrow-ios-back-outline.svg';
 import styles from './Discipline.module.scss';
 
-const suggestDefault = ['Some discipline', 'Some discipline', 'Some discipline', 'Some discipline'];
-
 const Discipline = () => {
   const dispatch = useDispatch();
-  const [suggestList, setSuggestList] = useState(suggestDefault);
+  const [suggestList, setSuggestList] = useState(disciplinesList);
   const [list, setList] = useState([]);
 
   const addToSuggestList = (el) => {
