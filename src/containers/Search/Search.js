@@ -27,7 +27,7 @@ const Search = ({ searchString }) => {
         <SearchResults result={result} />
       </div>
       <div className={styles.rising}>
-
+        <Area />
       </div>
     </div>
   </Layout>

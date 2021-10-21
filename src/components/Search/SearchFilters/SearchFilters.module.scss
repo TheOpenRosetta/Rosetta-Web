@@ -1,0 +1,50 @@
+@import '@styles/variables';
+
+.filters {
+  padding: 10px 16px 16px;
+  background-color: $colorPrimaryWhite;
+  border-radius: 8px;
+  &Title {
+    @include BodySmall-REGULAR;
+    color: $colorPrimaryBlack;
+    margin-bottom: 8px;
+  }
+}
+
+.field {
+  &Popover {
+    border: 1px solid $colorPrimaryGray;
+    padding: 12px 16px;
+    border-radius: 4px;
+    @include BodySmall-REGULAR;
+    position: relative;
+    svg {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.2;
+    }
+  }
+  &List {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    @media(max-width: 767px) {
+      flex-direction: column;
+    }
+  }
+  &Item {
+    flex: 1 0;
+    flex-basis: calc(20% - 16px);
+    max-width: calc(20% - 16px);
+    position: relative;
+    @media(max-width: 767px) {
+      flex-basis: 100%;
+      max-width: 100%;
+      width: 100%;
+      margin-bottom: 8px;
+    }
+  }
+}

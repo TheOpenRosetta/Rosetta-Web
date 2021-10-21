@@ -22,7 +22,7 @@ const Header = () => {
     name: "Anthony Rayan"
   };
 
-  const [auth, setAuth] = useState(false);
+  const [auth, setAuth] = useState(true);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
   return <header className={styles.header}>
