@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import MediaQuery from 'react-responsive';
 import { DateRange } from 'react-date-range';
 import { Popover } from 'react-tiny-popover'
@@ -74,9 +74,9 @@ const customStyles = {
   })
 }
 
-const SearchFilters = () => {
+const SearchFilters = ({ action }) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-  const [study, setStudy] = useState('');
+  const [study, setStudy] = useState(null);
   const [date, setDate] = useState([
     {
       startDate: null,
@@ -84,21 +84,34 @@ const SearchFilters = () => {
       key: 'selection'
     }
   ]);
-  const [pubType, setPubType] = useState('');
-  const [sortRelevance, setSortRelevance] = useState('');
-  const [sortPrice, setSortPrice] = useState('');
+  const [pubType, setPubType] = useState(null);
+  const [sortRelevance, setSortRelevance] = useState(null);
+  const [sortPrice, setSortPrice] = useState(null);
+
+  useEffect(() => {
+    const asArray = Object.entries({
+      study,
+      date,
+      pubType,
+      sortRelevance,
+      sortPrice,
+    });
+
+    const filtered = asArray.filter(([key, value]) => value !== null);
+
+    action(Object.fromEntries(filtered));
+  }, [study, date, pubType, sortRelevance, sortPrice, action]);
 
   const searchAction = (param, value) => {
     switch (param) {
       case 'study':
-        console.log(value);
+        setStudy(value);
         break;
       case 'date':
-        console.log(value);
         setDate([value.selection]);
         break;
       case 'pubDate':
-        console.log(value);
+        setPubType(value)
         break;
       default:
         break;
@@ -108,10 +121,10 @@ const SearchFilters = () => {
   const sortAction = (param, value) => {
     switch (param) {
       case 'sort':
-        console.log(value);
+        setSortRelevance(value);
         break;
       case 'price':
-        console.log(value);
+        setSortPrice(value);
         break;
       default:
         break;

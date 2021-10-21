@@ -5,14 +5,50 @@ import { SearchFilters, SearchResults, SearchUsers } from '@components/Search';
 
 import styles from './Search.module.scss';
 
+import AvatarImg from '@assets/avatar.png';
+
+const users = [{
+  authorid: 111,
+  photo: AvatarImg,
+  firstName: 'Anthony',
+  lastName: 'Rayan',
+  publications: 617,
+  impactScore: 21168,
+  categories: ['citations', 'physics'],
+},{
+  authorid: 112,
+  photo: AvatarImg,
+  firstName: 'Anthony',
+  lastName: 'Rayan',
+  publications: 617,
+  impactScore: 21168,
+  categories: ['citations', 'physics'],
+},{
+  authorid: 113,
+  photo: AvatarImg,
+  firstName: 'Anthony',
+  lastName: 'Rayan',
+  publications: 617,
+  impactScore: 21168,
+  categories: ['citations', 'physics'],
+},
+{
+  authorid: 114,
+  photo: AvatarImg,
+  firstName: 'Anthony',
+  lastName: 'Rayan',
+  publications: 617,
+  impactScore: 21168,
+  categories: ['citations', 'physics'],
+}];
+
 const Search = ({ searchString }) => {
   const [result, setResult] = useState([]);
-  const [users, setUsers] = useState([]);
   const [risingPapers, setRisingPapers] = useState([]);
 
   // useEffect()
 
-  const newSearch = (params) => {
+  const changeFilters = (params) => {
     console.log(params);
   }
 
@@ -22,7 +58,7 @@ const Search = ({ searchString }) => {
         {result.length} results for "{searchString}"
       </div>
       <div className={styles.results}>
-        <SearchFilters action={newSearch} />
+        <SearchFilters action={changeFilters} />
         <SearchUsers users={users} />
         <SearchResults result={result} />
       </div>

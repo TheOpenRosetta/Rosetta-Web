@@ -1,0 +1,58 @@
+@import '@styles/variables';
+
+.users {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin: 8px -4px;
+  &Item {
+    flex: 1 0;
+    max-width: calc(25% - 8px);
+    margin: 0 4px;
+    padding: 8px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    background-color: $colorPrimaryWhite;
+    text-decoration: none;
+    @media(max-width: 1023px) {
+      flex: 1 0 50%;
+      max-width: calc(50% - 8px);
+      flex-wrap: wrap;
+      margin: 0 4px 8px;
+    }
+    @media(max-width: 767px) {
+      flex-direction: column;
+    }
+  }
+}
+
+.photo {
+  max-width: calc(50% - 8px);
+  margin-top: 4px;
+  margin-right: 8px;
+  @media(max-width: 767px) {
+    margin: 0 auto 8px;
+  }
+}
+
+.info {
+  flex: 1 0;
+  @media(max-width: 767px) {
+    text-align: center;
+  }
+}
+
+.name {
+  @include BodyLarge-MEDIUM;
+  color: $colorPrimaryBlack;
+}
+
+.text {
+  @include BodySmall-REGULAR;
+  color: rgba($colorPrimaryBlack, 0.7);
+}
