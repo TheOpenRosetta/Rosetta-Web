@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '@components/Button';
+import { DateTime } from "luxon";
 import {priceFormat} from '@utils/numbers';
 import styles from './IdentityCard.module.scss';
 
@@ -40,7 +41,7 @@ const IdentityCard = ({ data, claimed, toggleClaimed }) => {
           data.papers.map((item, index) => <li className={styles.paper} key={item.impactScore + index}>
           <div className={styles.score}>ImpactScore <span>{item.impactScore}</span></div>
           <div className={styles.title}>{item.title}</div>
-          <div className={styles.authors}>{item.authors[0]}, {item.authors[1]} {new Intl.DateTimeFormat('en-GB', { dateStyle: 'medium' }).format(item.timestamp)}</div>
+          <div className={styles.authors}>{item.authors[0]}, {item.authors[1]} {DateTime.fromMillis(item.timestamp).toFormat('dd LLL yyyy')}</div>
         </li>)
         }
       </ul>

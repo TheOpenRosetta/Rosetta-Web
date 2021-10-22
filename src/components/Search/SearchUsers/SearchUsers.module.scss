@@ -10,7 +10,7 @@
   &Item {
     flex: 1 0;
     max-width: calc(25% - 8px);
-    margin: 0 4px;
+    margin: 0 4px 8px;
     padding: 8px;
     border-radius: 8px;
     display: flex;
@@ -23,7 +23,6 @@
       flex: 1 0 50%;
       max-width: calc(50% - 8px);
       flex-wrap: wrap;
-      margin: 0 4px 8px;
     }
     @media(max-width: 767px) {
       flex-direction: column;

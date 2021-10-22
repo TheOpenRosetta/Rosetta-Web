@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import { DateTime } from "luxon";
 import { percentFormat } from '@utils/numbers';
 import styles from './PaperPreview.module.scss';
 
@@ -20,7 +21,7 @@ const PaperPreview = ({ data }) => {
       {
         data.authors.length > 1 && <div className={styles.authorMore}>+{data.authors.length - 1} authors</div>
       }
-      <div className={styles.date}>{data.timestamp}</div>
+      <div className={styles.date}>{DateTime.fromMillis(data.timestamp).toFormat('dd LLL yyyy')}</div>
     </div>
     <div className={styles.preview}>
       {data.preview} <Link to={`/paper/${data.slug}`}>Expand</Link>
