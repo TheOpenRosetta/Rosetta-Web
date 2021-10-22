@@ -15,7 +15,7 @@ import {ReactComponent as ArrowDownIcon} from '@assets/icons/arrow-ios-downward-
 
 Modal.setAppElement('#root');
 
-const Header = ({ auth = false }) => {
+const Header = ({ auth = true }) => {
   // TODO: get the data from API (in account info)
   const data = {
     photo: AvatarImg,

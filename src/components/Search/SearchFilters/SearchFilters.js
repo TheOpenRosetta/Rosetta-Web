@@ -147,12 +147,13 @@ const SearchFilters = ({ action }) => {
         <Popover
           isOpen={isPopoverOpen}
           positions={['bottom', 'left']}
+          align="start"
           padding={10}
           reposition={false}
           onClickOutside={() => setIsPopoverOpen(false)}
           content={() => (
             <div className={styles.calendar}>
-              <MediaQuery minWidth={768}>
+              <MediaQuery minWidth={1024}>
                 <DateRange
                   showSelectionPreview={true}
                   moveRangeOnFirstSelection={false}
@@ -162,7 +163,7 @@ const SearchFilters = ({ action }) => {
                   onChange={item => searchAction('date', item)}
                 />
               </MediaQuery>
-              <MediaQuery maxWidth={767}>
+              <MediaQuery maxWidth={1023}>
                 <DateRange
                   showSelectionPreview={true}
                   moveRangeOnFirstSelection={false}

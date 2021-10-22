@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '@components/Layout';
-import Area from '@components/Area';
+import SearchSidebar from './SearchSidebar';
+import { useSelector } from 'react-redux';
+import {
+  selectSearchText,
+} from '@services/Search/searchSlice';
 import { SearchFilters, SearchResults, SearchUsers } from '@components/Search';
 
 import styles from './Search.module.scss';
@@ -42,14 +46,14 @@ const users = [{
   categories: ['citations', 'physics'],
 }];
 
-const Search = ({ searchString }) => {
+const Search = () => {
   const [result, setResult] = useState([]);
-  // const [risingPapers, setRisingPapers] = useState([]);
+  const searchText = useSelector(selectSearchText);
 
   useEffect(() => {
-    console.log(searchString);
+    console.log(searchText);
     setResult([]);
-  }, [searchString])
+  }, [searchText])
 
   const changeFilters = (params) => {
     console.log(params);
@@ -58,7 +62,7 @@ const Search = ({ searchString }) => {
   return <Layout navigation={false}>
     <div className={styles.grid}>
       <div className={styles.total}>
-        {result.length} results for "{searchString}"
+        {result.length} results for "{searchText}"
       </div>
       <div className={styles.results}>
         <SearchFilters action={changeFilters} />
@@ -66,7 +70,7 @@ const Search = ({ searchString }) => {
         <SearchResults result={result} />
       </div>
       <div className={styles.rising}>
-        <Area />
+        <SearchSidebar />
       </div>
     </div>
   </Layout>

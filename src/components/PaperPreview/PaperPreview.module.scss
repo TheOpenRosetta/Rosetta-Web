@@ -1,0 +1,99 @@
+@import '@styles/variables';
+
+.title {
+  margin-bottom: 8px;
+  a {
+    text-decoration: none;
+    @include HeadingSmall-MEDIUM;
+    color: $colorPrimaryBlue;
+  }
+}
+
+.author {
+  @include CaptionLarge-REGULAR;
+  color: rgba($colorPrimaryBlack, 0.6);
+  &More {
+    background-color: $colorPrimaryGray;
+    @include CaptionLarge-REGULAR;
+    color: rgba($colorPrimaryBlack, 0.6);
+    margin: 0 8px;
+    padding: 0 4px;
+  }
+}
+
+.subtitle {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin-bottom: 8px;
+  @media(max-width: 767px) {
+    flex-wrap: wrap;
+  }
+}
+
+.date {
+  @include CaptionLarge-REGULAR;
+  color: rgba($colorPrimaryBlack, 0.6);
+}
+
+.preview {
+  @include BodySmall-REGULAR;
+  color: rgba($colorPrimaryBlack, 0.6);
+  margin-bottom: 8px;
+  a {
+    text-decoration: none;
+  }
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  @media(max-width: 767px) {
+    flex-wrap: wrap;
+  }
+}
+
+.comments, .likes {
+  a, button {
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+    background-color: $colorPrimaryWhite;
+    border-radius: 6px;
+    border: 1px solid $colorPrimaryGray;
+    padding: 0 8px;
+    @include CaptionLarge-MEDIUM;
+    color: $colorPrimaryBlue;
+    margin-right: 8px;
+  }
+  svg {
+    margin-right: 4px;
+  }
+}
+
+
+.balance {
+  @include CaptionLarge-REGULAR;
+  color: rgba($colorPrimaryBlack, 0.6);
+}
+
+.delta {
+  @include CaptionLarge-REGULAR;
+  margin: 0 4px;
+  &Plus {
+    color: $colorSupportGreen;
+  }
+  &Minus {
+    color: $colorSupportRed;
+  }
+}
+
+.apy {
+  @include CaptionLarge-REGULAR;
+  color: rgba($colorPrimaryBlack, 0.6);
+}

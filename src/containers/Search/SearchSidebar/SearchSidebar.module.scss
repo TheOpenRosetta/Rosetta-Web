@@ -1,0 +1,52 @@
+@import '@styles/variables';
+
+.content {
+  background-color: $colorPrimaryWhite;
+  border-radius: 0 0 8px 8px;
+  @media(max-width: 1023px) {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+.paper {
+  padding: 8px 8px 0;
+  @media(max-width: 767px) {
+    width: 100%;
+  }
+  &Footer {
+    border-bottom: 1px solid $colorPrimaryGray;
+    padding-bottom: 8px;
+    display: flex;
+    flex-direction: row;
+    @include CaptionLarge-REGULAR;
+  }
+}
+
+.title {
+  @include BodySmall-MEDIUM;
+  color: $colorPrimaryBlue;
+  margin-bottom: 4px;
+  text-decoration: none;
+  display: block;
+  line-height: 120%;
+}
+
+.balance {
+  color: rgba($colorPrimaryBlack, 0.6);
+}
+
+.delta {
+  margin: 0 4px;
+  &Plus {
+    color: $colorSupportGreen;
+  }
+  &Minus {
+    color: $colorSupportRed;
+  }
+}
+
+.apy {
+  color: rgba($colorPrimaryBlack, 0.6);
+}
