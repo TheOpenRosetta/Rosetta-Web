@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Status from '../Status';
 import Button from '@components/Button';
 import FollowCard from '@components/FollowCard';

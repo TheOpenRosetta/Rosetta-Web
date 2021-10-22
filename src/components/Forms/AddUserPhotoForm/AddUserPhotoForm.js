@@ -1,5 +1,5 @@
 import React, {useCallback, useState}  from 'react';
-import {useDropzone} from 'react-dropzone'
+import {useDropzone} from 'react-dropzone';
 
 import {ReactComponent as AddPhotoIcon} from '@assets/addPhoto.svg';
 
@@ -11,7 +11,7 @@ const AddUserPhotoForm = ({ action, className }) => {
     const file = acceptedFiles[0];
     setPhoto(URL.createObjectURL(file));
     action(file);
-  }, [])
+  }, [action])
   const {getRootProps, getInputProps} = useDropzone({
     onDrop,
     accept: 'image/jpg, image/jpeg, image/png, image/gif',

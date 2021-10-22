@@ -19,12 +19,12 @@ const Wallet = () => {
   const arweave = Arweave.init({});
 
   useEffect(() => {
-    arweave.wallets.generate().then((key) => {
+    arweave.wallets && arweave.wallets.generate().then((key) => {
       arweave.wallets.jwkToAddress(key).then((address) => {
           setPublickey(address);
       });
     });
-  }, []);
+  }, [publickey, arweave.wallets]);
 
   const next = () => {
     dispatch(setPublicKey(publickey));

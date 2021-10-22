@@ -44,10 +44,11 @@ const users = [{
 
 const Search = ({ searchString }) => {
   const [result, setResult] = useState([]);
-  const [risingPapers, setRisingPapers] = useState([]);
+  // const [risingPapers, setRisingPapers] = useState([]);
 
   useEffect(() => {
     console.log(searchString);
+    setResult([]);
   }, [searchString])
 
   const changeFilters = (params) => {

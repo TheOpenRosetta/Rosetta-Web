@@ -15,14 +15,14 @@ import {ReactComponent as ArrowDownIcon} from '@assets/icons/arrow-ios-downward-
 
 Modal.setAppElement('#root');
 
-const Header = () => {
+const Header = ({ auth = false }) => {
   // TODO: get the data from API (in account info)
   const data = {
     photo: AvatarImg,
     name: "Anthony Rayan"
   };
 
-  const [auth, setAuth] = useState(true);
+  // const [auth, setAuth] = useState(authStatus);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
   return <header className={styles.header}>

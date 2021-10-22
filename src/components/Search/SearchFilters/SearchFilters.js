@@ -31,7 +31,7 @@ const prices = [
 ];
 
 const customStyles = {
-  option: (provided, state) => ({
+  option: (provided) => ({
     ...provided,
     fontFamily: 'Inter',
     fontWeight: 400,
@@ -150,7 +150,7 @@ const SearchFilters = ({ action }) => {
           padding={10}
           reposition={false}
           onClickOutside={() => setIsPopoverOpen(false)}
-          content={({ position }) => (
+          content={() => (
             <div className={styles.calendar}>
               <MediaQuery minWidth={768}>
                 <DateRange
