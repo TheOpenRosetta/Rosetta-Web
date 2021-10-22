@@ -46,7 +46,9 @@ const Search = ({ searchString }) => {
   const [result, setResult] = useState([]);
   const [risingPapers, setRisingPapers] = useState([]);
 
-  // useEffect()
+  useEffect(() => {
+    console.log(searchString);
+  }, [searchString])
 
   const changeFilters = (params) => {
     console.log(params);
