@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Layout from '@components/Layout';
 import {priceFormat, percentFormat} from '@utils/numbers';
 
-import {ReactComponent as TicketIcon} from '@assets/ticket.svg';
+import {ReactComponent as TicketIcon} from '@assets/customIcons/ticket.svg';
 
 import styles from './Portfolio.module.scss';
 

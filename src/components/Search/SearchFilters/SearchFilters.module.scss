@@ -4,6 +4,7 @@
   padding: 10px 16px 16px;
   background-color: $colorPrimaryWhite;
   border-radius: 8px;
+  margin-bottom: 8px;
   &Title {
     @include BodySmall-REGULAR;
     color: $colorPrimaryBlack;

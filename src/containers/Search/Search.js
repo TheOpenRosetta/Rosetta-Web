@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '@components/Layout';
-import Area from '@components/Area';
+import SearchSidebar from './SearchSidebar';
 import { useSelector } from 'react-redux';
 import {
   selectSearchText,
@@ -49,7 +49,6 @@ const users = [{
 const Search = () => {
   const [result, setResult] = useState([]);
   const searchText = useSelector(selectSearchText);
-  // const [risingPapers, setRisingPapers] = useState([]);
 
   useEffect(() => {
     console.log(searchText);
@@ -71,7 +70,7 @@ const Search = () => {
         <SearchResults result={result} />
       </div>
       <div className={styles.rising}>
-        <Area />
+        <SearchSidebar />
       </div>
     </div>
   </Layout>

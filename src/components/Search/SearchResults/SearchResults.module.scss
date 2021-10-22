@@ -1,0 +1,11 @@
+@import '@styles/variables';
+
+.results {
+  width: 100%;
+  &Item {
+    background-color: $colorPrimaryWhite;
+    border-radius: 8px;
+    padding: 16px 24px;
+    margin-bottom: 1px;
+  }
+}
