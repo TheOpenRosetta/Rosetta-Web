@@ -15,6 +15,7 @@ import {ReactComponent as ArrowBackIcon}  from '@assets/icons/arrow-ios-back-out
 
 const Wallet = () => {
   // const [key, setKey] = useState('')
+  const [error, setError] = useState('');
   const dispatch = useDispatch();
 
   const wallet = useArjs();
@@ -28,15 +29,20 @@ const Wallet = () => {
 
   wallet.ready(() => {
     if(wallet.status === "connected")(async () => {
+      setError('');
       setBalance(wallet.getArweave().ar.winstonToAr( await wallet.getBalance("self")))
       setAddress(await wallet.getAddress());
     })()
   })
 
   const next = async () => {
-    const address = await wallet.getAddress();
-    dispatch(setPublicKey(address));
-    dispatch(nextStep());
+    if(wallet.status === "connected") {
+      const address = await wallet.getAddress();
+      dispatch(setPublicKey(address));
+      dispatch(nextStep());
+    } else {
+      setError('Error: connect to ArConnect before the next step');
+    }
   }
 
   return <div className={styles.wallet}>
@@ -103,6 +109,7 @@ const Wallet = () => {
     </div>
 
     <div className={styles.actions}>
+      { error ? <span className={styles.error}>{error}</span> : null }
       <Button classes={styles.back} kind="secondary" size="lg" onClick={() => dispatch(prevStep())}><ArrowBackIcon /> Back</Button>
       <Button classes={styles.next} kind="fill" size="lg" onClick={next}>Next</Button>
       <Button classes={styles.skip} kind="secondary" size="lg" onClick={() => dispatch(nextStep())}>Skip</Button>

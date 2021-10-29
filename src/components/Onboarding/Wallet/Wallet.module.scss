@@ -165,6 +165,17 @@
   }
 }
 
+.error {
+  color: $colorSupportRed;
+  @include BodySmall-REGULAR;
+  position: absolute;
+  top: -40px;
+  width: 150%;
+  text-align: center;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .actions {
   max-width: 300px;
   position: relative;
