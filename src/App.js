@@ -4,6 +4,7 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
+import { ArjsProvider } from 'arjs-react';
 
 import '@styles/global.scss';
 import '@styles/modal.scss';
@@ -20,39 +21,46 @@ import SignIn from '@containers/SignIn';
 
 function App() {
   return (
-    <div className="app">
-      <Router>
-        <Switch>
-          <Route path="/help">
-            <Help />
-          </Route>
-          <Route path="/notification">
-            <Notification />
-          </Route>
-          <Route path="/search">
-            <Search />
-          </Route>
-          <Route path="/inbox">
-            <Inbox />
-          </Route>
-          <Route path="/sign_in">
-            <SignIn />
-          </Route>
-          <Route path="/profile">
-            <Profile />
-          </Route>
-          <Route path="/portfolio">
-            <Portfolio />
-          </Route>
-          <Route path="/onboarding">
-            <Onboarding />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
-      </Router>
-    </div>
+    <ArjsProvider
+      connectors={{
+          arconnect: true,
+          arweave: true
+      }}
+      enableSWC={false}>
+      <div className="app">
+        <Router>
+          <Switch>
+            <Route path="/help">
+              <Help />
+            </Route>
+            <Route path="/notification">
+              <Notification />
+            </Route>
+            <Route path="/search">
+              <Search />
+            </Route>
+            <Route path="/inbox">
+              <Inbox />
+            </Route>
+            <Route path="/sign_in">
+              <SignIn />
+            </Route>
+            <Route path="/profile">
+              <Profile />
+            </Route>
+            <Route path="/portfolio">
+              <Portfolio />
+            </Route>
+            <Route path="/onboarding">
+              <Onboarding />
+            </Route>
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
+        </Router>
+      </div>
+    </ArjsProvider>
   );
 }
 

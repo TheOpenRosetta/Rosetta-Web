@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
-import Arweave from 'arweave';
+import { useArjs } from 'arjs-react';
 import {
   setPublicKey,
   prevStep,
@@ -14,20 +14,28 @@ import styles from './Wallet.module.scss';
 import {ReactComponent as ArrowBackIcon}  from '@assets/icons/arrow-ios-back-outline.svg'
 
 const Wallet = () => {
-  const [publickey, setPublickey] = useState('');
+  // const [key, setKey] = useState('')
   const dispatch = useDispatch();
-  const arweave = Arweave.init({});
 
-  useEffect(() => {
-    arweave.wallets && arweave.wallets.generate().then((key) => {
-      arweave.wallets.jwkToAddress(key).then((address) => {
-          setPublickey(address);
-      });
-    });
-  }, [publickey, arweave.wallets]);
+  const wallet = useArjs();
+  const permission = { permissions: ["SIGN_TRANSACTION"] }
 
-  const next = () => {
-    dispatch(setPublicKey(publickey));
+  const activate = (connector, key) => wallet.connect(connector, key);
+  // const getKey = (e) =>{ setKey(e.target.value)};
+
+  const [balance, setBalance] = useState("Requesting...");
+  const [address, setAddress] = useState("Requesting...");
+
+  wallet.ready(() => {
+    if(wallet.status === "connected")(async () => {
+      setBalance(wallet.getArweave().ar.winstonToAr( await wallet.getBalance("self")))
+      setAddress(await wallet.getAddress());
+    })()
+  })
+
+  const next = async () => {
+    const address = await wallet.getAddress();
+    dispatch(setPublicKey(address));
     dispatch(nextStep());
   }
 
@@ -67,12 +75,39 @@ const Wallet = () => {
       </div>
     </div>
 
+    <div className={styles.row}>
+      <div className={styles.col}>
+        {wallet.status === "connected" ? (
+          <div className={styles.connected}>
+            <div className={styles.connectedText}>
+              Account:
+              <span className={styles.connectedTextAddress}>{address}</span>
+            </div>
+            <div className={styles.connectedText}>
+              Balance:
+              <span className={styles.connectedTextBalance}>{balance}</span>
+            </div>
+            <Button kind="bordered" size="sm" onClick={() => wallet.disconnect()}>disconnect</Button>
+          </div>
+        ) : (
+          <div className={styles.connect}>
+            <div className={styles.connectText}>Connect:</div>
+            {
+              // <button onClick={() => activate('arweave', key)}>Arweave (with Key)</button>
+              // <input type="text" value={key} placeholder={'Input key here'} onChange={getKey}/>
+            }
+            <Button kind="fill" size="sm" onClick={() => activate('arconnect', permission)}>ArConnect</Button>
+          </div>
+        )}
+      </div>
+    </div>
+
     <div className={styles.actions}>
       <Button classes={styles.back} kind="secondary" size="lg" onClick={() => dispatch(prevStep())}><ArrowBackIcon /> Back</Button>
       <Button classes={styles.next} kind="fill" size="lg" onClick={next}>Next</Button>
       <Button classes={styles.skip} kind="secondary" size="lg" onClick={() => dispatch(nextStep())}>Skip</Button>
     </div>
-  </div>;
+  </div>
 }
 
 export default Wallet;

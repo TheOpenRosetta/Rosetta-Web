@@ -24,14 +24,12 @@
   flex-wrap: nowrap;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 60px;
   @media(max-width: 991px) {
     width: 100%;
     padding: 0 16px;
   }
   @media(max-width: 767px) {
     flex-wrap: wrap;
-    margin-bottom: 24px;
   }
 }
 
@@ -45,6 +43,35 @@
   }
 }
 
+.connected {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px 24px;
+  &Text {
+    @include BodyLarge-REGULAR;
+    color: $colorPrimaryBlack;
+    margin-bottom: 12px;
+    &Address, &Balance {
+      display: block;
+      color: $colorPrimaryGold;
+      @include BodySmall-REGULAR;
+    }
+  }
+}
+
+.connect {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  &Text {
+    @include BodyLarge-MEDIUM;
+    color: $colorPrimaryBlack;
+  }
+}
 
 .header {
   background-color: $colorPrimaryGray;
@@ -141,7 +168,7 @@
 .actions {
   max-width: 300px;
   position: relative;
-  margin: 0 auto;
+  margin: 60px auto;
   text-align: center;
   @media(max-width: 767px) {
     display: flex;
