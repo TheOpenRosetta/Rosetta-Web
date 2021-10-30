@@ -18,6 +18,7 @@ import Onboarding from '@containers/Onboarding';
 import Profile from '@containers/Profile';
 import Portfolio from '@containers/Portfolio';
 import SignIn from '@containers/SignIn';
+import Publish from '@containers/Publish';
 
 function App() {
   return (
@@ -53,6 +54,9 @@ function App() {
             </Route>
             <Route path="/onboarding">
               <Onboarding />
+            </Route>
+            <Route path="/publish">
+              <Publish />
             </Route>
             <Route path="/">
               <Home />

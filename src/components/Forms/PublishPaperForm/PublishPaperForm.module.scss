@@ -1,0 +1,203 @@
+@import '@styles/variables';
+
+.modalHeader {
+  border-bottom: none;
+  padding: 16px 24px 0;
+}
+
+.header {
+  @include BodyLarge-MEDIUM;
+  color: rgba($colorPrimaryBlack, 0.9);
+  margin-bottom: -1px;
+}
+
+.content, .success {
+  background-color: $colorPrimaryWhite;
+  min-width: 736px;
+  padding: 24px;
+  border-radius: 0 0 8px 8px;
+  @media(max-width: 767px) {
+    min-width: calc(100vw - 16px);
+    max-width: 100vw;
+  }
+}
+
+.success {
+  &Content {
+    text-align: center;
+    padding: 54px 0;
+    border-bottom: 1px solid rgba($colorPrimaryBlue, 0.1);
+    @media(max-width: 767px) {
+      padding: 32px 0;
+    }
+    &Icon {
+      margin: 0 auto 16px;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid $colorSupportGreen;
+      svg {
+        width: 40px;
+        height: 40px;
+        path {
+          fill: $colorSupportGreen;
+        }
+      }
+    }
+    &Title {
+      @include HeadingLarge-MEDIUM;
+      color: rgba($colorPrimaryBlack, 0.7);
+      margin-bottom: 4px;
+    }
+    &Text {
+      @include BodyLarge-REGULAR;
+      color: rgba($colorPrimaryBlack, 0.6);
+      max-width: 454px;
+      margin: 0 auto;
+    }
+  }
+}
+
+.dropzone {
+  text-align: center;
+  &Errors {
+    color: $colorSupportRed;
+    @include BodyLarge-REGULAR;
+    text-align: center;
+    margin: 16px auto 8px;
+  }
+  &Icon {
+    width: 36px;
+    height: 36px;
+    margin: 0 auto 24px;
+    svg {
+      width: 100%;
+      height: 100%;
+      path {
+        fill: rgba($colorPrimaryBlack, 0.5);
+      }
+    }
+  }
+  &Title {
+    @include HeadingLarge-MEDIUM;
+    color: rgba($colorPrimaryBlack, 0.7);
+    margin-bottom: 8px;
+  }
+  &Text {
+    @include BodyLarge-REGULAR;
+    color: rgba($colorPrimaryBlack, 0.6);
+    margin-bottom: 8px;
+  }
+  &Btn {
+    background-color: rgba($colorPrimaryBlue, 0.1);
+    color: $colorPrimaryBlue;
+    padding: 10px 24px;
+    border-radius: 6px;
+    @include BodySmall-REGULAR;
+    display: inline-block;
+  }
+}
+
+.list {
+  margin-top: 32px;
+  border-top: 1px solid rgba($colorPrimaryBlack, 0.1);
+  &Title {
+    @include BodyLarge-MEDIUM;
+    color: rgba($colorPrimaryBlack, 0.9);
+    margin-top: 20px;
+  }
+  &Item {
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid rgba($colorPrimaryBlack, 0.1);
+    padding-bottom: 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 16px;
+    &Name {
+      margin-right: 8px;
+      @include BodyLarge-REGULAR;
+      color: rgba($colorPrimaryBlack, 0.8);
+      max-width: calc(100% - 120px);
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    &Badge {
+      margin-right: auto;
+      padding: 3px 10px;
+      background-color: $colorPrimaryBlue;
+      color: $colorPrimaryWhite;
+      @include BodySmall-REGULAR;
+      border-radius: 4px;
+    }
+    &Remove {
+      width: 20px;
+      height: 20px;
+      border: none;
+      background: none;
+      padding: 0;
+      svg {
+        path {
+          fill: rgba($colorPrimaryBlack, 0.5);
+        }
+      }
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 24px;
+  &Success {
+    @media(max-width: 767px) {
+      flex-direction: column-reverse;
+    }
+  }
+}
+
+.cancel {
+  margin-right: 12px;
+  .actionsSuccess & {
+    @media(max-width: 767px) {
+      margin: 16px auto;
+    }
+  }
+}
+
+.back {
+  margin-right: auto;
+  @media(max-width: 767px) {
+    margin-left: auto;
+  }
+  svg {
+    margin-right: 8px;
+    height: 20px;
+    width: 20px;
+  }
+}
+
+.import {
+  svg {
+    margin-right: 8px;
+    height: 20px;
+    width: 20px;
+  }
+}
+
+.completed {
+  svg {
+    margin-left: 8px;
+    height: 20px;
+    width: 20px;
+  }
+}
