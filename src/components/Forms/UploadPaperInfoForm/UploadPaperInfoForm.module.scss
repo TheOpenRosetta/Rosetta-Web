@@ -1,0 +1,153 @@
+@import '@styles/variables';
+
+
+.form {
+  padding-bottom: 48px;
+}
+
+.field {
+  display: block;
+  width: 100%;
+  border: 1px solid rgba($colorPrimaryBlack, 0.2);
+  @include BodyLarge-REGULAR;
+  padding: 4px 16px;
+  margin-bottom: 16px;
+  border-radius: 4px;
+  @media(max-width: 1023px) {
+    @include BodySmall-REGULAR;
+  }
+  &:focus {
+    outline-color: $colorPrimaryBlue;
+  }
+  &Title {
+    display: block;
+    width: 100%;
+    border: 1px solid rgba($colorPrimaryBlack, 0.2);
+    @include DisplayLarge-MEDIUM;
+    padding: 10px 16px;
+    margin-bottom: 16px;
+    border-radius: 4px;
+    @media(max-width: 1023px) {
+      @include HeadingSmall-MEDIUM;
+    }
+    &:focus {
+      outline-color: $colorPrimaryBlue;
+    }
+  }
+}
+
+.heading {
+  @include HeadingLarge-MEDIUM;
+  color: rgba($colorPrimaryBlack, 0.7);
+  margin-bottom: 16px;
+}
+
+.text {
+  @include BodySmall-REGULAR;
+  color: rgba($colorPrimaryBlack, 0.7);
+}
+
+.links {
+  &Row {
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    @media(max-width: 767px) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+  &Item {
+    background-color: rgba($colorPrimaryBlue, 0.1);
+    color: $colorPrimaryBlue;
+    padding: 5px 16px;
+    margin-right: 8px;
+    border-radius: 4px;
+    border: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    svg {
+      margin-right: 8px;
+      height: 20px;
+      width: 20px;
+      path {
+        fill: $colorPrimaryBlue;
+      }
+    }
+  }
+}
+
+.note {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 16px;
+  @media(max-width: 767px) {
+    margin-bottom: 16px;
+  }
+  &Content {
+    @include BodySmall-REGULAR;
+    max-width: calc(100vw - 594px);
+    @media(max-width: 767px) {
+      max-width: 100%;
+    }
+  }
+  &Btn {
+    background-color: $colorPrimaryGray;
+    border: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    width: 32px;
+    height: 32px;
+    margin-left: 8px;
+    svg {
+      height: 16px;
+      width: 16px;
+    }
+  }
+}
+
+.actions {
+  position: absolute;
+  bottom: 12px;
+  right: 0;
+}
+
+.btn {
+  &Next {
+    svg {
+      margin-left: 8px;
+    }
+  }
+}
+
+.github {
+  @include BodySmall-REGULAR;
+  color: rgba($colorPrimaryBlue, 0.7);
+  margin-bottom: 16px;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  &Error {
+    color: $colorSupportRed;
+    @include BodySmall-REGULAR;
+    margin: 12px 0;
+  }
+}
+
+.modal {
+  background-color: $colorPrimaryWhite;
+  border-radius: 8px;
+  padding: 24px;
+  min-width: 600px;
+  @media(max-width: 767px) {
+    min-width: calc(100% - 32px);
+  }
+}

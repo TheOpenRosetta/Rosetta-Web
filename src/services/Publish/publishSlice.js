@@ -3,6 +3,10 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   step: 0,
   files: [],
+  title: '',
+  description: '',
+  github: '',
+  note: '',
 };
 
 export const publishSlice = createSlice({
@@ -16,8 +20,14 @@ export const publishSlice = createSlice({
       state.step -= 1;
     },
     setFiles: (state, action) => {
-      console.log(action.payload);
       state.files = [...action.payload];
+    },
+    setPaperAttrs: (state, action) => {
+      state.title = action.payload.title;
+      state.description = action.payload.description;
+      state.github = action.payload.github;
+      state.note = action.payload.note;
+      state.step += 1;
     },
   }
 });
@@ -25,7 +35,8 @@ export const publishSlice = createSlice({
 export const {
   nextStep,
   prevStep,
-  setFiles
+  setFiles,
+  setPaperAttrs,
 } = publishSlice.actions;
 
 export const selectStep = (state) => state.publish.step;

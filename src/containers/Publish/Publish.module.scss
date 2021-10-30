@@ -9,6 +9,9 @@
   padding: 0 30px;
   min-height: calc(100vh - 114px);
   padding-bottom: 24px;
+  @media(max-width: 1023px) {
+    min-height: calc(100vh - 208px);
+  }
   @media(max-width: 767px) {
     flex-direction: column;
     padding: 0 16px;
@@ -40,4 +43,5 @@
   border-radius: 8px;
   padding: 16px 24px;
   align-self: stretch;
+  position: relative;
 }

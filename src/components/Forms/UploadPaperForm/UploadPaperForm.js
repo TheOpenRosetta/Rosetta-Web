@@ -14,9 +14,9 @@ import {ReactComponent as AttachIcon} from '@assets/icons/attach-outline.svg';
 import {ReactComponent as CloseIcon} from '@assets/icons/close-outline.svg';
 import {ReactComponent as CheckmarkIcon}  from '@assets/icons/checkmark-outline.svg'
 
-import styles from './PublishPaperForm.module.scss';
+import styles from './UploadPaperForm.module.scss';
 
-const PublishPaperForm = ({ close }) => {
+const UploadPaperForm = ({ close }) => {
   const [errors, setErrors] = useState('');
   const [formStep, setFormStep] = useState(0);
   const [files, saveFiles] = useState([]);
@@ -40,7 +40,7 @@ const PublishPaperForm = ({ close }) => {
     });
 
     if (fileRejections.length === 0) {
-      saveFiles(acceptedFiles)  
+      saveFiles(acceptedFiles)
     }
   }, []);
 
@@ -127,4 +127,4 @@ const PublishPaperForm = ({ close }) => {
   return <Area header={header} content={formStep ? confirmContent : content} headerClasses={styles.modalHeader} />
 }
 
-export default PublishPaperForm;
+export default UploadPaperForm;
