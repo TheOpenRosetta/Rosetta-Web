@@ -6,7 +6,10 @@ const initialState = {
   title: '',
   description: '',
   github: '',
-  note: '',
+  materials: {
+    transactionID: '',
+    files: [],
+  }
 };
 
 export const publishSlice = createSlice({
@@ -26,7 +29,11 @@ export const publishSlice = createSlice({
       state.title = action.payload.title;
       state.description = action.payload.description;
       state.github = action.payload.github;
-      state.note = action.payload.note;
+      state.materials = {
+        ...state.materials,
+        transactionID: action.payload.transactionID || '',
+        files: action.payload.files || []
+      };
       state.step += 1;
     },
   }
@@ -41,5 +48,6 @@ export const {
 
 export const selectStep = (state) => state.publish.step;
 export const selectFiles = (state) => state.publish.files;
+export const selectMaterials = (state) => state.publish.materials;
 
 export default publishSlice.reducer;
