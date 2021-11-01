@@ -151,6 +151,7 @@ const UploadPaperInfoForm = ({ className: classes }) => {
       value={formik.values.description}
     />
   { formik.values.github && <div className={styles.github}>{formik.values.github}</div> }
+  { supplementaryMaterial && <div className={styles.github}>Added supplementary materials</div> }
     <div className={styles.linksRow}>
       <button className={styles.linksItem} type="button" onClick={openModal}>
         <LinkIcon /> Add github link
@@ -197,7 +198,7 @@ const UploadPaperInfoForm = ({ className: classes }) => {
       contentLabel="Supplementary material"
     >
       <div className={styles.modal}>
-        <div className="modalTitle">For upload supplementary material you can select file on your computer or provide the Arweave Transaction ID for your already uploaded file</div>
+        <div className={styles.modalTitle}>For upload supplementary material you can select file on your computer or provide the Arweave Transaction ID for your already uploaded file</div>
         <Tabs className={styles.tabs} selectedTabClassName={styles.tabActive} defaultIndex={tabIndex} onSelect={index => setTabIndex(index)}>
           <TabList className={styles.tabsList}>
             <Tab className={styles.tab}>File</Tab>
