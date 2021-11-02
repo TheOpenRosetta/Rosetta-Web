@@ -11,6 +11,7 @@ const initialState = {
     files: [],
   },
   reseachFiles: [],
+  citationIds: [],
 };
 
 export const publishSlice = createSlice({
@@ -40,6 +41,10 @@ export const publishSlice = createSlice({
     setReseachFiles: (state, action) => {
       state.reseachFiles = [...action.payload];
       state.step += 1;
+    },
+    setCitationIds: (state, action) => {
+      state.citationIds = [...action.payload];
+      state.step += 1;
     }
   }
 });
@@ -50,6 +55,7 @@ export const {
   setFiles,
   setPaperAttrs,
   setReseachFiles,
+  setCitationIds,
 } = publishSlice.actions;
 
 export const selectStep = (state) => state.publish.step;

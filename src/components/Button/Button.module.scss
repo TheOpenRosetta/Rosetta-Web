@@ -70,6 +70,14 @@
       fill: $colorPrimaryWhite;
     }
   }
+  &--primary {
+    background-color: $colorPrimaryBlue;
+    color: $colorPrimaryWhite;
+    border-color: $colorPrimaryBlue;
+    path {
+      fill: $colorPrimaryWhite;
+    }
+  }
   &--completed {
     background-color: $colorSupportGreen;
     color: $colorPrimaryWhite;

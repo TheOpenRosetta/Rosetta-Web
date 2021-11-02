@@ -1,9 +1,8 @@
 import React, { useState, useCallback } from 'react';
 import Button from '@components/Button';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useDropzone } from 'react-dropzone';
 import {
-  selectStep,
   prevStep,
   setReseachFiles,
 } from '@services/Publish/publishSlice';
@@ -20,7 +19,6 @@ import {ReactComponent as FileIcon} from '@assets/icons/file-outline.svg';
 import styles from './ReseachOutput.module.scss';
 
 const ReseachOutput = () => {
-  const step = useSelector(selectStep);
   const dispatch = useDispatch();
   const [files, saveFiles] = useState([]);
   const [errors, setErrors] = useState('');

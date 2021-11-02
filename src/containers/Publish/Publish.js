@@ -10,6 +10,7 @@ import {
   Status,
   ReseachOutput,
   Citation,
+  Coauthors,
 } from '@components/Publish';
 
 import styles from './Publish.module.scss';
@@ -23,10 +24,12 @@ const Publish = () => {
         <Status />
       </div>
       <div className={styles.content}>
-        <Citation />
+        <Coauthors />
         {
           //step === 0 && <Start />
-          // step === 1 && <ReseachOutput />
+          //step === 1 && <ReseachOutput />
+          //step === 2 && <Citation />
+          //step === 3 && <Coauthors />
         }
       </div>
     </div>

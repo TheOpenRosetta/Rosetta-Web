@@ -1,0 +1,118 @@
+@import '@styles/variables';
+
+.coauthors {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  // @media(max-width: 1199px) {
+  //   flex-direction: column;
+  // }
+}
+
+.search {
+  background-color: $colorPrimaryWhite;
+  border-radius: 8px;
+  padding: 16px 24px;
+  margin-right: 1px;
+  flex: 1 0 55%;
+  max-width: 55%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  // @media(max-width: 1199px) {
+  //   flex: 1 0;
+  //   width: 100%;
+  //   max-width: 100%;
+  //   height: auto;
+  //   margin-right: 0;
+  //   margin-bottom: 1px;
+  // }
+}
+
+.added {
+  background-color: $colorPrimaryWhite;
+  border-radius: 8px;
+  padding: 16px 24px 64px;
+  flex: 1 0 45%;
+  max-width: 45%;
+  height: 100%;
+  // @media(max-width: 1199px) {
+  //   flex: 1 0;
+  //   width: 100%;
+  //   max-width: 100%;
+  //   height: auto;
+  // }
+  @media(max-width: 767px) {
+    min-height: 200px;
+  }
+}
+
+.heading {
+  @include BodyLarge-MEDIUM;
+  color: rgba($colorPrimaryBlack, 0.9);
+  margin-bottom: 16px;
+}
+
+
+.actions {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 24px;
+  position: absolute;
+  bottom: 16px;
+  right: 0;
+  &Success {
+    @media(max-width: 767px) {
+      flex-direction: column-reverse;
+    }
+  }
+}
+
+@mixin btn {
+  border: none;
+  padding: 0 8px;
+  @include BodySmall-REGULAR;
+  position: relative;
+  svg {
+    margin: 0 4px;
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.btn {
+  &Prev {
+    color: rgba($colorPrimaryBlack, 0.5);
+    @include btn;
+    &:after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 4px;
+      bottom: 4px;
+      border-right: 1px solid rgba($colorPrimaryBlack, 0.2);
+    }
+    svg {
+      path {
+        fill: rgba($colorPrimaryBlack, 0.5);
+      }
+    }
+  }
+  &Next {
+    color: $colorPrimaryBlue;
+    @include btn;
+    svg {
+      path {
+        fill: $colorPrimaryBlue;
+      }
+    }
+  }
+}

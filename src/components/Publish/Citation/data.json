@@ -1,0 +1,36 @@
+{
+  "list": [
+    {
+      "authors": ["Ward", "James"],
+      "year": 2015,
+      "id": 124214121,
+      "title": "The Perfection of the Paper Clip: Curious Tales of Invention, Accidental Genius, and Stationery Obsession",
+      "published": "Atria Books",
+      "code": "ISBN 978-1476799865"
+    },
+    {
+      "authors": ["Ward", "James"],
+      "year": 2015,
+      "id": 124214122,
+      "title": "The Perfection of the Paper Clip: Curious Tales of Invention, Accidental Genius, and Stationery Obsession",
+      "published": "Atria Books",
+      "code": "ISBN 978-1476799865"
+    },
+    {
+      "authors": ["Ward", "James"],
+      "year": 2015,
+      "id": 124214123,
+      "title": "The Perfection of the Paper Clip: Curious Tales of Invention, Accidental Genius, and Stationery Obsession",
+      "published": "Atria Books",
+      "code": "ISBN 978-1476799865"
+    },
+    {
+      "authors": ["Ward", "James"],
+      "year": 2015,
+      "id": 124214124,
+      "title": "The Perfection of the Paper Clip: Curious Tales of Invention, Accidental Genius, and Stationery Obsession",
+      "published": "Atria Books",
+      "code": "ISBN 978-1476799865"
+    }
+  ]
+}
