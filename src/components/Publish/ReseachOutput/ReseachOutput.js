@@ -5,6 +5,7 @@ import { useDropzone } from 'react-dropzone';
 import {
   selectStep,
   prevStep,
+  setReseachFiles,
 } from '@services/Publish/publishSlice';
 
 import {ReactComponent as ArrowBackIcon}  from '@assets/icons/arrow-back-outline.svg';
@@ -51,11 +52,6 @@ const ReseachOutput = () => {
     accept: '.jpg,.jpeg,.png,.gif,.mp4,.mov',
     maxFiles: 6,
   });
-
-  const next = () => {
-    console.log(files);
-    // dispatch(nextStep(files));
-  }
 
   const removeFile = file => () => {
     const newFiles = [...files]
@@ -108,7 +104,7 @@ const ReseachOutput = () => {
       </div>
       <div className={styles.actions}>
         <Button classes={styles.btnPrev} size="md" kind="link" type="reset" onClick={() => dispatch(prevStep())}><ArrowBackIcon/> Previous</Button>
-        <Button classes={styles.btnNext} size="md" kind="link" type="button" onClick={next}>Next <NextIcon/></Button>
+        <Button classes={styles.btnNext} size="md" kind="link" type="button" onClick={() => dispatch(setReseachFiles(files))}>Next <NextIcon/></Button>
       </div>
     </div>
   </div>;

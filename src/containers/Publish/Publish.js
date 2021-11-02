@@ -5,7 +5,12 @@ import {
   selectStep,
 } from '@services/Publish/publishSlice';
 
-import { Start, Status, ReseachOutput } from '@components/Publish';
+import {
+  Start,
+  Status,
+  ReseachOutput,
+  Citation,
+} from '@components/Publish';
 
 import styles from './Publish.module.scss';
 
@@ -18,8 +23,11 @@ const Publish = () => {
         <Status />
       </div>
       <div className={styles.content}>
-        { step === 0 && <Start /> }
-        { step === 1 && <ReseachOutput /> }
+        <Citation />
+        {
+          //step === 0 && <Start />
+          // step === 1 && <ReseachOutput />
+        }
       </div>
     </div>
   </Layout>

@@ -9,7 +9,8 @@ const initialState = {
   materials: {
     transactionID: '',
     files: [],
-  }
+  },
+  reseachFiles: [],
 };
 
 export const publishSlice = createSlice({
@@ -36,6 +37,10 @@ export const publishSlice = createSlice({
       };
       state.step += 1;
     },
+    setReseachFiles: (state, action) => {
+      state.reseachFiles = [...action.payload];
+      state.step += 1;
+    }
   }
 });
 
@@ -44,6 +49,7 @@ export const {
   prevStep,
   setFiles,
   setPaperAttrs,
+  setReseachFiles,
 } = publishSlice.actions;
 
 export const selectStep = (state) => state.publish.step;
