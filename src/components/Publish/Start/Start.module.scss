@@ -1,5 +1,12 @@
 @import '@styles/variables';
 
+.start {
+  background-color: $colorPrimaryWhite;
+  border-radius: 8px;
+  padding: 16px 24px;
+  height: 100%;
+}
+
 .heading {
   @include BodyLarge-MEDIUM;
   color: rgba($colorPrimaryBlack, 0.9);

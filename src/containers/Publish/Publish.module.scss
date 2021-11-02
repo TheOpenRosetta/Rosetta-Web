@@ -28,6 +28,10 @@
   border-radius: 8px;
   padding: 16px;
   align-self: stretch;
+  @media(max-width: 1199px) {
+    flex-basis: 200px;
+    max-width: 200px;
+  }
   @media(max-width: 767px) {
     max-width: 100%;
     flex-basis: auto;
@@ -39,9 +43,13 @@
 
 .content {
   flex: 1 0;
-  background-color: $colorPrimaryWhite;
-  border-radius: 8px;
-  padding: 16px 24px;
   align-self: stretch;
   position: relative;
+  max-width: calc(100% - 270px);
+  @media(max-width: 1199px) {
+    max-width: calc(100% - 200px);
+  }
+  @media(max-width: 767px) {
+    max-width: 100%;
+  }
 }
