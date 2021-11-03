@@ -24,12 +24,10 @@ const Publish = () => {
         <Status />
       </div>
       <div className={styles.content}>
-        {
-          [step === 0 && <Start />,
-          step === 1 && <ReseachOutput />,
-          step === 2 && <Citation />,
-          step === 3 && <Coauthors />]
-        }
+        {step === 0 && <Start />}
+        {step === 1 && <ReseachOutput />}
+        {step === 2 && <Citation />}
+        {step === 3 && <Coauthors />}
       </div>
     </div>
   </Layout>
