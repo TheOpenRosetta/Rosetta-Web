@@ -1,0 +1,54 @@
+@import '@styles/variables';
+
+.form {
+  margin: 0 auto;
+}
+
+.group {
+  padding-top: 24px;
+  position: relative;
+  border-bottom: 1px solid rgba($colorPrimaryBlack, 0.1);
+  margin-bottom: 8px;
+}
+
+.label {
+  position: absolute;
+  top: 24px;
+  left: 2px;
+  transition: top 0.3s ease;
+  @include CaptionLarge-REGULAR;
+  color: rgba($colorPrimaryBlack, 0.6);
+}
+
+.field {
+  border: none;
+  padding-bottom: 10px;
+  left: 0;
+  width: 100%;
+  position: relative;
+  border-bottom: 2px solid transparent;
+  @include BodySmall-MEDIUM;
+  color: $colorPrimaryBlack;
+  &:focus {
+    outline: none;
+    border-bottom: 2px solid $colorPrimaryGold;
+  }
+  &:valid, &:focus {
+    & + .label {
+      top: 0;
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 24px;
+  margin-bottom: 8px;
+}
+
+.submit {
+  margin-left: 12px;
+}

@@ -28,8 +28,6 @@ const CoauthorsForm = ({ className: classes, add }) => {
 
   const addCoauthor = (item) => {
     add(item);
-    // setResult([])
-    // clear search field
   }
 
   return <form onSubmit={formik.handleSubmit} className={`${styles.form} ${classes}`}>

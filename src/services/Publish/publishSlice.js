@@ -12,6 +12,7 @@ const initialState = {
   },
   reseachFiles: [],
   citationIds: [],
+  coauthors: [],
 };
 
 export const publishSlice = createSlice({
@@ -45,6 +46,10 @@ export const publishSlice = createSlice({
     setCitationIds: (state, action) => {
       state.citationIds = [...action.payload];
       state.step += 1;
+    },
+    setCoAuthors: (state, action) => {
+      state.coauthors = [...action.payload];
+      state.step += 1;
     }
   }
 });
@@ -56,10 +61,14 @@ export const {
   setPaperAttrs,
   setReseachFiles,
   setCitationIds,
+  setCoAuthors,
 } = publishSlice.actions;
 
 export const selectStep = (state) => state.publish.step;
 export const selectFiles = (state) => state.publish.files;
 export const selectMaterials = (state) => state.publish.materials;
+export const selectReseachFiles = (state) => state.publish.reseachFiles;
+export const selectCitationIds = (state) => state.publish.citationIds;
+export const selectCoAuthors = (state) => state.publish.coauthors;
 
 export default publishSlice.reducer;
