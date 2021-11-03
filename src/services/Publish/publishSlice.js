@@ -66,6 +66,12 @@ export const {
 
 export const selectStep = (state) => state.publish.step;
 export const selectFiles = (state) => state.publish.files;
+export const selectPaperInfo = (state) => ({
+  title: state.publish.title,
+  description: state.publish.description,
+  github: state.publish.github,
+  materials: state.publish.materials,
+});
 export const selectMaterials = (state) => state.publish.materials;
 export const selectReseachFiles = (state) => state.publish.reseachFiles;
 export const selectCitationIds = (state) => state.publish.citationIds;

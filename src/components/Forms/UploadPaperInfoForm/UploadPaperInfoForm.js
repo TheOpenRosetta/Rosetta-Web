@@ -2,11 +2,12 @@ import React, { useState, useRef, useCallback } from 'react';
 import Button from '@components/Button';
 import { Tab, Tabs, TabList, TabPanel, resetIdCounter } from 'react-tabs';
 import { useFormik } from 'formik';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useDropzone } from 'react-dropzone';
 import Modal from 'react-modal';
 import {
-  setPaperAttrs
+  setPaperAttrs,
+  selectPaperInfo
 } from '@services/Publish/publishSlice';
 
 import {ReactComponent as AttachIcon} from '@assets/icons/attach-outline.svg';
@@ -21,8 +22,14 @@ import styles from './UploadPaperInfoForm.module.scss';
 resetIdCounter();
 
 const UploadPaperInfoForm = ({ className: classes }) => {
+  const defaultInfo = useSelector(selectPaperInfo);
   const dispatch = useDispatch();
-  const [supplementaryMaterial, setSupplementaryMaterial] = useState(null);
+  const [supplementaryMaterial, setSupplementaryMaterial] = useState(() => {
+    const asArray = Object.entries(defaultInfo.materials);
+    const filtered = asArray.filter(([key, value]) => value.length > 0);
+    const justStrings = Object.fromEntries(filtered);
+    return justStrings;
+  });
 
   // Forms in tabs
   const [errors, setErrors] = useState('');
@@ -105,9 +112,9 @@ const UploadPaperInfoForm = ({ className: classes }) => {
 
   const formik = useFormik({
      initialValues: {
-       title: '',
-       description: '',
-       github: '',
+       title: defaultInfo.title,
+       description: defaultInfo.description,
+       github: defaultInfo.github,
      },
      onSubmit: (values) => {
        const result = {

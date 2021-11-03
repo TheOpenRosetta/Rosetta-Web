@@ -30,15 +30,13 @@ const Citation = () => {
   // Getting citations from server
   useEffect(() => {
     // TODO: make API request instead of timeeout
-    setTimeout(() => {
-      const citation = data.list.map(item => {
-        return {
-          ...item,
-          weight: 10,
-        }
-      });
-      setCitations(citation);
-    }, 1000)
+    const citation = data.list.map(item => {
+      return {
+        ...item,
+        weight: 10,
+      }
+    });
+    setCitations(citation);
   }, []);
 
   const changeCitation = (value, id) => {
