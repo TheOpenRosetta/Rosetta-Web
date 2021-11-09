@@ -1,0 +1,229 @@
+@import '@styles/variables';
+
+.coauthors {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  @media(max-width: 1199px) {
+    flex-direction: column;
+  }
+}
+
+.search {
+  background-color: $colorPrimaryWhite;
+  border-radius: 8px;
+  padding: 16px;
+  margin-right: 1px;
+  flex: 1 0 50%;
+  max-width: 50%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  @media(max-width: 1199px) {
+    flex: 1 0;
+    max-width: none;
+    width: 100%;
+    margin-bottom: 1px;
+    margin-right: 0;
+  }
+}
+
+.added {
+  background-color: $colorPrimaryWhite;
+  border-radius: 8px;
+  padding: 16px 16px 64px;
+  flex: 1 0 50%;
+  max-width: 50%;
+  height: 100%;
+  @media(max-width: 1199px) {
+    flex: 1 0;
+    max-width: none;
+    width: 100%;
+  }
+  @media(max-width: 767px) {
+    min-height: 200px;
+  }
+}
+
+.error {
+  @include BodyLarge-MEDIUM;
+  color: rgba($colorSupportRed, 0.9);
+}
+
+.heading {
+  @include BodyLarge-MEDIUM;
+  color: rgba($colorPrimaryBlack, 0.9);
+  margin-bottom: 16px;
+}
+
+.authorData {
+  margin-top: auto;
+  @include BodyLarge-MEDIUM;
+  color: $colorPrimaryBlack;
+  @media(max-width: 1199px) {
+    margin-top: 16px;
+  }
+}
+
+.list {
+  &Header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+    &Name {
+      flex: 1 0;
+      @include BodyLarge-MEDIUM;
+    }
+    &Weight {
+      flex: 1 0 112px;
+      max-width: 112px;
+      @include BodyLarge-MEDIUM;
+    }
+  }
+  &Item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid $colorPrimaryGray;
+    &Name {
+      flex: 1 0;
+      @include BodyLarge-REGULAR;
+      line-height: 120%;
+      span {
+        font-size: 12px;
+        opacity: 0.4;
+        display: block;
+      }
+    }
+    &Field {
+      position: relative;
+      margin-right: 8px;
+      &:after {
+        content: '%';
+        @include BodyLarge-REGULAR;
+        position: absolute;
+        right: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      input {
+        padding: 6px 16px 6px 8px;
+        @include BodyLarge-REGULAR;
+        background-color: $colorPrimaryGray;
+        border: none;
+        text-align: left;
+        border-radius: 4px;
+      }
+    }
+    &Remove {
+      background-color: $colorPrimaryGray;
+      padding: 6px;
+      margin-right: 8px;
+      svg {
+        path {
+          fill: rgba($colorPrimaryBlack, 0.6);
+        }
+      }
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 24px;
+  position: absolute;
+  bottom: 16px;
+  right: 0;
+  &Success {
+    @media(max-width: 767px) {
+      flex-direction: column-reverse;
+    }
+  }
+}
+
+@mixin btn {
+  border: none;
+  padding: 0 8px;
+  @include BodySmall-REGULAR;
+  position: relative;
+  svg {
+    margin: 0 4px;
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.btn {
+  &New {
+    margin-top: 8px;
+    background-color: $colorPrimaryGray;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 16px;
+    color: $colorSupportBlack;
+    svg {
+      path {
+        fill: $colorSupportBlack;
+      }
+    }
+  }
+  &Prev {
+    color: rgba($colorPrimaryBlack, 0.5);
+    @include btn;
+    &:after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 4px;
+      bottom: 4px;
+      border-right: 1px solid rgba($colorPrimaryBlack, 0.2);
+    }
+    svg {
+      path {
+        fill: rgba($colorPrimaryBlack, 0.5);
+      }
+    }
+  }
+  &Next {
+    color: $colorPrimaryBlue;
+    @include btn;
+    svg {
+      path {
+        fill: $colorPrimaryBlue;
+      }
+    }
+  }
+}
+
+.modalHeader {
+  padding: 6px 12px;
+  border: none;
+  margin-bottom: -1px;
+}
+
+.modalContent {
+  background-color: $colorPrimaryWhite;
+  padding: 12px 24px;
+  border-radius: 0 0 8px 8px;
+  width: 654px;
+  @media(max-width: 767px) {
+    width: calc(100vw - 32px);
+  }
+}

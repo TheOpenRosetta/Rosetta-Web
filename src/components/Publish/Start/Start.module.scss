@@ -1,0 +1,43 @@
+@import '@styles/variables';
+
+.start {
+  background-color: $colorPrimaryWhite;
+  border-radius: 8px;
+  padding: 16px 24px;
+  height: 100%;
+}
+
+.heading {
+  @include BodyLarge-MEDIUM;
+  color: rgba($colorPrimaryBlack, 0.9);
+  margin-bottom: 16px;
+}
+
+.zone {
+  padding: 78px;
+  border: 1px dashed rgba($colorPrimaryBlack, 0.4);
+  text-align: center;
+  @media(max-width: 767px) {
+    padding: 24px;
+  }
+  &Icon {
+    margin-bottom: 16px;
+    svg {
+      width: 48px;
+      height: 48px;
+      path {
+        fill: rgba($colorPrimaryBlack, 0.5);
+      }
+    }
+  }
+  &Title {
+    @include HeadingLarge-MEDIUM;
+    color: rgba($colorPrimaryBlack, 0.7);
+    margin-bottom: 8px;
+  }
+  &Text {
+    @include BodyLarge-REGULAR;
+    color: rgba($colorPrimaryBlack, 0.7);
+    opacity: 0.7;
+  }
+}

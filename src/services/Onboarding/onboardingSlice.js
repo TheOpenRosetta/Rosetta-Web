@@ -34,47 +34,47 @@ export const onboardingSlice = createSlice({
       state.institution = action.payload.institution || state.institution;
       state.email = action.payload.email || state.email;
     },
-    addDuplicatedAuthor: (state, actions) => {
-      state.duplicate_author_ids = [...actions.payload];
+    addDuplicatedAuthor: (state, action) => {
+      state.duplicate_author_ids = [...action.payload];
     },
-    addIncorrectPaper: (state, actions) => {
-      state.papers_incorrectly_attributed = [...state.papers_incorrectly_attributed, actions.payload];
+    addIncorrectPaper: (state, action) => {
+      state.papers_incorrectly_attributed = [...state.papers_incorrectly_attributed, action.payload];
     },
-    addShouldAttributedPaper: (state, actions) => {
-      state.papers_claimed_by_this_author = [...state.papers_claimed_by_this_author, actions.payload];
+    addShouldAttributedPaper: (state, action) => {
+      state.papers_claimed_by_this_author = [...state.papers_claimed_by_this_author, action.payload];
     },
-    setSkills: (state, actions) => {
-      state.skills = [...actions.payload];
+    setSkills: (state, action) => {
+      state.skills = [...action.payload];
     },
-    setDisciplines: (state, actions) => {
-      state.disciplines = [...actions.payload];
+    setDisciplines: (state, action) => {
+      state.disciplines = [...action.payload];
     },
-    setFollowUsers: (state, actions) => {
-      if (state.followUsers.some(n => n === actions.payload)) {
-        state.followUsers = state.followUsers.filter(el => el !== actions.payload)
+    setFollowUsers: (state, action) => {
+      if (state.followUsers.some(n => n === action.payload)) {
+        state.followUsers = state.followUsers.filter(el => el !== action.payload)
       } else {
-        state.followUsers = [...state.followUsers, actions.payload];
+        state.followUsers = [...state.followUsers, action.payload];
       }
     },
-    setFollowGroups: (state, actions) => {
-      if (state.followGroups.some(n => n === actions.payload)) {
-        state.followGroups = state.followGroups.filter(el => el !== actions.payload)
+    setFollowGroups: (state, action) => {
+      if (state.followGroups.some(n => n === action.payload)) {
+        state.followGroups = state.followGroups.filter(el => el !== action.payload)
       } else {
-        state.followGroups = [...state.followGroups, actions.payload];
+        state.followGroups = [...state.followGroups, action.payload];
       }
     },
-    setPublicKey: (state, actions) => {
-      state.publickey = actions.payload;
+    setPublicKey: (state, action) => {
+      state.publickey = action.payload;
     },
-    setCategory: (state, actions) => {
-      if (state.category.some(n => n === actions.payload)) {
-        state.category = state.category.filter(el => el !== actions.payload)
+    setCategory: (state, action) => {
+      if (state.category.some(n => n === action.payload)) {
+        state.category = state.category.filter(el => el !== action.payload)
       } else {
-        state.category = [...state.category, actions.payload];
+        state.category = [...state.category, action.payload];
       }
     },
-    setPhoto: (state, actions) => {
-      state.photo = actions.payload;
+    setPhoto: (state, action) => {
+      state.photo = action.payload;
     },
   }
 });

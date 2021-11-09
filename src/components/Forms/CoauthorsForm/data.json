@@ -1,0 +1,29 @@
+{
+  "list": [
+    {
+      "firstName": "Roman",
+      "lastName": "Shprenger",
+      "email": "shprengerroman@gmail.com"
+    },
+    {
+      "firstName": "Ryan",
+      "lastName": "Jackson",
+      "email": "jacks@gmail.com"
+    },
+    {
+      "firstName": "Elon",
+      "lastName": "Mask",
+      "email": "emask@tesla.com"
+    },
+    {
+      "firstName": "Richard",
+      "lastName": "Branson",
+      "email": "branson@virgingalactic.com"
+    },
+    {
+      "firstName": "Mark",
+      "lastName": "Zuckerberg",
+      "email": "mark@meta.com"
+    }
+  ]
+}

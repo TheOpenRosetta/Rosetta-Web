@@ -1,0 +1,245 @@
+@import '@styles/variables';
+
+.form {
+  padding-bottom: 48px;
+}
+
+.field {
+  display: block;
+  width: 100%;
+  border: 1px solid rgba($colorPrimaryBlack, 0.2);
+  @include BodyLarge-REGULAR;
+  padding: 4px 16px;
+  margin-bottom: 16px;
+  border-radius: 4px;
+  @media(max-width: 1023px) {
+    @include BodySmall-REGULAR;
+  }
+  &:focus {
+    outline-color: $colorPrimaryBlue;
+  }
+  &Title {
+    display: block;
+    width: 100%;
+    border: 1px solid rgba($colorPrimaryBlack, 0.2);
+    @include DisplayLarge-MEDIUM;
+    padding: 10px 16px;
+    margin-bottom: 16px;
+    border-radius: 4px;
+    @media(max-width: 1023px) {
+      @include HeadingSmall-MEDIUM;
+    }
+    &:focus {
+      outline-color: $colorPrimaryBlue;
+    }
+  }
+}
+
+.heading {
+  @include HeadingLarge-MEDIUM;
+  color: rgba($colorPrimaryBlack, 0.7);
+  margin-bottom: 16px;
+}
+
+.text {
+  @include BodySmall-REGULAR;
+  color: rgba($colorPrimaryBlack, 0.7);
+}
+
+.links {
+  &Row {
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    @media(max-width: 767px) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+  &Item {
+    background-color: rgba($colorPrimaryBlue, 0.1);
+    color: $colorPrimaryBlue;
+    padding: 5px 8px;
+    margin-right: 8px;
+    border-radius: 4px;
+    border: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    svg {
+      margin-right: 6px;
+      height: 20px;
+      width: 20px;
+      path {
+        fill: $colorPrimaryBlue;
+      }
+    }
+  }
+}
+
+.actions {
+  position: absolute;
+  bottom: 12px;
+  right: 0;
+}
+
+.btn {
+  &Next {
+    svg {
+      margin-left: 8px;
+    }
+  }
+}
+
+.github {
+  @include BodySmall-REGULAR;
+  color: rgba($colorPrimaryBlue, 0.7);
+  margin-bottom: 16px;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  &Error {
+    color: $colorSupportRed;
+    @include BodySmall-REGULAR;
+    margin: 12px 0;
+  }
+}
+
+.cancel {
+  margin-right: 12px;
+}
+
+.modal {
+  background-color: $colorPrimaryWhite;
+  border-radius: 8px;
+  padding: 24px;
+  min-width: 600px;
+  @media(max-width: 767px) {
+    min-width: calc(100% - 32px);
+  }
+  &Actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  &Title {
+    @include BodyLarge-REGULAR;
+    color: $colorPrimaryBlack;
+    margin-bottom: 16px;
+  }
+}
+
+.tabs {
+  &List {
+    margin: 0 -24px;
+    padding: 0 24px;
+    border-bottom: 1px solid $colorPrimaryGray;
+  }
+}
+
+.tab {
+  display: inline-block;
+  border: 1px solid transparent;
+  border-bottom: none;
+  bottom: -1px;
+  position: relative;
+  list-style: none;
+  padding: 8px 24px;
+  cursor: pointer;
+  @include BodySmall-REGULAR;
+  border-radius: 4px 4px 0 0;
+  opacity: 0.5;
+  &Active {
+    border-color: $colorPrimaryGray;
+    background-color: $colorPrimaryWhite;
+    opacity: 1;
+  }
+  &Panel {
+    margin: 24px 0;
+  }
+}
+
+.dropzone {
+  text-align: center;
+  &Errors {
+    color: $colorSupportRed;
+    @include BodyLarge-REGULAR;
+    text-align: center;
+    margin: 16px auto 8px;
+  }
+  &Icon {
+    width: 36px;
+    height: 36px;
+    margin: 0 auto 24px;
+    svg {
+      width: 100%;
+      height: 100%;
+      path {
+        fill: rgba($colorPrimaryBlack, 0.5);
+      }
+    }
+  }
+  &Title {
+    @include HeadingLarge-MEDIUM;
+    color: rgba($colorPrimaryBlack, 0.7);
+    margin-bottom: 8px;
+  }
+  &Text {
+    @include BodyLarge-REGULAR;
+    color: rgba($colorPrimaryBlack, 0.6);
+    margin-bottom: 8px;
+  }
+  &Btn {
+    background-color: rgba($colorPrimaryBlue, 0.1);
+    color: $colorPrimaryBlue;
+    padding: 10px 24px;
+    border-radius: 6px;
+    @include BodySmall-REGULAR;
+    display: inline-block;
+  }
+}
+
+.list {
+  margin-top: 32px;
+  border-top: 1px solid rgba($colorPrimaryBlack, 0.1);
+  &Title {
+    @include BodyLarge-MEDIUM;
+    color: rgba($colorPrimaryBlack, 0.9);
+    margin-top: 20px;
+  }
+  &Item {
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid rgba($colorPrimaryBlack, 0.1);
+    padding-bottom: 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 16px;
+    &Name {
+      margin-right: 8px;
+      @include BodyLarge-REGULAR;
+      color: rgba($colorPrimaryBlack, 0.8);
+      max-width: calc(100% - 120px);
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    &Remove {
+      width: 20px;
+      height: 20px;
+      border: none;
+      background: none;
+      padding: 0;
+      svg {
+        path {
+          fill: rgba($colorPrimaryBlack, 0.5);
+        }
+      }
+    }
+  }
+}

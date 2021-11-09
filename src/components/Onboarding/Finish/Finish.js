@@ -17,7 +17,11 @@ const Finish = () => {
   const [error, setError] = useState(null);
   const publishData = useSelector(selectPublishData);
   const publishAction = () => {
-    axios.post(`https://rosetta.eastus.cloudapp.azure.com/api/v1/onboarduser/`, publishData)
+    axios.post(`https://rosetta.eastus.cloudapp.azure.com/api/v1/onboarduser/`, publishData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+      })
       .then((response) => {
         const { data } = response;
         if (data.statusCode === 200) {

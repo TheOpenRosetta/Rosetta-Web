@@ -83,6 +83,31 @@ $colorSupportBlack: #24272C;
   line-height: 120%;
 }
 
+// DisplayLarge
+@mixin DisplayLarge-BOLD {
+  @include bold;
+  font-size: 42px;
+  line-height: 120%;
+}
+
+@mixin DisplayLarge-MEDIUM {
+  @include medium;
+  font-size: 42px;
+  line-height: 120%;
+}
+
+@mixin DisplayLarge-REGULAR {
+  @include regular;
+  font-size: 42px;
+  line-height: 120%;
+}
+
+@mixin DisplayLarge-LIGHT {
+  @include light;
+  font-size: 42px;
+  line-height: 120%;
+}
+
 // DisplaySmall
 @mixin DisplaySmall-BOLD {
   @include bold;

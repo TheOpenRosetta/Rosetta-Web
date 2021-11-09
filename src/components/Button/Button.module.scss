@@ -6,6 +6,10 @@
   border: 1px solid;
   text-decoration: none;
   cursor: pointer;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   &--sm {
     padding: 5px 24px;
     border-radius: 4px;
@@ -62,6 +66,22 @@
     background-color: $colorPrimaryGold;
     color: $colorPrimaryWhite;
     border-color: $colorPrimaryGold;
+    path {
+      fill: $colorPrimaryWhite;
+    }
+  }
+  &--primary {
+    background-color: $colorPrimaryBlue;
+    color: $colorPrimaryWhite;
+    border-color: $colorPrimaryBlue;
+    path {
+      fill: $colorPrimaryWhite;
+    }
+  }
+  &--completed {
+    background-color: $colorSupportGreen;
+    color: $colorPrimaryWhite;
+    border-color: $colorSupportGreen;
     path {
       fill: $colorPrimaryWhite;
     }
