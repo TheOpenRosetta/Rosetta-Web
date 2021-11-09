@@ -26,6 +26,7 @@ const Citation = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
+  const [error, setError] = useState('');
 
   // Getting citations from server
   useEffect(() => {
@@ -61,8 +62,16 @@ const Citation = () => {
   }
 
   const next = () => {
+    const sumWeight = citations.reduce((prev, cur) => {
+      prev += cur.weight;
+      return prev;
+    }, 0);
+
+    sumWeight < 100 && setError('Summary weight can\'t be less than 100%');
+    sumWeight > 100 && setError('Summary weight can\'t be more than 100%');
+
     const citationsIds = citations.reduce((prev, cur) => { prev.push(cur.id); return prev }, []);
-    dispatch(setCitationIds(citationsIds));
+    sumWeight === 100 && dispatch(setCitationIds(citationsIds));
   }
 
   const header = <div className={styles.modalHeader}>
@@ -102,6 +111,9 @@ const Citation = () => {
             }
           </div> :
           <div className={styles.citationsListEmpty}>No citations found</div>)
+      }
+      {
+        error && <div className={styles.error}>{error}</div>
       }
       <Button classes={styles.add} size="md" kind="fill" type="button" onClick={openModal}>Add citation</Button>
 

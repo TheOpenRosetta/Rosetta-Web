@@ -23,6 +23,7 @@ const Coauthors = () => {
   const dispatch = useDispatch();
   const [authors, setAuthors] = useState(defaultCoAuthors);
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [sumWeight, setSumWeight] = useState(100);
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
   const [error, setError] = useState('');
@@ -36,7 +37,14 @@ const Coauthors = () => {
     if (authors.filter(el => el.email === item).length > 0) {
       setError('Author with the email is added already');
     } else {
-      setAuthors([...authors, coauthor]);
+      const newAuthorsList = [...authors, coauthor];
+      const weight = newAuthorsList.reduce((prev, cur) => {
+        prev += cur.weight;
+        return prev;
+      }, 0);
+
+      setSumWeight(100 - weight);
+      setAuthors(newAuthorsList);
       setError('');
     }
     closeModal();
@@ -44,6 +52,12 @@ const Coauthors = () => {
 
   const removeAuthor = (email) => {
     const newAuthorsList = authors.filter(item => item.email !== email);
+    const weight = newAuthorsList.reduce((prev, cur) => {
+      prev += cur.weight;
+      return prev;
+    }, 0);
+
+    setSumWeight(100 - weight);
     setAuthors(newAuthorsList);
     setError('');
   }
@@ -53,6 +67,13 @@ const Coauthors = () => {
       item.email === email && (item.weight = Number(value));
       return item;
     });
+
+    const weight = newAuthorsList.reduce((prev, cur) => {
+      prev += cur.weight;
+      return prev;
+    }, 0);
+
+    setSumWeight(100 - weight);
     setAuthors([...newAuthorsList]);
     setError('');
   }
@@ -63,13 +84,7 @@ const Coauthors = () => {
       return;
     }
 
-    const sumWeight = authors.reduce((prev, cur) => {
-      prev += cur.weight;
-      return prev;
-    }, 0);
-
-    sumWeight === 100 && dispatch(setCoAuthors(authors));
-    sumWeight < 100 && setError('Summary weight can\'t be less than 100%');
+    sumWeight <= 100 && dispatch(setCoAuthors(authors));
     sumWeight > 100 && setError('Summary weight can\'t be more than 100%');
   }
 
@@ -81,6 +96,7 @@ const Coauthors = () => {
       <div className={styles.heading}>Co-authors</div>
       <CoauthorsForm add={addAuthor} />
       <Button classes={styles.btnNew} size="md" kind="secondary" type="button" onClick={openModal}>Add new author <PlusIcon/></Button>
+      <div className={styles.authorData}>Your weight in paper: {sumWeight}%</div>
     </div>
     <div className={styles.added}>
       <div className={styles.heading}>Added</div>

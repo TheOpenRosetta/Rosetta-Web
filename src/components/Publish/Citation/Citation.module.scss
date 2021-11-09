@@ -92,6 +92,12 @@
   margin-bottom: 16px;
 }
 
+.error {
+  @include BodyLarge-MEDIUM;
+  color: rgba($colorSupportRed, 0.9);
+  margin-bottom: 16px;
+}
+
 .closeBtn {
   display: flex;
   border: none;

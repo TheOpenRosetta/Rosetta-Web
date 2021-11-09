@@ -27,6 +27,9 @@ const UploadPaperInfoForm = ({ className: classes }) => {
   const [supplementaryMaterial, setSupplementaryMaterial] = useState(() => {
     const asArray = Object.entries(defaultInfo.materials);
     const filtered = asArray.filter(([key, value]) => value.length > 0);
+    if (!filtered.length) {
+      return null;
+    }
     const justStrings = Object.fromEntries(filtered);
     return justStrings;
   });

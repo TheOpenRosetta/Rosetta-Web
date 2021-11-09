@@ -8,6 +8,7 @@ import {ReactComponent as HomeIcon} from '@assets/icons/home-outline.svg';
 import {ReactComponent as InboxIcon} from '@assets/icons/message-circle-outline.svg';
 import {ReactComponent as NotificationIcon} from '@assets/icons/bell-outline.svg';
 import {ReactComponent as QuestionIcon} from '@assets/icons/question-mark-circle-outline.svg';
+import {ReactComponent as PaperIcon} from '@assets/icons/file-text-outline.svg';
 
 import styles from './Navigation.module.scss';
 
@@ -15,7 +16,8 @@ const links = [
   { text: 'Home', href: '/', icon: <HomeIcon /> },
   { text: 'Inbox', href: '/inbox', icon: <InboxIcon /> },
   { text: 'Notification', href: '/notification', icon: <NotificationIcon /> },
-  { text: 'Q & A', href: '/help', icon: <QuestionIcon /> }
+  { text: 'Q & A', href: '/help', icon: <QuestionIcon /> },
+  { text: 'Publication', href: '/publish', icon: <PaperIcon /> }
 ];
 
 const NavLink = ({ icon, text, to, activeOnlyWhenExact }) => {

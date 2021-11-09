@@ -61,6 +61,15 @@
   margin-bottom: 16px;
 }
 
+.authorData {
+  margin-top: auto;
+  @include BodyLarge-MEDIUM;
+  color: $colorPrimaryBlack;
+  @media(max-width: 1199px) {
+    margin-top: 16px;
+  }
+}
+
 .list {
   &Header {
     display: flex;
