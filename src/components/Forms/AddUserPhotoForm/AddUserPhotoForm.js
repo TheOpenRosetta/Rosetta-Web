@@ -5,8 +5,8 @@ import {ReactComponent as AddPhotoIcon} from '@assets/addPhoto.svg';
 
 import styles from './AddUserPhotoForm.module.scss';
 
-const AddUserPhotoForm = ({ action, className }) => {
-  const [photo, setPhoto] = useState(null);
+const AddUserPhotoForm = ({ action, className, defaultPhoto }) => {
+  const [photo, setPhoto] = useState(defaultPhoto);
   const onDrop = useCallback(acceptedFiles => {
     const file = acceptedFiles[0];
     setPhoto(URL.createObjectURL(file));

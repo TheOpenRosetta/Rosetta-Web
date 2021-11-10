@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import Status from '../Status';
 import Button from '@components/Button';
 import SelectItemsForm from '@forms/SelectItemsForm';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   setDisciplines,
+  selectDisciplines,
   prevStep,
   nextStep
 } from '@services/Onboarding/onboardingSlice';
@@ -16,7 +17,7 @@ import styles from './Discipline.module.scss';
 const Discipline = () => {
   const dispatch = useDispatch();
   const [suggestList, setSuggestList] = useState(disciplinesList);
-  const [list, setList] = useState([]);
+  const [list, setList] = useState(useSelector(selectDisciplines));
 
   const addToSuggestList = (el) => {
     setSuggestList([...suggestList, el]);

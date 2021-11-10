@@ -13,12 +13,11 @@ import FollowPeople from '@components/Onboarding/FollowPeople';
 import Photo from '@components/Onboarding/Photo';
 import Skills from '@components/Onboarding/Skills';
 import Discipline from '@components/Onboarding/Discipline';
-import Leaders from '@components/Onboarding/Leaders';
+// import Leaders from '@components/Onboarding/Leaders';
 import Finish from '@components/Onboarding/Finish';
 
 import BgImg from '@assets/onboarding.jpeg';
 import styles from './Onboarding.module.scss';
-
 
 
 const Onboarding = () => {
@@ -39,8 +38,10 @@ const Onboarding = () => {
         {step === 6 && <Photo />}
         {step === 7 && <Skills />}
         {step === 8 && <Discipline />}
-        {step === 9 && <Leaders />}
-        {step === 10 && <Finish />}
+        {
+          //step === 9 && <Leaders />
+        }
+        {step === 9 && <Finish />}
       </div>
     </div>
   </div>

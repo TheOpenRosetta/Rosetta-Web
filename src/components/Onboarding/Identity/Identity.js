@@ -4,10 +4,11 @@ import Pagination from '@components/Pagination';
 import MediaQuery from 'react-responsive';
 import Status from '../Status';
 import IdentityCard from './IdentityCard';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   prevStep,
   nextStep,
+  selectDublicatedAuthors,
   addDuplicatedAuthor
 } from '@services/Onboarding/onboardingSlice';
 
@@ -53,9 +54,10 @@ const cards = [1,2,3,4,5,6,7,8,9,10,11].map(() => ({
 }));
 
 const Identity = () => {
+  const dublicated = useSelector(selectDublicatedAuthors);
   const dispatch = useDispatch();
   const [notInList, notInListToggle] = useState(true);
-  const [claimed, setClaimed] = useState([]);
+  const [claimed, setClaimed] = useState([...dublicated]);
   const [page, setPage] = useState(1);
   const [data, setData] = useState(cards.slice(0, 2));
 
@@ -65,21 +67,21 @@ const Identity = () => {
   }
 
   const handleCheckbox = () => {
-    if (notInList) {
-      setClaimed([]);
-    }
+    setClaimed([]);
     notInListToggle(!notInList);
   }
 
   const toggleClaimed = (id) => {
     const exist = claimed.indexOf(id);
+    let newList = [];
     if (exist >= 0) {
-      setClaimed(claimed.filter(el => el !== id));
-      notInListToggle(claimed.length === 1);
+      newList = [...claimed.filter(el => el !== id)];
     } else {
-      setClaimed([...claimed, id]);
-      notInListToggle(false);
+      newList = [...claimed, id]
     }
+
+    setClaimed(newList);
+    notInListToggle(newList.length === 0);
   }
 
   const next = () => {

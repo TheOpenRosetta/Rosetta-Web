@@ -99,11 +99,15 @@ export const selectStep = (state) => state.onboarding.step;
 export const selectCategory = (state) => state.onboarding.category;
 export const selectGroups = (state) => state.onboarding.followGroups;
 export const selectUsers = (state) => state.onboarding.followUsers;
+export const selectPhoto = (state) => state.onboarding.photo;
 export const selectPapers = (state) => ({
   incorrectlyAttr: state.onboarding.papers_incorrectly_attributed,
   shouldAttr: state.onboarding.papers_claimed_by_this_author
 });
 export const selectDublicatedAuthors = (state) => state.onboarding.duplicate_author_ids;
+
+export const selectSkills = (state) => state.onboarding.skills;
+export const selectDisciplines = (state) => state.onboarding.disciplines;
 
 export const selectPublishData = (state) => ({
   email: state.onboarding.email,

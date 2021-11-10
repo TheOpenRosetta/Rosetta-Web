@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import Status from '../Status';
 import Button from '@components/Button';
 import SelectItemsForm from '@forms/SelectItemsForm';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
+  selectSkills,
   setSkills,
   prevStep,
   nextStep
@@ -16,7 +17,7 @@ import styles from './Skills.module.scss';
 const Skills = () => {
   const dispatch = useDispatch();
   const [suggestList, setSuggestList] = useState(skillList);
-  const [list, setList] = useState([]);
+  const [list, setList] = useState(useSelector(selectSkills));
 
   const addToList = (el) => {
     const tempList = suggestList;

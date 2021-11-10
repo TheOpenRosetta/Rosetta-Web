@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import Button from '@components/Button';
 import Status from '../Status';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   prevStep,
   nextStep,
+  selectPhoto,
   setPhoto
 } from '@services/Onboarding/onboardingSlice';
 import {ReactComponent as ArrowBackIcon}  from '@assets/icons/arrow-ios-back-outline.svg'
@@ -13,7 +14,7 @@ import AddUserPhotoForm from '@forms/AddUserPhotoForm';
 import styles from './Photo.module.scss';
 
 const Photo = () => {
-  const [file, saveFile] = useState(null);
+  const [file, saveFile] = useState(useSelector(selectPhoto));
   const dispatch = useDispatch();
   const loadPhoto = (file) => {
     saveFile(window.URL.createObjectURL(file));
@@ -28,7 +29,7 @@ const Photo = () => {
     <Status />
     <div className={styles.title}>Add a profile photo</div>
     <div className={styles.subtitle}>Adding a photo helps people recognise you, and increases the liklihood of collaborations.</div>
-    <AddUserPhotoForm action={loadPhoto} />
+    <AddUserPhotoForm action={loadPhoto} defaultPhoto={file} />
 
     <div className={styles.actions}>
       <Button classes={styles.back} kind="secondary" size="lg" onClick={() => dispatch(prevStep())}><ArrowBackIcon /> Back</Button>

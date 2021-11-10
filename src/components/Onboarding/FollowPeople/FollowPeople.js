@@ -1,15 +1,15 @@
 import React from 'react';
 import Status from '../Status';
 import Button from '@components/Button';
-import FollowCard from '@components/FollowCard';
+// import FollowCard from '@components/FollowCard';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectCategory,
   setCategory,
-  setFollowUsers,
+  // setFollowUsers,
   setFollowGroups,
   selectGroups,
-  selectUsers,
+  // selectUsers,
   prevStep,
   nextStep
 } from '@services/Onboarding/onboardingSlice';
@@ -24,7 +24,7 @@ import CoauthorsIcon from '@assets/followIcons/coauthors.png';
 import { ReactComponent as ArrowBackIcon } from '@assets/icons/arrow-ios-back-outline.svg'
 import { ReactComponent as ArrowForwardIcon } from '@assets/icons/arrow-forward-outline.svg'
 
-import AvatarImg from '@assets/avatar.png';
+// import AvatarImg from '@assets/avatar.png';
 
 const follows = [
   { title: 'Follow your Research Gate Friends', icon: ResearchIcon, value: "researchGate" },
@@ -42,18 +42,18 @@ const categories = [
   { title: 'Qualitative', value: 'qualitative' }
 ];
 
-const followUsers = [
-  { firstName: 'Anila', lastName: 'Pandy', photo: AvatarImg, description: 'Founder at Gugugaga', authorid: 111 },
-  { firstName: 'Anila', lastName: 'Pandy', photo: AvatarImg, description: 'Founder at Gugugaga', authorid: 112 },
-  { firstName: 'Anila', lastName: 'Pandy', photo: AvatarImg, description: 'Founder at Gugugaga', authorid: 113 },
-  { firstName: 'Anila', lastName: 'Pandy', photo: AvatarImg, description: 'Founder at Gugugaga', authorid: 114 }
-];
+// const followUsers = [
+//   { firstName: 'Anila', lastName: 'Pandy', photo: AvatarImg, description: 'Founder at Gugugaga', authorid: 111 },
+//   { firstName: 'Anila', lastName: 'Pandy', photo: AvatarImg, description: 'Founder at Gugugaga', authorid: 112 },
+//   { firstName: 'Anila', lastName: 'Pandy', photo: AvatarImg, description: 'Founder at Gugugaga', authorid: 113 },
+//   { firstName: 'Anila', lastName: 'Pandy', photo: AvatarImg, description: 'Founder at Gugugaga', authorid: 114 }
+// ];
 
 const FollowPeople = () => {
   const dispatch = useDispatch();
   const cat = useSelector(selectCategory);
   const groups = useSelector(selectGroups);
-  const users = useSelector(selectUsers);
+  // const users = useSelector(selectUsers);
 
   const onChangeGroupValue = (event) => {
     const name = event.target.name;
@@ -89,22 +89,24 @@ const FollowPeople = () => {
         }
       </div>
     </div>
-    <div className={styles.suggestions}>
-      <div className={styles.suggestionsTitle}>Follow suggestion</div>
-      <div className={styles.suggestionsList}>
-        {
-          followUsers.map(item => <FollowCard
-            key={item.authorid}
-            name={`${item.firstName} ${item.lastName}`}
-            photo={item.photo}
-            followed={users.some(u => u === item.authorid)}
-            click={() => dispatch(setFollowUsers(item.authorid))}
-            description={item.description}
-            className={styles.suggestionsItem}
-          />)
-        }
-      </div>
-    </div>
+    {
+      // <div className={styles.suggestions}>
+      //   <div className={styles.suggestionsTitle}>Follow suggestion</div>
+      //   <div className={styles.suggestionsList}>
+      //     {
+      //       followUsers.map(item => <FollowCard
+      //         key={item.authorid}
+      //         name={`${item.firstName} ${item.lastName}`}
+      //         photo={item.photo}
+      //         followed={users.some(u => u === item.authorid)}
+      //         click={() => dispatch(setFollowUsers(item.authorid))}
+      //         description={item.description}
+      //         className={styles.suggestionsItem}
+      //       />)
+      //     }
+      //   </div>
+      // </div>
+    }
 
     <div className={styles.actions}>
       <Button classes={styles.back} kind="secondary" size="lg" onClick={() => dispatch(prevStep())}><ArrowBackIcon /> Back</Button>
