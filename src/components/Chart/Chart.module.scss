@@ -1,0 +1,23 @@
+@import '@styles/variables';
+
+.chart {
+  height: 250px;
+  @include CaptionLarge-MEDIUM;
+}
+
+.tooltip {
+  background-color: $colorPrimaryWhite;
+  padding: 8px;
+  border-radius: 8px;
+  text-align: center;
+  @include shadow-Small;
+  &Title {
+    @include CaptionLarge-MEDIUM;
+    color: #808080;
+    margin-bottom: 4px;
+  }
+  &Label {
+    @include CaptionLarge-MEDIUM;
+    color: $colorPrimaryBlue;
+  }
+}

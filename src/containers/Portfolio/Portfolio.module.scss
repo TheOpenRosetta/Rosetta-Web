@@ -149,6 +149,34 @@
   margin-bottom: 16px;
   border-radius: 8px;
   background-color: $colorPrimaryWhite;
+  &Frames {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: 60px;
+    @media(max-width: 767px) {
+      justify-content: justify-content;
+      width: 100%;
+      margin: 0 auto;
+    }
+  }
+  &Toggle {
+    margin-right: 12px;
+    padding: 2px 16px;
+    border: none;
+    border-bottom: 1px solid transparent;
+    background-color: transparent;
+    color: $colorPrimaryBlack;
+    @media(max-width: 767px) {
+      width: 25%;
+      margin: 0 12px;
+    }
+    &Active {
+      color: $colorPrimaryGold;
+      border-bottom: 1px solid $colorPrimaryGold;
+    }
+  }
 }
 
 .paper {

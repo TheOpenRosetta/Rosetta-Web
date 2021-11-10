@@ -29,6 +29,7 @@
     "react-select": "^5.1.0",
     "react-tabs": "^3.2.2",
     "react-tiny-popover": "^7.0.1",
+    "recharts": "^2.1.6",
     "redux-logger": "^3.0.6"
   },
   "scripts": {
