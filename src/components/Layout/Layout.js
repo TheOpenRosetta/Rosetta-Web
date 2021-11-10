@@ -12,7 +12,7 @@ const Layout = ({ navigation, children, format }) => {
         <div className={styles.grid}>
           {navigation && (
             <aside className={styles.navFull}>
-              <Navigation/>
+              <Navigation className={styles.navFullContent} />
             </aside>
           )}
           <div className={styles.contentFull}>{children}</div>

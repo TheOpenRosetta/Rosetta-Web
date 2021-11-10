@@ -8,6 +8,10 @@
     width: 100%;
     flex-direction: row;
     padding: 16px;
+    margin: 0 -4px;
+    width: calc(100% + 8px);
+    overflow: hidden;
+    justify-content: space-around;
   }
   @media(max-width: 1023px) {
     padding: 8px 16px;
@@ -23,11 +27,12 @@
   flex-direction: row;
   align-items: center;
   @media(max-width: 1023px) {
-    flex: 1 0 20%;
-    max-width: 20%;
     justify-content: flex-start;
     flex-direction: column;
     text-align: center;
+    flex: 1 0 calc(16.6667% - 8px);
+    max-width: calc(16.6667% - 8px);
+    overflow: hidden;
   }
   @media(max-width: 767px) {
     padding: 8px 12px;
@@ -56,6 +61,17 @@
     }
     @media(max-width: 767px) {
       @include CaptionSmall-REGULAR;
+      display: none;
     }
+  }
+}
+
+.publish {
+  margin-top: auto;
+  background-color: $colorPrimaryBlue;
+  color: $colorPrimaryWhite;
+  justify-content: center;
+  path {
+    fill: $colorPrimaryWhite;
   }
 }
