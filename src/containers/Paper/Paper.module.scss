@@ -1,0 +1,33 @@
+@import '@styles/variables';
+
+.paper {
+  position: relative;
+  padding-bottom: 64px;
+  &Header {
+    margin-bottom: 0;
+  }
+  &Top {
+    background-color: $colorPrimaryBlack;
+    padding-top: 42px;
+  }
+}
+
+.date {
+  @include BodyLarge-REGULAR;
+  color: $colorPrimaryGray;
+  opacity: 0.7;
+  margin-bottom: 16px;
+}
+
+.title {
+  @include DisplayLarge-MEDIUM;
+  color: $colorPrimaryWhite;
+  margin-bottom: 16px;
+}
+
+.authors {
+  @include BodyLarge-REGULAR;
+  color: $colorPrimaryGray;
+  opacity: 0.7;
+  margin-bottom: 24px;
+}
