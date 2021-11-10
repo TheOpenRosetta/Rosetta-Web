@@ -111,7 +111,22 @@
     margin-right: 8px;
   }
   &Firefox, &Chrome {
+    @include BodySmall-REGULAR;
+    border: 1px solid;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
     padding: 6px 18px;
+    border-radius: 6px;
+    background-color: transparent;
+    color: $colorPrimaryGold;
+    border-color: $colorPrimaryGold;
+    path {
+      fill: $colorPrimaryGold;
+    }
   }
 }
 

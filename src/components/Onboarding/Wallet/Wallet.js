@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { useArjs } from 'arjs-react';
@@ -14,15 +14,25 @@ import styles from './Wallet.module.scss';
 import {ReactComponent as ArrowBackIcon}  from '@assets/icons/arrow-ios-back-outline.svg'
 
 const Wallet = () => {
-  // const [key, setKey] = useState('')
+  const [extExist, setExtExist] = useState(false);
   const [error, setError] = useState('');
   const dispatch = useDispatch();
-
   const wallet = useArjs();
   const permission = { permissions: ["SIGN_TRANSACTION"] }
+  const activate = (connector, key) => wallet.connect(connector, key);;
 
-  const activate = (connector, key) => wallet.connect(connector, key);
-  // const getKey = (e) =>{ setKey(e.target.value)};
+  const loadedHandler = () => {
+    if (wallet.connect) {
+      setExtExist(true);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("arweaveWalletLoaded", loadedHandler);
+    return () => {
+      window.removeEventListener("arweaveWalletLoaded", loadedHandler);
+    }
+  }, []);
 
   const [balance, setBalance] = useState("Requesting...");
   const [address, setAddress] = useState("Requesting...");
@@ -30,7 +40,7 @@ const Wallet = () => {
   wallet.ready(() => {
     if(wallet.status === "connected")(async () => {
       setError('');
-      setBalance(wallet.getArweave().ar.winstonToAr( await wallet.getBalance("self")))
+      setBalance(wallet.getArweave().ar.winstonToAr(await wallet.getBalance("self")))
       setAddress(await wallet.getAddress());
     })()
   })
@@ -57,8 +67,8 @@ const Wallet = () => {
           <div className={styles.extention}>
             <div className={styles.extentionHeading}>Extention</div>
             <div className={styles.extentionLinks}>
-              <Button classes={styles.extentionChrome} element={Link} to="#" target="_blank" kind="outline" size="md">Chrome</Button>
-              <Button classes={styles.extentionFirefox} element={Link} to="#" target="_blank" kind="outline" size="md">Firefox</Button>
+              <a className={styles.extentionChrome} href="https://chrome.google.com/webstore/detail/arconnect/einnioafmpimabjcddiinlhmijaionap" rel="noreferrer" target="_blank">Chrome</a>
+              <a className={styles.extentionFirefox} href="https://addons.mozilla.org/en-GB/firefox/addon/arconnect/" rel="noreferrer" target="_blank">Firefox</a>
             </div>
           </div>
           <div className={styles.mobile}>
@@ -83,7 +93,7 @@ const Wallet = () => {
 
     <div className={styles.row}>
       <div className={styles.col}>
-        {wallet.status === "connected" ? (
+        {extExist && (wallet.status === "connected" ? (
           <div className={styles.connected}>
             <div className={styles.connectedText}>
               Account:
@@ -98,13 +108,9 @@ const Wallet = () => {
         ) : (
           <div className={styles.connect}>
             <div className={styles.connectText}>Connect:</div>
-            {
-              // <button onClick={() => activate('arweave', key)}>Arweave (with Key)</button>
-              // <input type="text" value={key} placeholder={'Input key here'} onChange={getKey}/>
-            }
             <Button kind="fill" size="sm" onClick={() => activate('arconnect', permission)}>ArConnect</Button>
           </div>
-        )}
+        ))}
       </div>
     </div>
 
@@ -112,7 +118,6 @@ const Wallet = () => {
       { error ? <span className={styles.error}>{error}</span> : null }
       <Button classes={styles.back} kind="secondary" size="lg" onClick={() => dispatch(prevStep())}><ArrowBackIcon /> Back</Button>
       <Button classes={styles.next} kind="fill" size="lg" onClick={next}>Next</Button>
-      <Button classes={styles.skip} kind="secondary" size="lg" onClick={() => dispatch(nextStep())}>Skip</Button>
     </div>
   </div>
 }

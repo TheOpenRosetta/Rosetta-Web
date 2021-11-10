@@ -19,6 +19,8 @@ import Finish from '@components/Onboarding/Finish';
 import BgImg from '@assets/onboarding.jpeg';
 import styles from './Onboarding.module.scss';
 
+
+
 const Onboarding = () => {
   const step = useSelector(selectStep);
 
