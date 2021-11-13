@@ -96,6 +96,12 @@ const PDFViewer = ({ url, highlights = [], setHighlights, setPreviewError }) => 
     </>
   )
 
+  if (!url) {
+    return <>
+      <div className={styles.errorMessage}>Sorry. We don't have link to document.</div>
+    </>
+  }
+
   return <>
     <PdfLoader url={url} errorMessage={errorMessage} onError={() => setPreviewError(true)}>
       {(pdfDocument) => (

@@ -18,7 +18,7 @@ import {
   fetchPaper,
 } from '@services/Paper/paperSlice';
 
-import pdfFile from '../../schemas/test_doc.pdf';
+// import pdfFile from '../../schemas/test_doc.pdf';
 
 import AvatarImg from '@assets/avatar.png';
 // import {ReactComponent as PeopleIcon} from '@assets/icons/person-add-outline.svg';
@@ -52,7 +52,9 @@ const Paper = () => {
         <div className={styles.paperTopContent}>
           <div className={styles.date}>{DateTime.fromISO(paper.date).toFormat('MMM-dd-yyyy')}</div>
           <div className={styles.title}>{paper.title}</div>
-          <div className={styles.authors}>By {paper.authors.map(item => item.name).join(', ')}</div>
+          {
+            paper.authors.length > 0 && <div className={styles.authors}>By {paper.authors.map(item => item.name).join(', ')}</div>
+          }
           <div className={styles.version}>V{paper.version}</div>
           <div className={styles.paperActionWrapper}>
             <button className={styles.paperAction} type="button" onClick={() => {}}><ShareIcon /></button>
@@ -82,7 +84,7 @@ const Paper = () => {
         <div className={styles.paperAbstract}>
           <div className={styles.paperAbstractTitle}>Abstract</div>
           <div className={styles.paperAbstractText}>Authors earn Rosetta rewards based on the ImpactScore of the paper. This ensures that all authors that produce <Link to="/">Read more</Link></div>
-          <div className={`${styles.paperPreview} ${previewError ? styles.paperPreviewError : ''}`}>
+          <div className={`${styles.paperPreview} ${previewError || !paper.url ? styles.paperPreviewError : ''}`}>
             <PDFViewer setPreviewError={setPreviewError} url={paper.url} highlights={paper.highlights} setHighlights={(data) => dispatch(setHighlights(data))} />
           </div>
         </div>

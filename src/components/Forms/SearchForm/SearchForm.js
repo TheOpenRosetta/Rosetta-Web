@@ -3,9 +3,10 @@ import {
   useHistory
 } from "react-router-dom";
 import { useFormik } from 'formik';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   addSearchText,
+  selectSearchText,
 } from '@services/Search/searchSlice';
 import {ReactComponent as SearchIcon} from '@assets/icons/search-outline.svg';
 
@@ -13,10 +14,11 @@ import styles from './SearchForm.module.scss';
 
 const SearchForm = ({ className: classes }) => {
   const history = useHistory();
+  const searchText = useSelector(selectSearchText);
   const dispatch = useDispatch();
   const formik = useFormik({
      initialValues: {
-       search: '',
+       search: searchText,
      },
      onSubmit: (values) => {
        dispatch(addSearchText(values.search));

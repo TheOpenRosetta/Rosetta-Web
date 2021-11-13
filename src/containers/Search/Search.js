@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '@components/Layout';
+import Pagination from '@components/Pagination';
 import SearchSidebar from './SearchSidebar';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   selectSearchText,
+  selectSearchCount,
+  selectSearchStatus,
+  fetchSearch,
 } from '@services/Search/searchSlice';
 import { SearchFilters, SearchResults, SearchUsers } from '@components/Search';
 
@@ -47,13 +51,15 @@ const users = [{
 }];
 
 const Search = () => {
-  const [result, setResult] = useState([]);
+  const dispatch = useDispatch();
+  const [page, setPage] = useState(1);
+  const status = useSelector(selectSearchStatus);
+  const count = useSelector(selectSearchCount);
   const searchText = useSelector(selectSearchText);
 
   useEffect(() => {
-    console.log(searchText);
-    setResult([]);
-  }, [searchText])
+    dispatch(fetchSearch({ q: searchText, start: (page - 1) }));
+  }, [searchText, page]);
 
   const changeFilters = (params) => {
     console.log(params);
@@ -62,12 +68,14 @@ const Search = () => {
   return <Layout navigation={false}>
     <div className={styles.grid}>
       <div className={styles.total}>
-        {result.length} results for "{searchText}"
+        {count} results for {searchText ? `"${searchText}"` : 'All authors'}
       </div>
       <div className={styles.results}>
         <SearchFilters action={changeFilters} />
         <SearchUsers users={users} />
-        <SearchResults result={result} />
+        { status === 'loading' && 'Loading...' }
+        { status === 'loaded' && <SearchResults /> }
+        <Pagination maxItems={count} itemsPerPage={10} currentPage={page} changePage={setPage} prev="Previous" next="Next" className={styles.pagination} />
       </div>
       <div className={styles.rising}>
         <SearchSidebar />

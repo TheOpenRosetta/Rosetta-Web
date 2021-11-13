@@ -5,7 +5,7 @@ import MediaQuery from 'react-responsive';
 import styles from './Pagination.module.scss';
 
 const Pagination = ({ data, maxItems, itemsPerPage, currentPage, changePage, prev, next, className }) => {
-  const dataLength = data.length === 0 ? maxItems : data.length;
+  const dataLength = data ? (data.length === 0 ? maxItems : data.length) : (maxItems || 0);
   const indexOfLastPage = Math.ceil(dataLength / itemsPerPage);
   const [pageNumbers, setPageNumbers] = useState([]);
 

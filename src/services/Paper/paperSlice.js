@@ -31,7 +31,7 @@ export const paperSlice = createSlice({
       state.id = doc.id;
 
       const authorsList = [];
-      doc.authors_names.forEach((item, i) => {
+      doc.authors_names && doc.authors_ids && doc.authors_names.forEach((item, i) => {
         authorsList.push({
           name: item,
           id: doc.authors_ids[i],

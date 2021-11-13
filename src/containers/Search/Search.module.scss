@@ -38,3 +38,13 @@
     margin-left: 0;
   }
 }
+
+.pagination {
+  max-width: 610px;
+  padding: 0 8px;
+  margin: 48px auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}

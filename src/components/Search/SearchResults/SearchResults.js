@@ -12,7 +12,7 @@ const SearchResults = () => {
   if (searchResult && searchResult.length > 0) {
     return <div className={styles.results}>
       {
-        searchResult.map(item => <div className={styles.resultsItem} key={item.paperid}>
+        searchResult.map(item => <div className={styles.resultsItem} key={item.id}>
           <PaperPreview data={item} />
         </div>)
       }

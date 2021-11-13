@@ -14,34 +14,41 @@ const PaperPreview = ({ data }) => {
 
   return <div className={styles.paper}>
     <div className={styles.title}>
-      <Link to={`/paper/${data.slug}`}>{data.title}</Link>
+      <Link to={`/paper/${data.id}`}>{data.title}</Link>
     </div>
     <div className={styles.subtitle}>
-      <div className={styles.author}>{data.authors[0]},</div>
       {
-        data.authors.length > 1 && <div className={styles.authorMore}>+{data.authors.length - 1} authors</div>
+        data.authors_names && <>
+          <div className={styles.author}>{data.authors_names[0]},</div>
+          {
+            data.authors_names.length > 1 && <div className={styles.authorMore}>+{data.authors_names.length - 1} authors</div>
+          }
+        </>
       }
-      <div className={styles.date}>{DateTime.fromMillis(data.timestamp).toFormat('dd LLL yyyy')}</div>
+      { data.publisher && <div className={styles.author}>{data.publisher}</div> }
+      <div className={styles.date}>{DateTime.fromISO(data.date).toFormat('dd LLL yyyy')}</div>
     </div>
-    <div className={styles.preview}>
-      {data.preview} <Link to={`/paper/${data.slug}`}>Expand</Link>
-    </div>
+    {
+      data.preview && <div className={styles.preview}>
+        {data.preview} <Link to={`/paper/${data.id}`}>Expand</Link>
+      </div>
+    }
     <div className={styles.footer}>
       <div className={styles.comments}>
-        <Link to={`${data.slug}/comments`}>
+        <Link to={`${data.id}/comments`}>
           <CommentIcon />
-          {data.comments}
+          {data.comments || 0}
         </Link>
       </div>
       <div className={styles.likes}>
         <button className={styles.likesBtn} onClick={like}>
           <LikeIcon />
-          {data.likes}
+          {data.likes || 0}
         </button>
       </div>
-      <div className={styles.balance}>${data.balance}</div>
-      <div className={`${styles.delta} ${data.delta > 0 ? styles.deltaPlus : styles.deltaMinus}`}>({data.delta > 0 ? '+' : '-'}{percentFormat(data.delta)}%)</div>
-      <div className={styles.apy}>APY {percentFormat(data.apy)}%</div>
+      { data.balance && <div className={styles.balance}>${data.balance}</div> }
+      { data.delta && <div className={`${styles.delta} ${data.delta > 0 ? styles.deltaPlus : styles.deltaMinus}`}>({data.delta > 0 ? '+' : '-'}{percentFormat(data.delta)}%)</div> }
+      { data.apy && <div className={styles.apy}>APY {percentFormat(data.apy)}%</div> }
     </div>
   </div>;
 }
