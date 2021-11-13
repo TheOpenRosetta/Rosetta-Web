@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
+import MediaQuery from 'react-responsive';
 import Logo from '@components/Logo';
 import Avatar from '@components/Avatar';
 import Button from '@components/Button';
@@ -53,8 +54,27 @@ const Header = ({ className }) => {
                 </div>
               </Popover>
             </> : <>
-              <Link to="/sign_in" className={styles.signIn}>Sign in</Link>
-              <Button element={Link} to="/onboarding" size="lg" kind="fill" classes={styles.createAccount}>Create Free account</Button>
+              <MediaQuery minWidth={768}>
+                <Link to="/sign_in" className={styles.signIn}>Sign in</Link>
+                <Button element={Link} to="/onboarding" size="lg" kind="fill" classes={styles.createAccount}>Create Free account</Button>
+              </MediaQuery>
+              <MediaQuery maxWidth={767}>
+                <Popover
+                  isOpen={isPopoverOpen}
+                  positions={['bottom', 'left']}
+                  padding={10}
+                  onClickOutside={() => setIsPopoverOpen(false)}
+                  align="end"
+                  content={<div className={styles.popoverContent}>
+                    <Link to="/sign_in" className={styles.signIn}>Sign in</Link>
+                    <Button element={Link} to="/onboarding" size="lg" kind="fill" classes={styles.createAccount}>Create Free account</Button>
+                    </div>}
+                  >
+                  <div className={styles.popoverBtn} onClick={() => setIsPopoverOpen(!isPopoverOpen)}>
+                    <Button size="sm" kind="fill" classes={styles.createAccount}>Login</Button>
+                  </div>
+                </Popover>
+              </MediaQuery>
             </>
           }
         </div>

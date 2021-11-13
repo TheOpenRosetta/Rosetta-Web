@@ -32,6 +32,9 @@
   color: $colorPrimaryGold;
   margin-right: 8px;
   text-decoration: none;
+  @media(max-width: 767px) {
+    text-align: center;
+  }
 }
 
 .popover {
