@@ -31,7 +31,7 @@ function App() {
       }}
       enableSWC={false}>
       <div className="app">
-        <Router>
+        <Router basename="/">
           <Switch>
             <Route path="/help">
               <Help />
