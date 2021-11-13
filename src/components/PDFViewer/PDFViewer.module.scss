@@ -1,0 +1,14 @@
+@import '@styles/variables';
+
+.errorMessage {
+  text-align: center;
+  @include BodyLarge-MEDIUM;
+  color: $colorPrimaryBlack;
+  margin: 32px;
+  &Link {
+    display: block;
+    width: 140px;
+    margin: 0 auto 32px;
+    text-align: center;
+  }
+}

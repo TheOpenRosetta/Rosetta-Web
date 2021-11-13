@@ -2,6 +2,7 @@ import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
+  Redirect,
   Route,
 } from "react-router-dom";
 import { ArjsProvider } from 'arjs-react';
@@ -16,6 +17,7 @@ import Notification from '@containers/Notification';
 import Search from '@containers/Search';
 import Onboarding from '@containers/Onboarding';
 import Profile from '@containers/Profile';
+import Paper from '@containers/Paper';
 import Portfolio from '@containers/Portfolio';
 import SignIn from '@containers/SignIn';
 import Publish from '@containers/Publish';
@@ -46,7 +48,7 @@ function App() {
             <Route path="/sign_in">
               <SignIn />
             </Route>
-            <Route path="/profile">
+            <Route path="/user/:userId">
               <Profile />
             </Route>
             <Route path="/portfolio">
@@ -58,9 +60,13 @@ function App() {
             <Route path="/publish">
               <Publish />
             </Route>
-            <Route path="/">
+            <Route path='/paper/:paperId'>
+              <Paper />
+            </Route>
+            <Route exact path="/">
               <Home />
             </Route>
+            <Redirect to="/" />
           </Switch>
         </Router>
       </div>

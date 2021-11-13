@@ -32,9 +32,19 @@
   color: $colorPrimaryGold;
   margin-right: 8px;
   text-decoration: none;
+  @media(max-width: 767px) {
+    text-align: center;
+  }
 }
 
 .popover {
+  &Content {
+    background-color: $colorPrimaryWhite;
+    padding: 4px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+  }
   &Btn {
     display: flex;
     flex-direction: row;

@@ -1,0 +1,56 @@
+@import '@styles/variables';
+
+.tip {
+  background-color: $colorPrimaryWhite;
+  @include shadow-XLarge;
+  padding: 4px;
+  border-radius: 14px;
+  &Compact {
+    @include CaptionLarge-REGULAR;
+    color: rgba($colorPrimaryBlack, 0.7);
+    padding: 4px 8px;
+    cursor: pointer;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    &:hover {
+      background-color: $colorPrimaryGray;
+    }
+    svg {
+      height: 14px;
+      width: 14px;
+      margin-right: 4px;
+      path {
+        fill: rgba($colorPrimaryBlack, 0.7);
+      }
+    }
+  }
+  &Card {
+    padding: 8px;
+  }
+  &Textarea {
+    @include BodySmall-LIGHT;
+    border: none;
+    margin-bottom: 12px;
+    height: 80px;
+    &:focus {
+      outline-color: $colorPrimaryGold;
+    }
+    &Title {
+      @include BodySmall-REGULAR;
+      color: $colorPrimaryBlack;
+      margin-bottom: 12px;
+    }
+  }
+  &Action {
+    text-align: center;
+    input {
+      @include BodySmall-LIGHT;
+      border: none;
+      background-color: transparent;
+      display: inline-block;
+      cursor: pointer;
+    }
+  }
+}

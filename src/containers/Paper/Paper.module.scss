@@ -1,0 +1,249 @@
+@import '@styles/variables';
+
+.paper {
+  position: relative;
+  padding-bottom: 64px;
+  min-height: 100vh;
+  background-color: $colorPrimaryWhite;
+  &Header {
+    margin-bottom: 0 !important;
+  }
+  &Top {
+    background-color: $colorPrimaryBlack;
+    padding-top: 42px;
+    @media(max-width: 1023px) {
+      padding-top: 24px;
+    }
+    &Content {
+      position: relative;
+      padding-bottom: 72px;
+      @media(max-width: 767px) {
+        padding: 0 8px 32px;
+      }
+    }
+  }
+  &Badge {
+    background-color: $colorPrimaryWhite;
+    border-radius: 8px;
+    padding: 12px 24px 16px;
+    width: 200px;
+    position: absolute;
+    bottom: -32px;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    @include shadow-XLarge;
+    @media(max-width: 767px) {
+      position: relative;
+      margin: 24px auto;
+      bottom: auto;
+      right: auto;
+    }
+    &Title {
+      @include CaptionLarge-REGULAR;
+      color: #5A5B5C;
+      margin-bottom: 4px;
+    }
+    &Price {
+      @include HeadingSmall-MEDIUM;
+      color: $colorPrimaryBlack;
+      margin-bottom: 8px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      &Percent {
+        margin-left: 4px;
+        color: $colorSupportGreen;
+        @include BodySmall-MEDIUM;
+        &Minus {
+          color: $colorSupportRed;
+        }
+      }
+    }
+    &Apy {
+      padding: 2px 8px;
+      @include CaptionLarge-MEDIUM;
+      background-color: $colorPrimaryGray;
+      border-radius: 4px;
+      margin-bottom: 8px;
+      display: inline-block;
+    }
+    &Users {
+      list-style: none;
+      margin: 0 0 16px;
+      padding: 0;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      flex-wrap: nowrap;
+      &Item {
+        margin-left: -8px;
+      }
+      &More {
+        background-color: $colorPrimaryBlue;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-left: -8px;
+        border: 1px solid $colorPrimaryGray;
+        color: $colorPrimaryWhite;
+        svg {
+          width: 18px;
+          height: 18px;
+        }
+        path {
+          fill: $colorPrimaryWhite;
+        }
+      }
+    }
+  }
+  &Action {
+    height: 32px;
+    width: 32px;
+    background-color: $colorPrimaryWhite;
+    color: $colorPrimaryGold;
+    padding: 6px;
+    border: none;
+    @include shadow-XLarge;
+    border-radius: 50%;
+    margin-right: 10px;
+    svg {
+      width: 18px;
+      height: 18px;
+      path {
+        fill: $colorPrimaryGold;
+      }
+    }
+    &Wrapper {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      position: absolute;
+      bottom: -16px;
+      left: 0;
+      @media(max-width: 767px) {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  }
+  &Content {
+    margin-top: 64px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    @media(max-width: 767px) {
+      flex-wrap: wrap;
+    }
+  }
+  &Abstract {
+    flex-basis: calc(100% - 300px);
+    max-width: calc(100% - 300px);
+    @media(max-width: 767px) {
+      flex-basis: 100%;
+      max-width: 100%;
+    }
+    &Title {
+      @include HeadingSmall-MEDIUM;
+      color: $colorPrimaryBlack;
+      opacity: 0.7;
+      margin-bottom: 8px
+    }
+    &Text {
+      @include BodyLarge-LIGHT;
+      color: $colorPrimaryBlack;
+      opacity: 0.7;
+      margin-bottom: 16px;
+      a {
+        @include BodyLarge-MEDIUM;
+        color: $colorPrimaryBlack;
+        opacity: 0.7;
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  &Comments {
+    flex-basis: 280px;
+    max-width: 280px;
+    @include shadow-XLarge;
+    border-radius: 16px;
+    padding: 12px;
+    background-color: #FBFBFB;
+    @media(max-width: 767px) {
+      flex-basis: 100%;
+      max-width: 100%;
+    }
+    &Title {
+      @include BodyLarge-MEDIUM;
+      margin-bottom: 12px;
+      color: $colorPrimaryBlack;
+    }
+    &Empty {
+      @include BodyLarge-REGULAR;
+      color: rgba($colorPrimaryBlack, 0.4);
+    }
+  }
+  &Preview {
+    width: 100%;
+    padding-bottom: 100%;
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    @include shadow-XLarge;
+    &Error {
+      padding-bottom: 0;
+    }
+    @media(max-width: 767px) {
+      margin: 32px 0;
+    }
+  }
+}
+
+.date {
+  @include BodyLarge-REGULAR;
+  color: $colorPrimaryGray;
+  opacity: 0.7;
+  margin-bottom: 16px;
+  @media(max-width: 767px) {
+    font-size: 14px;
+  }
+}
+
+.title {
+  @include DisplayLarge-MEDIUM;
+  color: $colorPrimaryWhite;
+  margin-bottom: 16px;
+  width: calc(100% - 200px);
+  @media(max-width: 767px) {
+    width: 100%;
+    font-size: 32px;
+  }
+}
+
+.authors {
+  @include BodyLarge-REGULAR;
+  color: $colorPrimaryGray;
+  opacity: 0.7;
+  margin-bottom: 24px;
+  width: calc(100% - 200px);
+  @media(max-width: 767px) {
+    width: 100%;
+    font-size: 14px;
+  }
+}
+
+.version {
+  @include BodyLarge-REGULAR;
+  color: $colorPrimaryWhite;
+}
