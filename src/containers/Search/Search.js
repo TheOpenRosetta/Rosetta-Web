@@ -75,7 +75,7 @@ const Search = () => {
         <SearchUsers users={users} />
         { status === 'loading' && 'Loading...' }
         { status === 'loaded' && <SearchResults /> }
-        <Pagination maxItems={count} itemsPerPage={10} currentPage={page} changePage={setPage} prev="Previous" next="Next" className={styles.pagination} />
+        { count > 10 && <Pagination maxItems={count} itemsPerPage={10} currentPage={page} changePage={setPage} prev="Previous" next="Next" className={styles.pagination} /> }
       </div>
       <div className={styles.rising}>
         <SearchSidebar />

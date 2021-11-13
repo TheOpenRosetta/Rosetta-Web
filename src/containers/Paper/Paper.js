@@ -5,6 +5,7 @@ import {
   Link
 } from "react-router-dom";
 
+import Chart from '@components/Chart';
 import PDFViewer from '@components/PDFViewer';
 import PDFComments from '@components/PDFComments';
 import Header from '@components/Header';
@@ -20,8 +21,19 @@ import {
 
 // import pdfFile from '../../schemas/test_doc.pdf';
 
+import month from '@dataset/month.json';
+import half from '@dataset/half.json';
+import three from '@dataset/three.json';
+import year from '@dataset/year.json';
+
 import AvatarImg from '@assets/avatar.png';
-// import {ReactComponent as PeopleIcon} from '@assets/icons/person-add-outline.svg';
+import PrizeImg from '@assets/prize.png';
+
+import {ReactComponent as ChevronIcon} from '@assets/icons/chevron-up-outline.svg';
+import {ReactComponent as GiftIcon} from '@assets/icons/gift-outline.svg';
+import {ReactComponent as DollarIcon} from '@assets/icons/bx-dollar.svg';
+
+import {ReactComponent as ClockIcon} from '@assets/icons/clock-outline.svg';
 import {ReactComponent as ShareIcon} from '@assets/icons/share-outline.svg';
 
 import {ReactComponent as HashIcon} from '@assets/icons/hash-outline.svg';
@@ -36,14 +48,33 @@ const Paper = () => {
   const paper = useSelector(selectPaper);
 
   const [previewError, setPreviewError] = useState(false);
+  const [key, setKey] = useState('month');
+  const [data, setData] = useState([]);
 
   // const [table, setShowTable] = useState(false);
-  // const [priceHistory, setPriceHistory] = useState(false);
-  // const [reward, setReward] = useState(false);
+  const [priceHistory, setPriceHistory] = useState(false);
+  const [reward, setReward] = useState(false);
 
   useEffect(() => {
     dispatch(fetchPaper({ id: paperId }));
   }, [paperId, dispatch]);
+
+  useEffect(() => {
+    switch (key) {
+      case 'month':
+        setData([...month.data]);
+        break;
+      case 'three':
+        setData([...three.data]);
+        break;
+      case 'half':
+        setData([...half.data]);
+        break;
+      default:
+        setData([...year.data]);
+        break;
+    }
+  }, [key]);
 
   return <div className={styles.paper}>
     <Header className={styles.paperHeader} />
@@ -84,6 +115,74 @@ const Paper = () => {
         <div className={styles.paperAbstract}>
           <div className={styles.paperAbstractTitle}>Abstract</div>
           <div className={styles.paperAbstractText}>Authors earn Rosetta rewards based on the ImpactScore of the paper. This ensures that all authors that produce <Link to="/">Read more</Link></div>
+
+          <div className={styles.dropdown}>
+            <header className={styles.dropdownHeader} onClick={() => setPriceHistory(!priceHistory)}>
+              <div className={styles.dropdownHeaderIcon}><DollarIcon /></div>
+              <div className={styles.dropdownHeaderTitle}>Price history</div>
+              <div className={styles.dropdownHeaderStatus}><ChevronIcon style={{ transform: `rotate(${reward ? '0deg' : '180deg'})` }}/></div>
+            </header>
+            {
+              priceHistory && <div className={styles.dropdownBody}>
+                <div className={styles.graph}>
+                  <div className={styles.graphFrames}>
+                    <button className={`${styles.graphToggle} ${key === 'month' ? styles.graphToggleActive : ''}`} type="button" onClick={() => setKey('month')}>1m</button>
+                    <button className={`${styles.graphToggle} ${key === 'three' ? styles.graphToggleActive : ''}`} type="button" onClick={() => setKey('three')}>3m</button>
+                    <button className={`${styles.graphToggle} ${key === 'half' ? styles.graphToggleActive : ''}`} type="button" onClick={() => setKey('half')}>6m</button>
+                    <button className={`${styles.graphToggle} ${key === 'year' ? styles.graphToggleActive : ''}`} type="button" onClick={() => setKey('year')}>1y</button>
+                  </div>
+                  <Chart data={data} />
+                </div>
+              </div>
+            }
+          </div>
+
+          <div className={styles.dropdown}>
+            <header className={styles.dropdownHeader} onClick={() => setReward(!reward)}>
+              <div className={styles.dropdownHeaderIcon}><GiftIcon /></div>
+              <div className={styles.dropdownHeaderTitle}>Reward pools</div>
+              <div className={styles.dropdownHeaderStatus}><ChevronIcon style={{ transform: `rotate(${reward ? '0deg' : '180deg'})` }}/></div>
+            </header>
+            {
+              reward && <div className={styles.dropdownBody}>
+                <div className={styles.rewards}>
+                  <div className={styles.rewardsItem}>
+                    <div className={styles.rewardsItemTitle}>Replication</div>
+                    <div className={styles.rewardsItemContent}>
+                      <div className={styles.rewardsItemContentIcon}>
+                        <img src={PrizeImg} alt="Prize icon"/>
+                      </div>
+                      <div className={styles.rewardsItemContentTitle}>$9,333</div>
+                    </div>
+                  </div>
+                  <div className={styles.rewardsItem}>
+                    <div className={styles.rewardsItemTitle}>Critical discussion</div>
+                    <div className={styles.rewardsItemContent}>
+                      <div className={styles.rewardsItemContentIcon}>
+                        <img src={PrizeImg} alt="Prize icon"/>
+                      </div>
+                      <div className={styles.rewardsItemContentTitle}>$1,363</div>
+                    </div>
+                  </div>
+                  <div className={styles.rewardsItem}>
+                    <div className={styles.rewardsItemTitle}>Translations</div>
+                    <div className={styles.rewardsItemContent}>
+                      <div className={styles.rewardsItemContentIcon}>
+                        <img src={PrizeImg} alt="Prize icon"/>
+                      </div>
+                      <div className={styles.rewardsItemContentTitle}>$333</div>
+                    </div>
+                  </div>
+                </div>
+                <div className={styles.rewardsActions}>
+                  <Button classes={styles.rewardsBtn} type="button" size="md" kind="disabled">Reward</Button>
+                  <Button classes={styles.rewardsBtn} type="button" size="md" kind="bordered"><ClockIcon/> Dispute History</Button>
+                </div>
+              </div>
+            }
+          </div>
+
+
           <div className={`${styles.paperPreview} ${previewError || !paper.url ? styles.paperPreviewError : ''}`}>
             <PDFViewer setPreviewError={setPreviewError} url={paper.url} highlights={paper.highlights} setHighlights={(data) => dispatch(setHighlights(data))} />
           </div>

@@ -3,11 +3,13 @@ import { useSelector } from 'react-redux';
 import PaperPreview from '@components/PaperPreview';
 import {
   selectSearchResult,
+  selectSearchText,
 } from '@services/Search/searchSlice';
 import styles from './SearchResults.module.scss';
 
 const SearchResults = () => {
   const searchResult = useSelector(selectSearchResult);
+  const searchText = useSelector(selectSearchText);
 
   if (searchResult && searchResult.length > 0) {
     return <div className={styles.results}>
@@ -19,7 +21,7 @@ const SearchResults = () => {
     </div>;
   }
 
-  return '';
+  return <div className={`${styles.results} ${styles.resultsEmpty}`}>Authors with "{searchText}" in name don't found</div>;
 }
 
 export default SearchResults;

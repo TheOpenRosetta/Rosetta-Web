@@ -4,10 +4,10 @@ import Layout from '@components/Layout';
 import {priceFormat, percentFormat} from '@utils/numbers';
 import Chart from '@components/Chart';
 
-import month from './dataset/month.json';
-import half from './dataset/half.json';
-import three from './dataset/three.json';
-import year from './dataset/year.json';
+import month from '@dataset/month.json';
+import half from '@dataset/half.json';
+import three from '@dataset/three.json';
+import year from '@dataset/year.json';
 
 import {ReactComponent as TicketIcon} from '@assets/customIcons/ticket.svg';
 

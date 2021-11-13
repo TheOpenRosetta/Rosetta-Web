@@ -247,3 +247,155 @@
   @include BodyLarge-REGULAR;
   color: $colorPrimaryWhite;
 }
+
+.dropdown {
+  @include shadow-Small;
+  border-radius: 16px;
+  background-color: #FFFFFF;
+  margin-bottom: 12px;
+  &Header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 24px;
+    &Icon {
+      background-color: #EFF0F1;
+      border-radius: 50%;
+      padding: 8px;
+      display: flex;
+      margin-right: 12px;
+      svg {
+        width: 16px;
+        height: 16px;
+        path {
+          fill: $colorPrimaryGold;
+        }
+      }
+    }
+    &Title {
+      margin-right: auto;
+      @include BodyLarge-MEDIUM;
+    }
+    &Status {
+      height: 20px;
+      width: 20px;
+      background-color: #EFF0F1;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+  &Body {
+    border-top: 1px solid #EFF0F1;
+    padding: 16px 24px;
+  }
+}
+
+.graph {
+  border-radius: 8px;
+  background-color: $colorPrimaryWhite;
+  &Frames {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: 60px;
+    @media(max-width: 767px) {
+      justify-content: justify-content;
+      width: 100%;
+      margin: 0 auto;
+    }
+  }
+  &Toggle {
+    margin-right: 12px;
+    padding: 2px 16px;
+    border: none;
+    border-bottom: 1px solid transparent;
+    background-color: transparent;
+    color: $colorPrimaryBlack;
+    @media(max-width: 767px) {
+      width: 25%;
+      margin: 0 12px;
+    }
+    &Active {
+      color: $colorPrimaryGold;
+      border-bottom: 1px solid $colorPrimaryGold;
+    }
+  }
+}
+
+.rewards {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  border: 1px solid $colorPrimaryGray;
+  padding: 16px 24px;
+  border-radius: 16px;
+  margin-bottom: 16px;
+  &Item {
+    flex: 1 0 calc(33.3333% - 12px);
+    max-width: calc(33.3333% - 12px);
+    @media(max-width: 1023px) {
+      flex: 1 0 100%;
+      max-width: 100%;
+      margin-bottom: 16px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+    &Title {
+      @include BodyLarge-MEDIUM;
+      margin-bottom: 8px;
+    }
+    &Content {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      background-color: $colorPrimaryGray;
+      border-radius: 8px;
+      padding: 16px;
+      &Icon {
+        width: 48px;
+        height: 48px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-right: 14px;
+        border-radius: 50%;
+        border: 1px solid #E7E7E8;
+        img {
+          width: 24px;
+        }
+      }
+      &Title {
+        @include HeadingLarge-MEDIUM;
+      }
+    }
+  }
+  &Actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  &Btn {
+    margin-left: 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    svg {
+      margin-right: 8px;
+    }
+  }
+}
