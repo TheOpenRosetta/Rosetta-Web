@@ -38,14 +38,13 @@ const PDFViewer = ({ url, highlights = [], setHighlights, setPreviewError }) => 
   const pdfHighlighter = useRef(null)
 
   const scrollToHighlightFromHash = useCallback(() => {
+    const getHighlightById = (id) => highlights.find((item) => item.id === id);
     const curHighlight = getHighlightById(parseIdFromHash());
 
     if (curHighlight) {
       pdfHighlighter.current.scrollTo(curHighlight);
     }
   }, [highlights]);
-
-  const getHighlightById = (id) => highlights.find((item) => item.id === id);
 
   useEffect(() => {
     window.addEventListener(

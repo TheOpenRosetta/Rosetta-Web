@@ -11,7 +11,7 @@ const Tip = ({ onUpdate, onConfirm, onOpen }) => {
     if (onUpdate) {
       onUpdate();
     }
-  }, [compact]);
+  }, [onUpdate, compact]);
 
   return (
     <div className={styles.tip}>

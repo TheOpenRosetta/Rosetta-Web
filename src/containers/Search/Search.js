@@ -59,7 +59,7 @@ const Search = () => {
 
   useEffect(() => {
     dispatch(fetchSearch({ q: searchText, start: (page - 1) }));
-  }, [searchText, page]);
+  }, [searchText, page, dispatch]);
 
   const changeFilters = (params) => {
     console.log(params);

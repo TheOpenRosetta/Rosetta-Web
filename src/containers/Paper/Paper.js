@@ -37,13 +37,13 @@ const Paper = () => {
 
   const [previewError, setPreviewError] = useState(false);
 
-  const [table, setShowTable] = useState(false);
-  const [priceHistory, setPriceHistory] = useState(false);
-  const [reward, setReward] = useState(false);
+  // const [table, setShowTable] = useState(false);
+  // const [priceHistory, setPriceHistory] = useState(false);
+  // const [reward, setReward] = useState(false);
 
   useEffect(() => {
     dispatch(fetchPaper({ id: paperId }));
-  }, [paperId]);
+  }, [paperId, dispatch]);
 
   return <div className={styles.paper}>
     <Header className={styles.paperHeader} />
