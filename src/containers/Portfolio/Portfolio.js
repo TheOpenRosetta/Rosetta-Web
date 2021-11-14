@@ -9,6 +9,11 @@ import half from '@dataset/half.json';
 import three from '@dataset/three.json';
 import year from '@dataset/year.json';
 
+import { useSelector } from 'react-redux';
+import {
+  selectUser,
+} from '@services/Auth/authSlice';
+
 import {ReactComponent as TicketIcon} from '@assets/customIcons/ticket.svg';
 
 import styles from './Portfolio.module.scss';
@@ -59,6 +64,7 @@ const user = {
 }
 
 const Portfolio = () => {
+  const userData = useSelector(selectUser);
   const [key, setKey] = useState('month');
   const [data, setData] = useState([]);
 
@@ -83,23 +89,23 @@ const Portfolio = () => {
     <div className={styles.portfolio}>
       <aside className={styles.profile}>
         <div className={styles.user}>
-          <img className={styles.photo} src={user.photo} alt={`${user.firstName} ${user.lastName}`} />
+          <img className={styles.photo} src={userData.avatar} alt={userData.name} />
           <div className={styles.userInfo}>
-            <div className={styles.name}>{user.firstName} {user.lastName}</div>
+            <div className={styles.name}>{userData.name}</div>
             <div className={styles.description}>{user.description}</div>
           </div>
         </div>
         <div className={styles.groups}>
           <div className={`${styles.group} ${styles.balance}`}>
-            <div className={styles.groupValue}>${priceFormat(user.balance)}</div>
+            <div className={styles.groupValue}>${priceFormat(userData.balance)}</div>
             <div className={styles.groupText}>Portfolio balance</div>
           </div>
           <div className={`${styles.group} ${styles.yield}`}>
-            <div className={styles.groupValue}>${priceFormat(user.monthlyYield)}</div>
+            <div className={styles.groupValue}>${priceFormat(userData.monthlyYield)}</div>
             <div className={styles.groupText}>Monthly yield</div>
           </div>
           <div className={`${styles.group} ${styles.papersOwned}`}>
-            <div className={styles.groupValue}>{user.papers.length}</div>
+            <div className={styles.groupValue}>{userData.papers}</div>
             <div className={styles.groupText}>Papers Owned</div>
           </div>
         </div>

@@ -5,7 +5,6 @@ import {
   Redirect,
   Route,
 } from "react-router-dom";
-import { ArjsProvider } from 'arjs-react';
 
 import '@styles/global.scss';
 import '@styles/modal.scss';
@@ -25,56 +24,49 @@ import Publish from '@containers/Publish';
 
 function App() {
   return (
-    <ArjsProvider
-      connectors={{
-          arconnect: true,
-          arweave: true
-      }}
-      enableSWC={false}>
-      <div className="app">
-        <Router basename="/">
-          <Switch>
-            <Route path="/help">
-              <Help />
-            </Route>
-            <Route path="/notification">
-              <Notification />
-            </Route>
-            <Route path="/search">
-              <Search />
-            </Route>
-            <Route path="/inbox">
-              <Inbox />
-            </Route>
-            <Route path="/jury">
-              <Jury />
-            </Route>
-            <Route path="/sign_in">
-              <SignIn />
-            </Route>
-            <Route path="/user/:userId">
-              <Profile />
-            </Route>
-            <Route path="/portfolio">
-              <Portfolio />
-            </Route>
-            <Route path="/onboarding">
-              <Onboarding />
-            </Route>
-            <Route path="/publish">
-              <Publish />
-            </Route>
-            <Route path='/paper/:paperId'>
-              <Paper />
-            </Route>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Redirect to="/" />
-          </Switch>
-        </Router>
-      </div>
-    </ArjsProvider>
+    <div className="app">
+      <Router basename="/">
+        <Switch>
+          <Route path="/help">
+            <Help />
+          </Route>
+          <Route path="/notification">
+            <Notification />
+          </Route>
+          <Route path="/search">
+            <Search />
+          </Route>
+          <Route path="/inbox">
+            <Inbox />
+          </Route>
+          <Route path="/jury">
+            <Jury />
+          </Route>
+          <Route path="/sign_in">
+            <SignIn />
+          </Route>
+          <Route path="/user/:userId">
+            <Profile />
+          </Route>
+          <Route path="/portfolio">
+            <Portfolio />
+          </Route>
+          <Route path="/onboarding">
+            <Onboarding />
+          </Route>
+          <Route path="/publish">
+            <Publish />
+          </Route>
+          <Route path='/paper/:paperId'>
+            <Paper />
+          </Route>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Redirect to="/" />
+        </Switch>
+      </Router>
+    </div>
   );
 }
 
