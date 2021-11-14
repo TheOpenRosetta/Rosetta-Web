@@ -11,6 +11,8 @@ import {
   ReseachOutput,
   Citation,
   Coauthors,
+  Sign,
+  Complete
 } from '@components/Publish';
 
 import styles from './Publish.module.scss';
@@ -28,6 +30,8 @@ const Publish = () => {
         {step === 1 && <ReseachOutput />}
         {step === 2 && <Citation />}
         {step === 3 && <Coauthors />}
+        {step === 4 && <Sign />}
+        {step === 5 && <Complete />}
       </div>
     </div>
   </Layout>

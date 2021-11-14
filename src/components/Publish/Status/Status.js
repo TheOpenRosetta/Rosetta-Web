@@ -1,8 +1,9 @@
 import React from 'react';
 import Button from '@components/Button';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   selectStep,
+  publishPaper,
 } from '@services/Publish/publishSlice';
 
 import styles from './Status.module.scss';
@@ -19,7 +20,12 @@ const steps = [
 ];
 
 const Status = () => {
+  const dispatch = useDispatch();
   const step = useSelector(selectStep);
+
+  const submit = () => {
+    if (step === 4) dispatch(publishPaper());
+  }
 
   return <div className={styles.status}>
     <div className={styles.steps}>
@@ -34,7 +40,9 @@ const Status = () => {
         </div>)
       }
     </div>
-    <Button classes={styles.btn} kind={step !== 6 ? 'disabled' : 'fill'} size='md' disabled={step !== 6}>Publish paper</Button>
+    {
+      step !== 5 && <Button classes={styles.btn} kind={step !== 4 ? 'disabled' : 'fill'} size='md' disabled={step !== 4} onClick={submit}>Publish paper</Button>
+    }
   </div>;
 }
 
