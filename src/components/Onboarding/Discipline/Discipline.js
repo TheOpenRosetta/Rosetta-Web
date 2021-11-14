@@ -9,8 +9,7 @@ import {
   selectOnboardingError,
   selectPublishData,
   createUser,
-  prevStep,
-  nextStep
+  prevStep
 } from '@services/Onboarding/onboardingSlice';
 import disciplinesList from '@config/disciplines';
 
