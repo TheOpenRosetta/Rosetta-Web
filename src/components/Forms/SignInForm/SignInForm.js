@@ -54,6 +54,7 @@ const SignInForm = ({ className: classes }) => {
     }
   }
 
+  console.log(status);
   console.log(wallet);
 
   return <div className={`${styles.form} ${classes}`}>
@@ -73,6 +74,9 @@ const SignInForm = ({ className: classes }) => {
         </div>
       ))}
     </div>
+    {
+      error && <div className={styles.error}>{error}</div>
+    }
     <div className={styles.actions}>
       {
         (extExist && wallet.status === "connected") ? <>

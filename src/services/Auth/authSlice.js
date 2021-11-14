@@ -12,6 +12,7 @@ const initialState = {
   balance: 0,
   monthlyYield: 0,
   papers: 0,
+  loginError: null,
 };
 
 export const authSlice = createSlice({
