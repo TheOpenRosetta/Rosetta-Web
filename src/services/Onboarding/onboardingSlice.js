@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 const initialState = {
   step: 0,
@@ -15,14 +16,21 @@ const initialState = {
   papers_claimed_by_this_author: [],
   category: [],
   followGroups: [],
-  followUsers: []
+  followUsers: [],
+  error: null,
 };
 
 export const onboardingSlice = createSlice({
   name: 'onboarding',
   initialState,
   reducers: {
-    nextStep: (state) => {
+    nextStep: (state, action) => {
+      state.step += 1;
+    },
+    userNonCreated: (state, action) => {
+      state.error = action.payload;
+    },
+    userCreated: (state) => {
       state.step += 1;
     },
     prevStep: (state) => {
@@ -92,6 +100,8 @@ export const {
   setFollowGroups,
   setPublicKey,
   setCategory,
+  userNonCreated,
+  userCreated,
   setPhoto
 } = onboardingSlice.actions;
 
@@ -108,6 +118,7 @@ export const selectDublicatedAuthors = (state) => state.onboarding.duplicate_aut
 
 export const selectSkills = (state) => state.onboarding.skills;
 export const selectDisciplines = (state) => state.onboarding.disciplines;
+export const selectOnboardingError = (state) => state.onboarding.error;
 
 export const selectPublishData = (state) => ({
   email: state.onboarding.email,
@@ -124,5 +135,24 @@ export const selectPublishData = (state) => ({
   followGroups: state.onboarding.followGroups,
   followUsers: state.onboarding.followUsers,
 });
+
+export const createUser = ({ data }) => async (dispatch) => {
+  axios.post(`https://rosettabackendservereast.azurewebsites.net/api/v1/onboarduser/`, data, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+  })
+  .then((response) => {
+    const { data } = response;
+    if (data.statusCode === 200) {
+      dispatch(userCreated());
+    } else {
+      dispatch(userNonCreated(data.message));
+    }
+  })
+  .catch(function (error) {
+    dispatch(userNonCreated(error.message));
+  });
+}
 
 export default onboardingSlice.reducer;

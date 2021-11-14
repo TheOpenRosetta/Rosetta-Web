@@ -6,6 +6,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   setDisciplines,
   selectDisciplines,
+  selectOnboardingError,
+  selectPublishData,
+  createUser,
   prevStep,
   nextStep
 } from '@services/Onboarding/onboardingSlice';
@@ -16,6 +19,8 @@ import styles from './Discipline.module.scss';
 
 const Discipline = () => {
   const dispatch = useDispatch();
+  const error = useSelector(selectOnboardingError);
+  const publishData = useSelector(selectPublishData);
   const [suggestList, setSuggestList] = useState(disciplinesList);
   const [list, setList] = useState(useSelector(selectDisciplines));
 
@@ -45,7 +50,10 @@ const Discipline = () => {
 
   const next = () => {
     dispatch(setDisciplines(list));
-    dispatch(nextStep());
+    dispatch(createUser({
+      ...publishData,
+      disciplines: [...list]
+    }));
   }
 
   return <div className={styles.discipline}>
@@ -62,6 +70,10 @@ const Discipline = () => {
       list={list}
       suggestList={suggestList}
     />
+
+    {
+      error && <div className={styles.error}>{error}</div>
+    }
 
     <div className={styles.actions}>
       <Button classes={styles.back} kind="secondary" size="lg" onClick={() => dispatch(prevStep())}><ArrowBackIcon /> Back</Button>

@@ -41,8 +41,13 @@ const Feed = () => {
   // const content = <div className={styles.feedList}>
   //   <FeedItem className={styles.feedItem} />
   // </div>
+
+  const noContent = <div className={styles.feedList}>
+    <div className={styles.empty}>Feed is empty yet</div>
+  </div>
+
   return <div className={styles.feed}>
-    <Area header={header} />
+    <Area header={header} content={noContent} />
   </div>;
 }
 

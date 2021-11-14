@@ -1,7 +1,19 @@
+@import '@styles/variables';
+
 .feed {
   position: relative;
 }
 
 .header {
   padding: 0 8px;
+}
+
+.empty {
+  text-align: center;
+  padding: 32px;
+  display: block;
+  @include BodyLarge-REGULAR;
+  color: rgba($colorPrimaryBlack, 0.3);
+  background-color: $colorPrimaryWhite;
+  border-radius: 0 0 8px 8px;
 }
