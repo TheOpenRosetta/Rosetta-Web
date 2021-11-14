@@ -13,6 +13,7 @@ import '@styles/modal.scss';
 import Home from '@containers/Home';
 import Inbox from '@containers/Inbox';
 import Help from '@containers/Help';
+import Jury from '@containers/Jury';
 import Notification from '@containers/Notification';
 import Search from '@containers/Search';
 import Onboarding from '@containers/Onboarding';
@@ -44,6 +45,9 @@ function App() {
             </Route>
             <Route path="/inbox">
               <Inbox />
+            </Route>
+            <Route path="/jury">
+              <Jury />
             </Route>
             <Route path="/sign_in">
               <SignIn />

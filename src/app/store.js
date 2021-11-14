@@ -5,6 +5,7 @@ import searchReducer from '../services/Search/searchSlice';
 import publishReducer from '../services/Publish/publishSlice';
 import paperReducer from '../services/Paper/paperSlice';
 import authReducer from '../services/Auth/authSlice';
+import juryReducer from '../services/Jury/jurySlice';
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     publish: publishReducer,
     paper: paperReducer,
     auth: authReducer,
+    jury: juryReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({
       serializableCheck: false,

@@ -28,6 +28,7 @@
     border-color: transparent;
     path {
       fill: $colorPrimaryGold;
+      stroke: $colorPrimaryGold;
     }
   }
   &--disabled {
@@ -36,6 +37,7 @@
     border-color: $colorPrimaryGray;
     path {
       fill: rgba($colorPrimaryBlack, 0.6);
+      stroke: rgba($colorPrimaryBlack, 0.6);
     }
   }
   &--bordered {
@@ -44,6 +46,7 @@
     border-color: $colorPrimaryGray;
     path {
       fill: $colorPrimaryBlack;
+      stroke: $colorPrimaryBlack;
     }
   }
   &--outline {
@@ -52,6 +55,7 @@
     border-color: $colorPrimaryGold;
     path {
       fill: $colorPrimaryGold;
+      stroke: $colorPrimaryGold;
     }
   }
   &--secondary {
@@ -60,6 +64,7 @@
     border-color: transparent;
     path {
       fill: rgba($colorPrimaryBlack, 0.5);
+      stroke: rgba($colorPrimaryBlack, 0.5);
     }
   }
   &--fill {
@@ -68,6 +73,7 @@
     border-color: $colorPrimaryGold;
     path {
       fill: $colorPrimaryWhite;
+      stroke: $colorPrimaryWhite;
     }
   }
   &--primary {
@@ -76,6 +82,7 @@
     border-color: $colorPrimaryBlue;
     path {
       fill: $colorPrimaryWhite;
+      stroke: $colorPrimaryWhite;
     }
   }
   &--completed {
@@ -84,6 +91,7 @@
     border-color: $colorSupportGreen;
     path {
       fill: $colorPrimaryWhite;
+      stroke: $colorPrimaryWhite;
     }
   }
 }

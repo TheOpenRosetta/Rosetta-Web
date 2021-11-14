@@ -1,0 +1,72 @@
+@import '@styles/variables';
+
+.date {
+  @include BodyLarge-REGULAR;
+  color: #89898B;
+  opacity: 0.7;
+  margin-bottom: 16px;
+  @media(max-width: 767px) {
+    font-size: 14px;
+  }
+}
+
+.title {
+  @include DisplayLarge-MEDIUM;
+  color: $colorPrimaryBlack;
+  margin-bottom: 16px;
+  @media(max-width: 767px) {
+    width: 100%;
+    font-size: 24px;
+  }
+}
+
+.authors {
+  @include BodyLarge-REGULAR;
+  color: $colorPrimaryBlack;
+  opacity: 0.7;
+  margin-bottom: 24px;
+  @media(max-width: 767px) {
+    width: 100%;
+    font-size: 14px;
+  }
+}
+
+.version {
+  @include BodyLarge-REGULAR;
+  color: $colorPrimaryBlue;
+}
+
+.separator {
+  margin: 32px 0;
+  position: relative;
+  hr {
+    border-color: #EAEAEA;
+  }
+  span {
+    position: absolute;
+    right: 100px;
+    top: -50%;
+    top: 0;
+    transform: translateY(-50%);
+    background-color: #FDE9EC;
+    color: $colorSupportRed;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    @include BodyLarge-REGULAR;
+    border-radius: 24px;
+    @media(max-width: 767px) {
+      padding: 4px 12px;
+      right: 8px;
+      font-size: 14px;
+    }
+  }
+  svg {
+    margin-right: 4px;
+    path {
+      fill: $colorSupportRed;
+    }
+  }
+}

@@ -4,8 +4,10 @@ import {
   useParams,
   Link
 } from "react-router-dom";
+import Modal from 'react-modal';
 
 import Chart from '@components/Chart';
+import DisputeStory from '@components/DisputeStory';
 import PDFViewer from '@components/PDFViewer';
 import PDFComments from '@components/PDFComments';
 import Header from '@components/Header';
@@ -39,6 +41,7 @@ import {ReactComponent as ShareIcon} from '@assets/icons/share-outline.svg';
 import {ReactComponent as HashIcon} from '@assets/icons/hash-outline.svg';
 import {ReactComponent as MessageIcon} from '@assets/icons/message-circle-outline.svg';
 import {ReactComponent as AlertIcon} from '@assets/icons/alert-circle-outline.svg';
+import {ReactComponent as CloseIcon} from '@assets/icons/close-outline.svg';
 
 import styles from './Paper.module.scss';
 
@@ -47,11 +50,15 @@ const Paper = () => {
   const dispatch = useDispatch();
   const paper = useSelector(selectPaper);
 
+  // Dispute history modal
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const openModal = () => setIsOpen(true);
+  const closeModal = () => setIsOpen(false);
+
   const [previewError, setPreviewError] = useState(false);
   const [key, setKey] = useState('month');
   const [data, setData] = useState([]);
 
-  // const [table, setShowTable] = useState(false);
   const [priceHistory, setPriceHistory] = useState(false);
   const [reward, setReward] = useState(false);
 
@@ -176,12 +183,11 @@ const Paper = () => {
                 </div>
                 <div className={styles.rewardsActions}>
                   <Button classes={styles.rewardsBtn} type="button" size="md" kind="disabled">Reward</Button>
-                  <Button classes={styles.rewardsBtn} type="button" size="md" kind="bordered"><ClockIcon/> Dispute History</Button>
+                  <Button classes={styles.rewardsBtn} type="button" size="md" kind="bordered" onClick={openModal}><ClockIcon/> Dispute History</Button>
                 </div>
               </div>
             }
           </div>
-
 
           <div className={`${styles.paperPreview} ${previewError || !paper.url ? styles.paperPreviewError : ''}`}>
             <PDFViewer setPreviewError={setPreviewError} url={paper.url} highlights={paper.highlights} setHighlights={(data) => dispatch(setHighlights(data))} />
@@ -198,6 +204,20 @@ const Paper = () => {
         </div>
       </div>
     </div>
+
+    <Modal
+      isOpen={modalIsOpen}
+      className="modal"
+      onRequestClose={closeModal}
+      contentLabel="Dispute history"
+    >
+      <div className={styles.modal}>
+        <button className={styles.modalClose} onClick={closeModal}>
+          <CloseIcon />
+        </button>
+        <DisputeStory paper={paper} />
+      </div>
+    </Modal>
   </div>
 }
 
