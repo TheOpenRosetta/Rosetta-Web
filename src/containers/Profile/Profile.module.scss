@@ -1,0 +1,296 @@
+@import '@styles/variables';
+
+.profile {
+  position: relative;
+  padding-bottom: 64px;
+  min-height: 100vh;
+  &Header {
+    margin-bottom: 0 !important;
+  }
+  &Top {
+    background-color: $colorPrimaryBlack;
+    padding-top: 42px;
+    @media(max-width: 1023px) {
+      padding-top: 24px;
+    }
+    &Content {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0 36px;
+      @media(max-width: 1023px) {
+        align-items: flex-start;
+      }
+      @media(max-width: 767px) {
+        flex-wrap: wrap;
+      }
+    }
+  }
+  &Info {
+    margin-right: auto;
+    @media(max-width: 767px) {
+      margin: 0 auto 32px;
+      text-align: center;
+    }
+  }
+  &Avatar {
+    margin-right: 32px;
+    @media(max-width: 767px) {
+      margin: 0 auto 32px;
+    }
+  }
+  &Money {
+    background-color: $colorSupportBlack;
+    padding: 20px 16px;
+    border-radius: 16px;
+    width: 340px;
+    text-align: center;
+    @media(max-width: 767px) {
+      margin: 0 auto;
+    }
+  }
+  &Bar {
+    background-color: $colorPrimaryWhite;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 32px;
+  }
+  &Content {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    @media(max-width: 1023px) {
+      flex-wrap: wrap;
+    }
+  }
+}
+
+.money {
+  &Title {
+    @include BodySmall-REGULAR;
+    color: rgba($colorPrimaryWhite, 0.8);
+    margin-bottom: 12px;
+  }
+  &Row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      border-left: 1px solid #7C7D8C;
+      opacity: 0.2;
+    }
+  }
+  &Col {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+  }
+  &Value {
+    @include HeadingSmall-BOLD;
+    color: $colorPrimaryWhite;
+    margin-bottom: 4px;
+  }
+  &Subtitle {
+    @include CaptionSmall-REGULAR;
+    color: rgba($colorPrimaryWhite, 0.6);
+    font-size: 10px;
+  }
+  &Action {
+    margin-top: 24px;
+  }
+}
+
+.name {
+  @include DisplaySmall-BOLD;
+  color: $colorPrimaryWhite;
+  margin-bottom: 8px;
+}
+
+.status {
+  @include BodySmall-REGULAR;
+  color: rgba($colorPrimaryWhite, 0.6);
+  margin-bottom: 8px;
+}
+
+.avatar {
+  @media(max-width: 1023px) {
+    width: 80px;
+  }
+}
+
+.committed, .impact {
+  display: inline-block;
+  @include BodySmall-REGULAR;
+  color: rgba($colorPrimaryWhite, 0.6);
+}
+
+.committed {
+  margin-right: 16px;
+  @media(max-width: 767px) {
+    margin: 0 0 8px;
+  }
+  span {
+    margin-left: 8px;
+    text-transform: capitalize;
+    background-color: #24272C;
+    border-radius: 70px;
+    padding: 4px 8px;
+  }
+}
+
+.impact {
+  margin-bottom: 24px;
+  span {
+    @include BodySmall-BOLD;
+    color: rgba($colorPrimaryWhite, 0.8);
+  }
+}
+
+.btn {
+  &Follow {
+    margin-right: 16px;
+  }
+}
+
+.main {
+  flex-basis: calc(100% - 200px);
+  max-width: calc(100% - 200px);
+  margin-left: auto;
+  @media(max-width: 1023px) {
+    flex-basis: 100%;
+    max-width: 100%;
+  }
+}
+
+.sidebar {
+  flex-basis: 200px;
+  max-width: 200px;
+  @media(max-width: 1023px) {
+    flex-basis: 100%;
+    max-width: 100%;
+  }
+}
+
+.tab {
+  padding: 14px 32px;
+  @include BodyLarge-REGULAR;
+  list-style: none;
+  color: rgba($colorPrimaryBlack, 0.6);
+  border-bottom: 1px solid transparent;
+  &Active {
+    color: $colorPrimaryBlack;
+    border-bottom: 1px solid $colorPrimaryBlack;
+  }
+}
+
+.tabs {
+  &List {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid #DFDFDF;
+    @media(max-width: 767px) {
+      overflow-x: scroll;
+      overflow-y: hidden;
+    }
+  }
+}
+
+.stats {
+  @media(max-width: 1023px) {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  @media(max-width: 767px) {
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  &Item {
+    @include BodyLarge-REGULAR;
+    color: $colorSupportBlack;
+    margin-bottom: 8px;
+    @media(max-width: 1023px) {
+      margin-right: 32px;
+    }
+    @media(max-width: 767px) {
+      margin: 0 12px 12px;
+    }
+    svg {
+      margin-right: 16px;
+      width: 16px;
+      height: 16px;
+    }
+    span {
+      color: #7F8082;
+      margin-left: 4px;
+    }
+  }
+}
+
+.graph {
+  padding: 16px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  background-color: $colorPrimaryWhite;
+  &Frames {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: 60px;
+    @media(max-width: 767px) {
+      justify-content: justify-content;
+      width: 100%;
+      margin: 0 auto;
+    }
+  }
+  &Toggle {
+    margin-right: 12px;
+    padding: 2px 16px;
+    border: none;
+    border-bottom: 1px solid transparent;
+    background-color: transparent;
+    color: $colorPrimaryBlack;
+    @media(max-width: 767px) {
+      width: 25%;
+      margin: 0 12px;
+    }
+    &Active {
+      color: $colorPrimaryGold;
+      border-bottom: 1px solid $colorPrimaryGold;
+    }
+  }
+}
+
+.section {
+  @media(max-width: 1023px) {
+    margin-top: 16px;
+  }
+  &Title {
+    @include BodyLarge-MEDIUM;
+    text-transform: uppercase;
+    color: $colorPrimaryBlack;
+    margin-bottom: 20px;
+  }
+}

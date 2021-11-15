@@ -45,7 +45,7 @@ function App() {
           <Route path="/sign_in">
             <SignIn />
           </Route>
-          <Route path="/user/:userId">
+          <Route path="/:username">
             <Profile />
           </Route>
           <Route path="/portfolio">

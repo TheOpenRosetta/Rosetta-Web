@@ -1,0 +1,18 @@
+{
+  "data": {
+    "name": "Simon Ware",
+    "status": "Open academic. Working on what I love.",
+    "avatar": "",
+    "fraudCommitted": false,
+    "impactScore": 10000,
+    "monthlyTokens": 10000,
+    "onceOffTokens": 50000,
+    "stats": {
+      "followers": 1400,
+      "following": 4000,
+      "communities": 20
+    },
+    "bio": "",
+    "featuresPapers": []
+  }
+}
