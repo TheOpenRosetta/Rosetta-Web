@@ -3,7 +3,7 @@ import {
   useParams
 } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel, resetIdCounter } from 'react-tabs';
-import {priceFormat, percentFormat} from '@utils/numbers';
+// import {priceFormat, percentFormat} from '@utils/numbers';
 import Header from '@components/Header';
 import Button from '@components/Button';
 import Avatar from '@components/Avatar';

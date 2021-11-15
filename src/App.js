@@ -45,9 +45,6 @@ function App() {
           <Route path="/sign_in">
             <SignIn />
           </Route>
-          <Route path="/:username">
-            <Profile />
-          </Route>
           <Route path="/portfolio">
             <Portfolio />
           </Route>
@@ -59,6 +56,9 @@ function App() {
           </Route>
           <Route path='/paper/:paperId'>
             <Paper />
+          </Route>
+          <Route path="/:username">
+            <Profile />
           </Route>
           <Route exact path="/">
             <Home />
