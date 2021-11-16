@@ -31,6 +31,13 @@
   }
 }
 
+.error {
+  color: $colorSupportRed;
+  @include BodyLarge-REGULAR;
+  margin: 0 auto 32px;
+  text-align: center;
+}
+
 .actions {
   max-width: 300px;
   position: relative;

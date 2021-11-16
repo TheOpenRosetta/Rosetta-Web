@@ -76,7 +76,7 @@ const Discipline = () => {
 
     <div className={styles.actions}>
       <Button classes={styles.back} kind="secondary" size="lg" onClick={() => dispatch(prevStep())}><ArrowBackIcon /> Back</Button>
-      <Button classes={styles.next} kind="fill" size="lg" onClick={next}>Next</Button>
+    <Button classes={styles.next} kind="fill" size="lg" onClick={next}>Create profile</Button>
     </div>
   </div>;
 }

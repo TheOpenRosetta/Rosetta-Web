@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useArjs } from 'arjs-react';
 import {
   setPublicKey,
+  setId,
   prevStep,
   nextStep
 } from '@services/Onboarding/onboardingSlice';
@@ -18,7 +19,7 @@ const Wallet = () => {
   const [error, setError] = useState('');
   const dispatch = useDispatch();
   const wallet = useArjs();
-  const permission = { permissions: ["SIGN_TRANSACTION"] }
+  const permission = { permissions: ["SIGN_TRANSACTION", "ACCESS_ADDRESS", "ACCESS_PUBLIC_KEY"] }
   const activate = (connector, key) => wallet.connect(connector, key);;
 
   const loadedHandler = () => {
@@ -49,7 +50,9 @@ const Wallet = () => {
   const next = async () => {
     if(wallet.status === "connected") {
       const address = await wallet.getAddress();
-      dispatch(setPublicKey(address));
+      const key = await window.arweaveWallet.getActivePublicKey();
+      dispatch(setPublicKey(key));
+      dispatch(setId(address));
       dispatch(nextStep());
     } else {
       setError('Error: connect to ArConnect before the next step');

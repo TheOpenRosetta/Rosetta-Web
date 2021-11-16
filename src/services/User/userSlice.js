@@ -33,7 +33,7 @@ export const selectUserData = (state) => state.user.data;
 
 export const fetchUser = ({ username }) => async (dispatch) => {
   // COMMENT: currently username is address
-  const url = `hhttps://rosettabackendservereast.azurewebsites.net/api/v1/getuserprofile/${username}/`;
+  const url = `https://rosettabackendservereast.azurewebsites.net/api/v1/getuserprofile/${username}/`;
   // dispatch(gotUserData(userData.data));
   dispatch(getUserData());
   await axios.get(url)

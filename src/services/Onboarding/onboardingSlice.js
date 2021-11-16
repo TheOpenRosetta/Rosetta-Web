@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const initialState = {
   step: 0,
+  id: null,
   firstName: '',
   lastName: '',
   institution: '',
@@ -74,6 +75,9 @@ export const onboardingSlice = createSlice({
     setPublicKey: (state, action) => {
       state.publickey = action.payload;
     },
+    setId: (state, action) => {
+      state.id = action.payload;
+    },
     setCategory: (state, action) => {
       if (state.category.some(n => n === action.payload)) {
         state.category = state.category.filter(el => el !== action.payload)
@@ -102,7 +106,8 @@ export const {
   setCategory,
   userNonCreated,
   userCreated,
-  setPhoto
+  setPhoto,
+  setId
 } = onboardingSlice.actions;
 
 export const selectStep = (state) => state.onboarding.step;
@@ -121,6 +126,7 @@ export const selectDisciplines = (state) => state.onboarding.disciplines;
 export const selectOnboardingError = (state) => state.onboarding.error;
 
 export const selectPublishData = (state) => ({
+  id: state.onboarding.id,
   email: state.onboarding.email,
   firstName: state.onboarding.firstName,
   lastName: state.onboarding.lastName,
@@ -136,7 +142,7 @@ export const selectPublishData = (state) => ({
   followUsers: state.onboarding.followUsers,
 });
 
-export const createUser = ({ data }) => async (dispatch) => {
+export const createUser = (data) => async (dispatch) => {
   axios.post(`https://rosettabackendservereast.azurewebsites.net/api/v1/onboarduser/`, data, {
       headers: {
         'Content-Type': 'multipart/form-data'
