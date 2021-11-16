@@ -143,22 +143,18 @@ export const selectPublishData = (state) => ({
 });
 
 export const createUser = (data) => async (dispatch) => {
-  axios.post(`https://rosettabackendservereast.azurewebsites.net/api/v1/onboarduser/`, data, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
+  axios.post(`https://rosettabackendservereast.azurewebsites.net/api/v1/onboarduser/`, data)
+    .then((response) => {
+      const { data } = response;
+      if (data.statusCode === 200) {
+        dispatch(userCreated());
+      } else {
+        dispatch(userNonCreated(data.message));
       }
-  })
-  .then((response) => {
-    const { data } = response;
-    if (data.statusCode === 200) {
-      dispatch(userCreated());
-    } else {
-      dispatch(userNonCreated(data.message));
-    }
-  })
-  .catch(function (error) {
-    dispatch(userNonCreated(error.message));
-  });
+    })
+    .catch(function (error) {
+      dispatch(userNonCreated(error.message));
+    });
 }
 
 export default onboardingSlice.reducer;
