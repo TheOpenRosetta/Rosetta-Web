@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '@components/Layout';
 import Pagination from '@components/Pagination';
-import SearchSidebar from './SearchSidebar';
+// import SearchSidebar from './SearchSidebar';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   selectSearchText,

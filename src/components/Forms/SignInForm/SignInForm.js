@@ -1,21 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useArjs } from 'arjs-react';
-import arweave from 'arweave';
 import Button from '@components/Button';
 
 import { useSelector, useDispatch } from 'react-redux';
 import {
   signIn,
-  selectStatus,
+  // selectStatus,
   selectBytes,
-  saveSignature,
   getNonce,
 } from '@services/Auth/authSlice';
 
 import styles from './SignInForm.module.scss';
 
 const SignInForm = ({ className: classes }) => {
-  const status = useSelector(selectStatus);
+  // const status = useSelector(selectStatus);
   const bytes = useSelector(selectBytes);
   const dispatch = useDispatch();
   const [extExist, setExtExist] = useState(false);
