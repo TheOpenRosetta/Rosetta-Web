@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-// import axios from 'axios';
+import axios from 'axios';
 
 import userData from '@dataset/user';
 
 const initialState = {
   status: '',
   data: null,
+  papers: [],
 };
 
 export const userSlice = createSlice({
@@ -18,7 +19,7 @@ export const userSlice = createSlice({
     gotUserData: (state, action) => {
       state.data = action.payload;
       state.status = 'loaded';
-    }
+    },
   }
 });
 
@@ -31,14 +32,14 @@ export const selectUserStatus = (state) => state.user.status;
 export const selectUserData = (state) => state.user.data;
 
 export const fetchUser = ({ username }) => async (dispatch) => {
-  console.log(username);
-  // const url = `http://40.121.197.64:8983/solr/OAG/select?q=${q || '*:*'}&df=authors_names&start=${start * 10}&rows=10`;
-  dispatch(gotUserData(userData.data));
-  // dispatch(getUserData());
-  // await axios.get(url)
-  //   .then(({ data }) => {
-  //     dispatch(gotUserData(userData.data))
-  //   });
+  // COMMENT: currently username is address
+  const url = `hhttps://rosettabackendservereast.azurewebsites.net/api/v1/getuserprofile/${username}/`;
+  // dispatch(gotUserData(userData.data));
+  dispatch(getUserData());
+  await axios.get(url)
+    .then(({ data }) => {
+      dispatch(gotUserData(userData.data))
+    });
 }
 
 export default userSlice.reducer;

@@ -9,7 +9,11 @@ import {
   selectSearchStatus,
   fetchSearch,
 } from '@services/Search/searchSlice';
-import { SearchFilters, SearchResults, SearchUsers } from '@components/Search';
+import {
+  // SearchFilters,
+  SearchResults,
+  SearchUsers
+} from '@components/Search';
 
 import styles from './Search.module.scss';
 
@@ -61,9 +65,9 @@ const Search = () => {
     dispatch(fetchSearch({ q: searchText, start: (page - 1) }));
   }, [searchText, page, dispatch]);
 
-  const changeFilters = (params) => {
-    console.log(params);
-  }
+  // const changeFilters = (params) => {
+  //   console.log(params);
+  // }
 
   return <Layout navigation={false}>
     <div className={styles.grid}>
@@ -71,15 +75,17 @@ const Search = () => {
         {count} results for {searchText ? `"${searchText}"` : 'All authors'}
       </div>
       <div className={styles.results}>
-        <SearchFilters action={changeFilters} />
+        {
+          // <SearchFilters action={changeFilters} />
+        }
         <SearchUsers users={users} />
         { status === 'loading' && 'Loading...' }
         { status === 'loaded' && <SearchResults /> }
         { count > 10 && <Pagination maxItems={count} itemsPerPage={10} currentPage={page} changePage={setPage} prev="Previous" next="Next" className={styles.pagination} /> }
       </div>
-      <div className={styles.rising}>
+      {/* <div className={styles.rising}>
         <SearchSidebar />
-      </div>
+      </div> */}
     </div>
   </Layout>
 }

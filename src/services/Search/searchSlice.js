@@ -53,7 +53,7 @@ export const selectSearchCount = (state) => state.search.count;
 
 
 export const fetchSearch = ({ q , start }) => async (dispatch) => {
-  const url = `https://searchserver1.eastus.cloudapp.azure.com:8983/api/v1/select?q=${q || '*:*'}&df=authors_names&start=${start * 10}&rows=10`;
+  const url = `https://searchserver1.eastus.cloudapp.azure.com:8983/solr/OAG/select?q=${q || '*:*'}&df=authors_names&start=${start * 10}&rows=10`;
   dispatch(searchLoading());
   await axios.get(url)
     .then(({ data }) => {

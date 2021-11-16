@@ -1,23 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { useArjs } from 'arjs-react';
+import arweave from 'arweave';
 import Button from '@components/Button';
 
 import { useSelector, useDispatch } from 'react-redux';
 import {
   signIn,
   selectStatus,
+  selectBytes,
+  saveSignature,
+  getNonce,
 } from '@services/Auth/authSlice';
 
 import styles from './SignInForm.module.scss';
 
 const SignInForm = ({ className: classes }) => {
   const status = useSelector(selectStatus);
+  const bytes = useSelector(selectBytes);
   const dispatch = useDispatch();
   const [extExist, setExtExist] = useState(false);
   const [error, setError] = useState('');
+  const [balance, setBalance] = useState("Requesting...");
+  const [address, setAddress] = useState("Requesting...");
   const wallet = useArjs();
 
-  const permission = { permissions: ["SIGN_TRANSACTION"] }
+  const permission = { permissions: ["SIGN_TRANSACTION", "SIGNATURE", "ACCESS_ADDRESS", "ACCESS_PUBLIC_KEY"] }
   const activate = (connector, key) => wallet.connect(connector, key);;
 
   const loadedHandler = () => {
@@ -34,8 +41,19 @@ const SignInForm = ({ className: classes }) => {
     }
   }, []);
 
-  const [balance, setBalance] = useState("Requesting...");
-  const [address, setAddress] = useState("Requesting...");
+  useEffect(() => {
+    if (bytes) {
+      window.arweaveWallet.signature(bytes, {
+        name: "RSA-PSS",
+        saltLength: 32,
+      }).then((data) => {
+        dispatch(signIn({
+          address,
+          signature: data
+        }));
+      });
+    }
+  }, [bytes, dispatch, address]);
 
   wallet.ready(() => {
     if(wallet.status === "connected")(async () => {
@@ -48,14 +66,11 @@ const SignInForm = ({ className: classes }) => {
   const signInAction = async () => {
     if(wallet.status === "connected") {
       const address = await wallet.getAddress();
-      dispatch(signIn({ key: address }));
+      dispatch(getNonce(address));
     } else {
       setError('Error: connect to ArConnect before login');
     }
   }
-
-  console.log(status);
-  console.log(wallet);
 
   return <div className={`${styles.form} ${classes}`}>
     <div className={styles.title}>Login</div>

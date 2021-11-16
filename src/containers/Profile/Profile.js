@@ -152,13 +152,21 @@ const Profile = () => {
             }
             <div className={styles.section}>
               <div className={styles.sectionTitle}>Featured Papers</div>
-              <div className={styles.papersContent}></div>
+              <div className={styles.papersContent}>
+                {
+                  // Add PaperPreview Component in loop
+                }
+              </div>
             </div>
           </TabPanel>
           <TabPanel className={styles.tabPanel}>
             <div className={styles.section}>
               <div className={styles.sectionTitle}>Papers</div>
-              <div className={styles.papersContent}></div>
+              <div className={styles.papersContent}>
+                {
+                  // Add PaperPreview Component in loop
+                }
+              </div>
             </div>
           </TabPanel>
           <TabPanel className={styles.tabPanel}>
