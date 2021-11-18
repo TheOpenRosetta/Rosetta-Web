@@ -5,13 +5,13 @@ import arweave from 'arweave';
 import AvatarImg from '@assets/avatar.png';
 
 const initialState = {
-  authStatus: true,
   bytes: null,
   signature: null,
   name: 'Simon Ware',
-  id: 2009723854,
+  id: null,
   avatar: AvatarImg,
   publicKey: '',
+  institution: '',
   balance: 0,
   monthlyYield: 0,
   papers: 0,
@@ -23,11 +23,21 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     login: (state, action) => {
-      console.log(action.payload);
-      state.authStatus = true;
+      const { profile } = action.payload;
+      state.name = `${profile.firstName} ${profile.lastName}`;
+      state.id = profile.id;
+      state.institution = profile.institution;
+      state.publicKey = profile.publickey;
     },
-    logout: (state, action) => {
-      state.authStatus = false;
+    logout: (state) => {
+      state.bytes = null;
+      state.signature = null;
+      state.name = '';
+      state.id = null;
+      state.institution = '';
+      state.publicKey = '';
+      localStorage.removeItem('rosetta_address');
+      localStorage.removeItem('rosetta_signature');
     },
     setNonce: (state, action) => {
       const { nonce } = action.payload;
@@ -46,7 +56,7 @@ export const {
   saveSignature
 } = authSlice.actions;
 
-export const selectStatus = (state) => state.auth.authStatus;
+export const selectStatus = (state) => !!state.auth.id;
 export const selectBytes = (state) => state.auth.bytes;
 export const selectSignature = (state) => state.auth.signature;
 export const selectUser = (state) => ({
@@ -67,14 +77,40 @@ export const getNonce = (address) => async (dispatch) => {
     });
 }
 
+export const checkAuth = () => async (dispatch) => {
+  const address = localStorage.getItem('rosetta_address');
+  const signature = JSON.parse(localStorage.getItem('rosetta_signature'));
+  if (!address || !signature) {
+    dispatch(logout())
+  } else {
+    const buf = new Uint8Array(Object.values(signature));
+    const url = `https://rosettabackendservereast.azurewebsites.net/api/v1/getuserdata/${address}/${buf}`;
+    await axios.get(url)
+      .then(({ data }) => {
+        localStorage.setItem('rosetta_address', address);
+        localStorage.setItem('rosetta_signature', JSON.stringify(signature));
+        dispatch(login(data))
+      })
+      .catch(() => {
+        dispatch(logout())
+      });
+  }
+}
+
 export const signIn = ({ address, signature }) => async (dispatch) => {
   const url = `https://rosettabackendservereast.azurewebsites.net/api/v1/login`;
+  const buf = new Uint8Array(Object.values(signature));
   await axios.post(url, {
     address,
-    signature
+    signature: arweave.utils.bufferTob64Url(buf),
   })
     .then(({ data }) => {
-      dispatch(login(data.response))
+      localStorage.setItem('rosetta_address', address);
+      localStorage.setItem('rosetta_signature', JSON.stringify(signature));
+      dispatch(login(data))
+    })
+    .catch(() => {
+      dispatch(logout())
     });
 }
 

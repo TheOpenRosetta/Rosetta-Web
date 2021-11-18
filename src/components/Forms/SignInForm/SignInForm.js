@@ -5,7 +5,6 @@ import Button from '@components/Button';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   signIn,
-  // selectStatus,
   selectBytes,
   getNonce,
 } from '@services/Auth/authSlice';
@@ -13,7 +12,6 @@ import {
 import styles from './SignInForm.module.scss';
 
 const SignInForm = ({ className: classes }) => {
-  // const status = useSelector(selectStatus);
   const bytes = useSelector(selectBytes);
   const dispatch = useDispatch();
   const [extExist, setExtExist] = useState(false);

@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
   Redirect,
   Route,
 } from "react-router-dom";
+
+import {
+  selectStatus,
+  checkAuth,
+} from '@services/Auth/authSlice';
+import { useSelector, useDispatch } from 'react-redux';
 
 import '@styles/global.scss';
 import '@styles/modal.scss';
@@ -23,6 +29,13 @@ import SignIn from '@containers/SignIn';
 import Publish from '@containers/Publish';
 
 function App() {
+  const isLogin = useSelector(selectStatus);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(checkAuth());
+  }, [dispatch]);
+
   return (
     <div className="app">
       <Router basename="/">
@@ -31,28 +44,28 @@ function App() {
             <Help />
           </Route>
           <Route path="/notification">
-            <Notification />
+            { isLogin ? <Notification /> : <Redirect to="/" /> }
           </Route>
           <Route path="/search">
             <Search />
           </Route>
           <Route path="/inbox">
-            <Inbox />
+            { isLogin ? <Inbox /> : <Redirect to="/" /> }
           </Route>
           <Route path="/jury">
-            <Jury />
+            { isLogin ? <Jury /> : <Redirect to="/" /> }
           </Route>
           <Route path="/sign_in">
-            <SignIn />
+            { isLogin ? <Redirect to="/" /> : <SignIn /> }
           </Route>
           <Route path="/portfolio">
-            <Portfolio />
+            { isLogin ? <Portfolio /> : <Redirect to="/" /> }
           </Route>
           <Route path="/onboarding">
-            <Onboarding />
+            { isLogin ? <Redirect to="/" /> : <Onboarding /> }
           </Route>
           <Route path="/publish">
-            <Publish />
+            { isLogin ? <Publish /> : <Redirect to="/" /> }
           </Route>
           <Route path='/paper/:paperId'>
             <Paper />
