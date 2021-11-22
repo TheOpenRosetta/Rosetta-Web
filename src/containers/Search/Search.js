@@ -18,43 +18,6 @@ import {
 
 import styles from './Search.module.scss';
 
-import AvatarImg from '@assets/avatar.png';
-
-const users = [{
-  authorid: 111,
-  photo: AvatarImg,
-  firstName: 'Simon',
-  lastName: 'Ware',
-  publications: 617,
-  impactScore: 21168,
-  categories: ['citations', 'physics'],
-},{
-  authorid: 112,
-  photo: AvatarImg,
-  firstName: 'Anthony',
-  lastName: 'Rayan',
-  publications: 617,
-  impactScore: 21168,
-  categories: ['citations', 'physics'],
-},{
-  authorid: 113,
-  photo: AvatarImg,
-  firstName: 'Anthony',
-  lastName: 'Rayan',
-  publications: 617,
-  impactScore: 21168,
-  categories: ['citations', 'physics'],
-},
-{
-  authorid: 114,
-  photo: AvatarImg,
-  firstName: 'Anthony',
-  lastName: 'Rayan',
-  publications: 617,
-  impactScore: 21168,
-  categories: ['citations', 'physics'],
-}];
-
 const Search = () => {
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
@@ -79,7 +42,7 @@ const Search = () => {
         {
         //  <SearchFilters action={changeFilters} />
         }
-        <SearchUsers users={users}/>
+        <SearchUsers/>
         { status === 'loading' && 'Loading...' }
         { status === 'loaded' && <SearchResults /> }
         { count > 10 && <Pagination maxItems={count} itemsPerPage={10} currentPage={page} changePage={setPage} prev="Previous" next="Next" className={styles.pagination} /> }

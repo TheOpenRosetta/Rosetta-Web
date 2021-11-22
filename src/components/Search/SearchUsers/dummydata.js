@@ -1,0 +1,28 @@
+import AvatarImg from '@assets/avatar.png';
+export const dummySearchResults = [
+    {'id':1,
+    'photo': AvatarImg,
+    'authors_names':['Albert einstein'],
+    'categories':['physics','chemistry','bio'],
+    'impact_score':'21168',
+    'publications':'617'
+},
+    {'id':2,
+    'photo': AvatarImg,
+    'authors_names':['Albert einstein','Isaac Newton'],
+    'categories':['physics'],
+    'publications':1,
+    'impact_score':1},
+    {'id':3,
+    'photo': AvatarImg,
+    'authors_names':['Albert einstein','Isaac Newton','Simon Ware','Jabir Bin Hayan'],
+    'categories':['physics','Math'],
+    'publications':122,
+    'impact_score':121},
+    {'id':4,
+    'photo': AvatarImg,
+    'authors_names':['Albert einstein','Isaac Newton','Simon Ware','Jabir Bin Hayan','Madam cury'],
+    'categories':['physics','Math'],
+    'publications':11,
+    'impact_score':11},
+];

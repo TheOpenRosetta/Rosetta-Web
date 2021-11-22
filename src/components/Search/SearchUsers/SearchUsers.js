@@ -1,21 +1,17 @@
 import React from 'react';
-import Avatar from '@components/Avatar';
 import { Link } from "react-router-dom";
 import styles from './SearchUsers.module.scss';
-import { priceFormat } from '@utils/numbers';
-
-const SearchUsers = ({ users }) => {
+import { FindCommonAuthors } from '../../../utils/common';
+import { dummySearchResults } from './dummydata';
+const SearchUsers = () => {
+  const commonAuthors = FindCommonAuthors(dummySearchResults, 'authors_names');
+  console.log(commonAuthors);
   return <div className={styles.users}>
     {
-      users.map(user => <Link to={`/user/${user.authorid}`} className={styles.usersItem} key={user.authorid}>
-        <div className={styles.photo}>
-          <Avatar src={user.photo} title={user.lastName} size="sm" />
-        </div>
+      commonAuthors.map(author => <Link to={`/user/${author.id}`} className={styles.usersItem} key={author.id}>
         <div className={styles.info}>
-          <div className={styles.name}>{user.firstName} {user.lastName}</div>
-          <div className={styles.text}>
-            {user.publications} Publications. {priceFormat(user.impactScore)}. {user.categories.map(item => item.charAt(0).toUpperCase() + item.slice(1)).join('.')}
-          </div>
+          <div className={styles.name}>{author.authors_names}</div>
+          <div className={styles.publications}>{author.occurrence} times occurrence</div>
         </div>
       </Link>)
     }
