@@ -31,7 +31,8 @@
     "react-tabs": "^3.2.2",
     "react-tiny-popover": "^7.0.1",
     "recharts": "^2.1.6",
-    "redux-logger": "^3.0.6"
+    "redux-logger": "^3.0.6",
+    "sass": "^1.43.4"
   },
   "scripts": {
     "start": "craco start",

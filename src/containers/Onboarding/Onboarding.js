@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import {
   selectStep,
 } from '@services/Onboarding/onboardingSlice';
-
 import Start from '@components/Onboarding/Start';
 import UserData from '@components/Onboarding/UserData';
 import Identity from '@components/Onboarding/Identity';

@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '@components/Layout';
 import Pagination from '@components/Pagination';
-// import SearchSidebar from './SearchSidebar';
+//import SearchSidebar from './SearchSidebar';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   selectSearchText,
   selectSearchCount,
   selectSearchStatus,
   fetchSearch,
+
 } from '@services/Search/searchSlice';
 import {
-  // SearchFilters,
+  //SearchFilters,
   SearchResults,
   SearchUsers
 } from '@components/Search';
@@ -22,8 +23,8 @@ import AvatarImg from '@assets/avatar.png';
 const users = [{
   authorid: 111,
   photo: AvatarImg,
-  firstName: 'Anthony',
-  lastName: 'Rayan',
+  firstName: 'Simon',
+  lastName: 'Ware',
   publications: 617,
   impactScore: 21168,
   categories: ['citations', 'physics'],
@@ -65,27 +66,29 @@ const Search = () => {
     dispatch(fetchSearch({ q: searchText, start: (page - 1) }));
   }, [searchText, page, dispatch]);
 
-  // const changeFilters = (params) => {
-  //   console.log(params);
-  // }
+  //const changeFilters = (params) => {
+    //console.log(params);
+  //}
 
   return <Layout navigation={false}>
     <div className={styles.grid}>
       <div className={styles.total}>
-        {count} results for {searchText ? `"${searchText}"` : 'All authors'}
+        {count} results for {searchText ? `"${searchText}"` : 'All Papers'}
       </div>
       <div className={styles.results}>
         {
-          // <SearchFilters action={changeFilters} />
+        //  <SearchFilters action={changeFilters} />
         }
-        <SearchUsers users={users} />
+        <SearchUsers users={users}/>
         { status === 'loading' && 'Loading...' }
         { status === 'loaded' && <SearchResults /> }
         { count > 10 && <Pagination maxItems={count} itemsPerPage={10} currentPage={page} changePage={setPage} prev="Previous" next="Next" className={styles.pagination} /> }
       </div>
-      {/* <div className={styles.rising}>
-        <SearchSidebar />
-      </div> */}
+      <div className={styles.rising}>
+        {
+          //<SearchSidebar />
+        }
+      </div>
     </div>
   </Layout>
 }

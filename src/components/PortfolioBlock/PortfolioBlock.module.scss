@@ -76,7 +76,7 @@
 }
 
 .link {
-  @include CaptionLarge-REGULAR
+  @include CaptionLarge-REGULAR;
   text-decoration: none;
   display: flex;
   flex-direction: row;

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { DateTime } from "luxon";
 import { percentFormat } from '@utils/numbers';
 import styles from './PaperPreview.module.scss';
-
 import {ReactComponent as CommentIcon} from '@assets/customIcons/coma.svg';
 import {ReactComponent as LikeIcon} from '@assets/customIcons/thumbs-up.svg';
 
