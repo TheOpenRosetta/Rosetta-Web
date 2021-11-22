@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-
 // [{
 //   title: 'New Measurement for Impact in Academic Research.',
 //   paperid: 126,
@@ -35,7 +34,6 @@ export const searchSlice = createSlice({
       state.status = 'loaded';
       state.results = [...action.payload.docs];
       state.count = action.payload.numFound;
-      console.log(action.payload.docs);
     }
   }
 });

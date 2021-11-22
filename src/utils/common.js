@@ -3,9 +3,9 @@ export const FindCommonAuthors = (arr, key) =>{
     arr.forEach((x)=>{
         if(x[key] !== undefined){
             if(x[key].length === 1){
-                if(arr2.some((val)=>{ return val[key] === x[key][0] })){
+                if(arr2.some((val)=>{ return val[key] == x[key][0] })){
                     arr2.forEach((k)=>{
-                        if(k[key] === x[key][0]){
+                        if(k[key] == x[key][0]){
                         k["occurrence"]++
                         }
                     })  
@@ -18,9 +18,9 @@ export const FindCommonAuthors = (arr, key) =>{
             }
             else{
                 for(let i=0; i<x[key].length; i++){
-                    if(arr2.some((val)=>{ return val[key] === x[key][i] })){
+                    if(arr2.some((val)=>{ return val[key] == x[key][i] })){
                         arr2.forEach((k)=>{
-                            if(k[key] === x[key][i]){
+                            if(k[key] == x[key][i]){
                             k["occurrence"]++
                             }
                         })
