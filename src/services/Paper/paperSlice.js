@@ -67,7 +67,7 @@ export const selectPaper = (state) => ({
 });
 
 export const fetchPaper = ({ id }) => async (dispatch) => {
-  const url = `https://searchserver1.eastus.cloudapp.azure.com:8983//solr/OAG/select?q=${id}&df=id`;
+  const url = `https://searchserver1.eastus.cloudapp.azure.com:8983/solr/OAG/select?q=${id}&df=id`;
   dispatch(paperLoading());
   await axios.get(url)
     .then(({ data }) => {
