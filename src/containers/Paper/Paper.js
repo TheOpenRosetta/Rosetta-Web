@@ -5,7 +5,6 @@ import {
   Link
 } from "react-router-dom";
 import Modal from 'react-modal';
-
 import Chart from '@components/Chart';
 import DisputeStory from '@components/DisputeStory';
 import PDFViewer from '@components/PDFViewer';
