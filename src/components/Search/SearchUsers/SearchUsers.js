@@ -7,7 +7,7 @@ import { priceFormat } from '@utils/numbers';
 const SearchUsers = ({ users }) => {
   return <div className={styles.users}>
     {
-      users.map(user => <Link to={`/user/${user.authorid}`} className={styles.usersItem} key={user.authorid}>
+      users.map(user => <Link to={`/user/${user?.firstName}_${user?.lastName}_${user.authorid}`} className={styles.usersItem} key={user.authorid}>
         <div className={styles.photo}>
           <Avatar src={user.photo} title={user.lastName} size="sm" />
         </div>

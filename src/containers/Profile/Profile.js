@@ -9,23 +9,39 @@ import Button from '@components/Button';
 import Avatar from '@components/Avatar';
 import Loader from '@components/Loader';
 import Chart from '@components/Chart';
-
+import Pagination from '@components/Pagination';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   selectUserStatus,
   selectUserData,
-  fetchUser
+  fetchUser,
+  fetchFeaturedPaperUser,
+  selectFeaturePaperUserStatus,
+  selectFeaturePaperUserData,
 } from '@services/User/userSlice';
+
+import {
+  selectSearchText,
+  selectSearchCount,
+  selectSearchStatus,
+  fetchSearch,
+} from '@services/Search/searchSlice';
+
 import {
   //SearchFilters,
   SearchResults,
   SearchUsers
 } from '@components/Search';
 
+import styles2 from '../../components/Search/SearchResults/SearchResults.module.scss';
+
 import month from '@dataset/month.json';
 import half from '@dataset/half.json';
 import three from '@dataset/three.json';
 import year from '@dataset/year.json';
+
+import PaperPreview from '@components/PaperPreview';
+
 
 import { ReactComponent as FollowersIcon } from '@assets/customIcons/customer.svg';
 import { ReactComponent as FollowingIcon } from '@assets/customIcons/followers.svg';
@@ -36,6 +52,7 @@ import 'react-tabs/style/react-tabs.css';
 import styles from './Profile.module.scss';
 import { ReactComponent as EditIcons } from '@assets/icons/edit_profile.svg';
 
+import { ReactComponent as ArcticContributor } from '@assets/icons/arcticcontributor.svg';
 
 resetIdCounter();
 
@@ -45,16 +62,30 @@ const Profile = () => {
   const { username } = useParams();
   const status = useSelector(selectUserStatus);
   const userData = useSelector(selectUserData);
+
+  const featurePaperStatus = useSelector(selectFeaturePaperUserStatus);
+  const featurePaperData = useSelector(selectFeaturePaperUserData);
+
+
   const dispatch = useDispatch();
   const [key, setKey] = useState('month');
   const [data, setData] = useState([]);
   const [ShowEditModal, setShowEditModal] = useState(false);
-  
+
+  const [page, setPage] = useState(1);
+  const [FeaturePage, setFeaturePage] = useState([]);
+  const count = useSelector(selectSearchCount);
+  const searchText = useSelector(selectSearchText);
+
+  useEffect(() => {
+    dispatch(fetchSearch({ q: searchText, start: (page - 1) }));
+  }, [searchText, page, dispatch]);
+
   // function for making number digits to k
   function kFormatter(num) {
-    return Math.abs(num) > 999 ? Math.sign(num)*((Math.abs(num)/1000).toFixed(1)) + 'k' : Math.sign(num)*Math.abs(num)
+    return Math.abs(num) > 999 ? Math.sign(num) * ((Math.abs(num) / 1000).toFixed(1)) + 'k' : Math.sign(num) * Math.abs(num)
   }
-  
+
 
   useEffect(() => {
     switch (key) {
@@ -73,14 +104,31 @@ const Profile = () => {
     }
   }, [key]);
 
+  // Need to remove the hardcode id and fetch papers api
   useEffect(() => {
     dispatch(fetchUser({ username }));
+    dispatch(fetchFeaturedPaperUser({ authorId: "2009723854" }));
   }, [dispatch, username]);
 
+  // Sort feature array according to highest prbscore
+  useEffect(() => {
+    if(featurePaperData) {
+      let modifyPaperWorks = featurePaperData.slice().sort(function (a, b) {
+        return b.prb_score - a.prb_score;
+      });
+      setFeaturePage(modifyPaperWorks)
+    }
+  }, [featurePaperData]);
+
+  
   // Open and Hide modal
   const activateEditModal = () => {
-    console.log("!ShowEditModal", !ShowEditModal);
-    setShowEditModal(!ShowEditModal);
+    setShowEditModal(true);
+  }
+
+  // Hide modal
+  const hideModal = () => {
+    setShowEditModal(false);
   }
 
   if (status !== 'loaded') {
@@ -136,7 +184,7 @@ const Profile = () => {
           <div className={styles.profileMain}>
             <TabList className={styles.tabsList}>
               <Tab className={styles.tab}>Overview</Tab>
-              <Tab className={styles.tab}>Papers</Tab>
+              <Tab className={styles.tab}>Papers ({count})</Tab>
               <Tab className={styles.tab}>Portfolio</Tab>
               <Tab className={styles.tab}>Comments</Tab>
             </TabList>
@@ -164,31 +212,68 @@ const Profile = () => {
             </div>
           </div>
           <div className={styles.sectionTitleAwards}>Awards</div>
+
+          <div className={styles.awardsContent}>
+            <ul>
+              <li> <ArcticContributor /> </li>
+              <li> <ArcticContributor /> </li>
+              <li> <ArcticContributor /> </li>
+            </ul>
+          </div>
         </div>
         <div className={styles.main}>
           <TabPanel className={styles.tabPanel}>
             {
               userData.bio && <div className={styles.section}>
                 <div className={styles.sectionTitle}>Bio</div>
-                <div className={styles.bioContent}>{userData.bio}</div>
+                <div className={styles.bioContent}>
+                  <ul>
+                    {
+                      userData.bio.split(',').map((bioData, index) => {
+                        return <li key={index}>{bioData}</li>;
+                      })
+                    }
+                  </ul>
+                </div>
               </div>
             }
             <div className={styles.section}>
               <div className={styles.sectionTitle}>Featured Papers</div>
               <div className={styles.papersContent}>
+                {/* for showing loaded tag for users */}
+                {/* {featurePaperStatus === 'loading' && 'Loading...'} */}
                 {
-                  // Add PaperPreview Component in loop
+                  FeaturePage && FeaturePage.length > 0 && FeaturePage.map(item => <div className={styles2.resultsItem} key={item.id}>
+                    <PaperPreview data={item} />
+                  </div>)
                 }
               </div>
             </div>
+
+            <div className={styles.section}>
+              <div className={styles.sectionTitleActivity}>Activity </div>
+              <div className={styles.activityContent}>
+                <div className={styles.graph}>
+                  <div className={styles.graphFrames}>
+                    <button className={`${styles.graphToggle} ${key === 'month' ? styles.graphToggleActive : ''}`} type="button" onClick={() => setKey('month')}>1m</button>
+                    <button className={`${styles.graphToggle} ${key === 'three' ? styles.graphToggleActive : ''}`} type="button" onClick={() => setKey('three')}>3m</button>
+                    <button className={`${styles.graphToggle} ${key === 'half' ? styles.graphToggleActive : ''}`} type="button" onClick={() => setKey('half')}>6m</button>
+                    <button className={`${styles.graphToggle} ${key === 'year' ? styles.graphToggleActive : ''}`} type="button" onClick={() => setKey('year')}>1y</button>
+                  </div>
+                  <Chart data={data} />
+                </div>
+              </div>
+            </div>
+
+
           </TabPanel>
           <TabPanel className={styles.tabPanel}>
             <div className={styles.section}>
               <div className={styles.sectionTitle}>Papers</div>
               <div className={styles.papersContent}>
-                {
-                  <SearchResults />
-                }
+                {status === 'loading' && 'Loading...'}
+                {status === 'loaded' && <SearchResults />}
+                {count > 10 && <Pagination maxItems={count} itemsPerPage={10} currentPage={page} changePage={setPage} prev="Previous" next="Next" className={styles.pagination} />}
               </div>
             </div>
           </TabPanel>
@@ -228,7 +313,7 @@ const Profile = () => {
           <div className={styles.editProfileModalContent}>
             <div className={styles.editProfileModalHeader}>
               <div className={styles.editProfileModalHeaderTitle}>Edit profile</div>
-              <Button classes={styles.btnEdit} type="button" size="md" kind="fill">Save</Button>
+              <Button classes={styles.btnEdit} type="button" size="md" kind="fill" onClick={() => hideModal()}>Save</Button>
             </div>
             <div className={styles.editProfileModalBody}>
               <div className={styles.editProfileModalBodyAvatarr}>
@@ -251,12 +336,12 @@ const Profile = () => {
                 </div>
                 <div className={styles.editProfileModalFormGroup}>
                   <textarea
-                    id="firstName"
-                    name="firstName"
+                    id="biouser"
+                    name="bio"
                     type="text"
                     required
                     className={styles.textarea}></textarea>
-                  <label htmlFor="firstName" className={styles.label}>Bio</label>
+                  <label htmlFor="bio" className={styles.label}>Bio</label>
                 </div>
               </form>
 

@@ -21,7 +21,7 @@ import styles from './Search.module.scss';
 import AvatarImg from '@assets/avatar.png';
 
 const users = [{
-  authorid: 111,
+  authorid: 2009723854,
   photo: AvatarImg,
   firstName: 'Simon',
   lastName: 'Ware',
