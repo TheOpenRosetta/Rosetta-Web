@@ -48,7 +48,7 @@ const Paper = () => {
   const { paperId } = useParams();
   const dispatch = useDispatch();
   const paper = useSelector(selectPaper);
-
+  console.log(paper);
   // Dispute history modal
   const [modalIsOpen, setIsOpen] = useState(false);
   const openModal = () => setIsOpen(true);
@@ -92,7 +92,7 @@ const Paper = () => {
           {
             paper.authors.length > 0 && <div className={styles.authors}>By {paper.authors.map(item => item.name).join(', ')}</div>
           }
-          <div className={styles.version}>V{paper.version}</div>
+          <div className={styles.version}>V{paper.version}  <Link to='/' style={{'color':'#B68E5C', textDecoration:'none'}}> (See previous versions)</Link></div>
           <div className={styles.paperActionWrapper}>
             <button className={styles.paperAction} type="button" onClick={() => {}}><ShareIcon /></button>
             <button className={styles.paperAction} type="button" onClick={() => {}}><MessageIcon /></button>
