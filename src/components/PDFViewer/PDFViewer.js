@@ -103,7 +103,7 @@ const PDFViewer = ({ url, highlights = [], setHighlights, setPreviewError }) => 
   }
 
   return <>
-    <PdfLoader url='https://arxiv.org/pdf/1708.08021.pdf' beforeLoad={<Loader/>} errorMessage={errorMessage} onError={() => setPreviewError(true)}>
+    <PdfLoader url={url} beforeLoad={<Loader/>} errorMessage={errorMessage} onError={() => setPreviewError(true)}>
       {(pdfDocument) => (
         <PdfHighlighter
           pdfDocument={pdfDocument}
