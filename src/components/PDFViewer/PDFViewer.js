@@ -4,7 +4,9 @@ import {
   PdfHighlighter,
   Highlight,
   Popup,
+  Tip,
   AreaHighlight,
+
 } from "react-pdf-highlighter";
 import Button from '@components/Button';
 import Loader from '@components/Loader';
@@ -15,8 +17,8 @@ import {
   selectUser
 } from '@services/Auth/authSlice';
 
+
 import styles from './PDFViewer.module.scss';
-import Tip from './Tip';
 
 const getNextId = () => String(Math.random()).slice(2);
 
