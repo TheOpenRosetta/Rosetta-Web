@@ -8,6 +8,7 @@ const initialState = {
   data: null,
   papers: '',
   paperStatus: '',
+  paperCount: 0,
 };
 
 export const userSlice = createSlice({
@@ -25,8 +26,9 @@ export const userSlice = createSlice({
       state.paperStatus = 'loading';
     },
     gotFeaturePapersData: (state, action) => {
-      state.papers = action.payload;
+      state.papers = [...action.payload.docs];
       state.paperStatus = 'loaded';
+      state.paperCount = action.payload.numFound;
     },
   }
 });
@@ -35,7 +37,7 @@ export const {
   getUserData,
   gotUserData,
   getFeaturePapersData,
-  gotFeaturePapersData,
+  gotFeaturePapersData
 } = userSlice.actions;
 
 export const selectUserStatus = (state) => state.user.status;
@@ -43,6 +45,7 @@ export const selectUserData = (state) => state.user.data;
 
 export const selectFeaturePaperUserStatus = (state) => state.user.paperStatus;
 export const selectFeaturePaperUserData = (state) => state.user.papers;
+export const selectFeaturePaperCount = (state) => state.user.paperCount;
 
 export const fetchUser = ({ username }) => async (dispatch) => {
   // COMMENT: currently username is address
@@ -55,13 +58,13 @@ export const fetchUser = ({ username }) => async (dispatch) => {
     });
 }
 
-export const fetchFeaturedPaperUser = ({ authorId }) => async (dispatch) => {
+export const fetchFeaturedPaperUser = ({ authorId, start }) => async (dispatch) => {
   // COMMENT: currently fetching featured paper
-  const url = `https://searchserver1.eastus.cloudapp.azure.com:8983/solr/OAG/query?q=authors_ids:${authorId}&q.op=AND&indent=true&rows=2&wt=json&start=1&qt=/select`;
+  const url = `https://searchserver1.eastus.cloudapp.azure.com:8983/solr/OAG/query?q=authors_ids:${authorId}&q.op=AND&indent=true&rows=100&wt=json&start=${start * 10}&qt=/select`;
   dispatch(getFeaturePapersData());
   await axios.get(url)
     .then(({ data }) => {
-      dispatch(gotFeaturePapersData(data.response.docs))
+      dispatch(gotFeaturePapersData(data.response))
     });
 }
 export default userSlice.reducer;

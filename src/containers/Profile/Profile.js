@@ -18,20 +18,8 @@ import {
   fetchFeaturedPaperUser,
   selectFeaturePaperUserStatus,
   selectFeaturePaperUserData,
+  selectFeaturePaperCount
 } from '@services/User/userSlice';
-
-import {
-  selectSearchText,
-  selectSearchCount,
-  selectSearchStatus,
-  fetchSearch,
-} from '@services/Search/searchSlice';
-
-import {
-  //SearchFilters,
-  SearchResults,
-  SearchUsers
-} from '@components/Search';
 
 import styles2 from '../../components/Search/SearchResults/SearchResults.module.scss';
 
@@ -74,12 +62,11 @@ const Profile = () => {
 
   const [page, setPage] = useState(1);
   const [FeaturePage, setFeaturePage] = useState([]);
-  const count = useSelector(selectSearchCount);
-  const searchText = useSelector(selectSearchText);
-
+  const count = useSelector(selectFeaturePaperCount);
+  console.log("userData", userData);
   useEffect(() => {
-    dispatch(fetchSearch({ q: searchText, start: (page - 1) }));
-  }, [searchText, page, dispatch]);
+    dispatch(fetchFeaturedPaperUser({ authorId: "2009723854", start: (page - 1) }));
+  }, [page, dispatch]);
 
   // function for making number digits to k
   function kFormatter(num) {
@@ -107,13 +94,13 @@ const Profile = () => {
   // Need to remove the hardcode id and fetch papers api
   useEffect(() => {
     dispatch(fetchUser({ username }));
-    dispatch(fetchFeaturedPaperUser({ authorId: "2009723854" }));
+    dispatch(fetchFeaturedPaperUser({ authorId: "2009723854", start: (page - 1) }));
   }, [dispatch, username]);
 
   // Sort feature array according to highest prbscore
   useEffect(() => {
     if(featurePaperData) {
-      let modifyPaperWorks = featurePaperData.slice().sort(function (a, b) {
+      let modifyPaperWorks = featurePaperData.slice(0, 2).sort((a, b) => {
         return b.prb_score - a.prb_score;
       });
       setFeaturePage(modifyPaperWorks)
@@ -240,8 +227,6 @@ const Profile = () => {
             <div className={styles.section}>
               <div className={styles.sectionTitle}>Featured Papers</div>
               <div className={styles.papersContent}>
-                {/* for showing loaded tag for users */}
-                {/* {featurePaperStatus === 'loading' && 'Loading...'} */}
                 {
                   FeaturePage && FeaturePage.length > 0 && FeaturePage.map(item => <div className={styles2.resultsItem} key={item.id}>
                     <PaperPreview data={item} />
@@ -271,8 +256,11 @@ const Profile = () => {
             <div className={styles.section}>
               <div className={styles.sectionTitle}>Papers</div>
               <div className={styles.papersContent}>
-                {status === 'loading' && 'Loading...'}
-                {status === 'loaded' && <SearchResults />}
+                {
+                  featurePaperData && featurePaperData.length > 0 && featurePaperData.map(item => <div className={styles2.resultsItem} key={item.id}>
+                    <PaperPreview data={item} />
+                  </div>)
+                }
                 {count > 10 && <Pagination maxItems={count} itemsPerPage={10} currentPage={page} changePage={setPage} prev="Previous" next="Next" className={styles.pagination} />}
               </div>
             </div>
