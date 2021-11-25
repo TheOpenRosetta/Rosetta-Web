@@ -217,6 +217,7 @@ const Paper = () => {
         <DisputeStory paper={paper} />
       </div>
     </Modal>
+    pinned
   </div>
 }
 
