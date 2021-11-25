@@ -5,7 +5,6 @@ import {
   Link
 } from "react-router-dom";
 import Modal from 'react-modal';
-
 import Chart from '@components/Chart';
 import DisputeStory from '@components/DisputeStory';
 import PDFViewer from '@components/PDFViewer';
@@ -49,7 +48,7 @@ const Paper = () => {
   const { paperId } = useParams();
   const dispatch = useDispatch();
   const paper = useSelector(selectPaper);
-
+  console.log(paper);
   // Dispute history modal
   const [modalIsOpen, setIsOpen] = useState(false);
   const openModal = () => setIsOpen(true);
@@ -93,7 +92,7 @@ const Paper = () => {
           {
             paper.authors.length > 0 && <div className={styles.authors}>By {paper.authors.map(item => item.name).join(', ')}</div>
           }
-          <div className={styles.version}>V{paper.version}</div>
+          <div className={styles.version}>V{paper.version}  <Link to='/' style={{'color':'#B68E5C', textDecoration:'none'}}> (See previous versions)</Link></div>
           <div className={styles.paperActionWrapper}>
             <button className={styles.paperAction} type="button" onClick={() => {}}><ShareIcon /></button>
             <button className={styles.paperAction} type="button" onClick={() => {}}><MessageIcon /></button>
@@ -190,7 +189,7 @@ const Paper = () => {
           </div>
 
           <div className={`${styles.paperPreview} ${previewError || !paper.url ? styles.paperPreviewError : ''}`}>
-            <PDFViewer setPreviewError={setPreviewError} url={paper.url} highlights={paper.highlights} setHighlights={(data) => dispatch(setHighlights(data))} />
+            <PDFViewer setPreviewError={setPreviewError} url='https://arxiv.org/pdf/1708.08021.pdf' highlights={paper.highlights} setHighlights={(data) => dispatch(setHighlights(data))} />
           </div>
         </div>
         <div className={styles.paperComments}>

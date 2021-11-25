@@ -63,9 +63,11 @@ const Profile = () => {
   const [page, setPage] = useState(1);
   const [FeaturePage, setFeaturePage] = useState([]);
   const count = useSelector(selectFeaturePaperCount);
-  console.log("userData", userData);
+  
   useEffect(() => {
-    dispatch(fetchFeaturedPaperUser({ authorId: "2009723854", start: (page - 1) }));
+    var urlParams = window.location.pathname.split("_")
+    var id = urlParams[urlParams.length -1]
+    dispatch(fetchFeaturedPaperUser({ authorId: id ? id : "2009723854", start: (page - 1) }));
   }, [page, dispatch]);
 
   // function for making number digits to k
@@ -94,7 +96,9 @@ const Profile = () => {
   // Need to remove the hardcode id and fetch papers api
   useEffect(() => {
     dispatch(fetchUser({ username }));
-    dispatch(fetchFeaturedPaperUser({ authorId: "2009723854", start: (page - 1) }));
+    var urlParams = window.location.pathname.split("_")
+    var id = urlParams[urlParams.length -1]
+    dispatch(fetchFeaturedPaperUser({ authorId: id ? id : "2009723854", start: (page - 1) }));
   }, [dispatch, username]);
 
   // Sort feature array according to highest prbscore

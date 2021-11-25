@@ -21,7 +21,7 @@ const SearchResults = () => {
     </div>;
   }
 
-  return <div className={`${styles.results} ${styles.resultsEmpty}`}>Papers with "{searchText}" in name don't found</div>;
+  return <div className={`${styles.results} ${styles.resultsEmpty}`}>Papers with "{searchText}" not found</div>;
 }
 
 export default SearchResults;

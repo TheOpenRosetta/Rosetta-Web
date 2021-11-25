@@ -7,6 +7,7 @@ import {
   AreaHighlight,
 } from "react-pdf-highlighter";
 import Button from '@components/Button';
+import Loader from '@components/Loader';
 import { Link } from "react-router-dom";
 
 import { useSelector } from 'react-redux';
@@ -102,7 +103,7 @@ const PDFViewer = ({ url, highlights = [], setHighlights, setPreviewError }) => 
   }
 
   return <>
-    <PdfLoader url={url} errorMessage={errorMessage} onError={() => setPreviewError(true)}>
+    <PdfLoader url={url} beforeLoad={<Loader/>} errorMessage={errorMessage} onError={() => setPreviewError(true)}>
       {(pdfDocument) => (
         <PdfHighlighter
           pdfDocument={pdfDocument}
