@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  useParams
+  useParams,
 } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel, resetIdCounter } from 'react-tabs';
 // import {priceFormat, percentFormat} from '@utils/numbers';
@@ -29,7 +29,6 @@ import year from '@dataset/year.json';
 
 import PaperPreview from '@components/PaperPreview';
 
-
 import { ReactComponent as FollowersIcon } from '@assets/customIcons/customer.svg';
 import { ReactComponent as FollowingIcon } from '@assets/customIcons/followers.svg';
 import { ReactComponent as CommunityIcon } from '@assets/customIcons/community.svg';
@@ -46,6 +45,8 @@ resetIdCounter();
 const Profile = () => {
   // Tab index
   const [tabIndex, setTabIndex] = useState(0);
+  const [CurrentUserName, setCurrentUserName] = useState("");
+  const [ImapctScore, setImapctScore] = useState(0);
   const { username } = useParams();
   const status = useSelector(selectUserStatus);
   const userData = useSelector(selectUserData);
@@ -60,12 +61,6 @@ const Profile = () => {
   const [page, setPage] = useState(1);
   const [FeaturePage, setFeaturePage] = useState([]);
   const count = useSelector(selectFeaturePaperCount);
-  
-  // useEffect(() => {
-  //   var urlParams = window.location.pathname.split("_")
-  //   var id = urlParams[urlParams.length -1]
-  //   dispatch(fetchFeaturedPaperUser({ authorId: id ? id : "2009723854", start: (page - 1) }));
-  // }, [page, dispatch]);
 
   // function for making number digits to k
   function kFormatter(num) {
@@ -90,25 +85,49 @@ const Profile = () => {
     }
   }, [key]);
 
-  // Need to remove the hardcode id and fetch papers api
   useEffect(() => {
     dispatch(fetchUser({ username }));
-    var urlParams = window.location.pathname.split("_")
-    var id = urlParams[urlParams.length -1]
+    var urlParams = window.location.pathname.split("_");
+    var id = urlParams[urlParams.length - 1];
     dispatch(fetchFeaturedPaperUser({ authorId: id ? id : "2009723854", start: (page - 1) }));
+    var getUrlParamData = window.location.pathname.split("/");
+    var getName = getUrlParamData[2].split("_");
+    setCurrentUserName(getName[0] + " " + getName[1]);
   }, [dispatch, username, page]);
 
   // Sort feature array according to highest prbscore
   useEffect(() => {
-    if(featurePaperData) {
+    if (featurePaperData) {
       let modifyPaperWorks = featurePaperData.slice(0, 2).sort((a, b) => {
         return b.prb_score - a.prb_score;
       });
       setFeaturePage(modifyPaperWorks)
     }
+
+    var urlParams = window.location.pathname.split("_");
+    var id = urlParams[urlParams.length - 1];
+    let a = { prb: 0, authorIdCount: 0 }
+
+    featurePaperData && featurePaperData.length > 0 && featurePaperData.map((paperData, index) => {
+      if (paperData.authors_names[index] !== undefined) {
+        for (let i = 0; i < paperData.authors_names.length; i++) {
+          if (paperData.authors_names[i] === CurrentUserName) {
+            if (paperData.prb_score !== undefined) {
+              a.prb += paperData.prb_score
+            }
+          }
+          if (paperData.authors_ids[i] === id) {
+            a.authorIdCount++
+          }
+        }
+      }
+      return a;
+    })
+    let impactScore = a.prb / a.authorIdCount
+    setImapctScore(impactScore)
   }, [featurePaperData]);
 
-  
+
   // Open and Hide modal
   const activateEditModal = () => {
     setShowEditModal(true);
@@ -137,10 +156,10 @@ const Profile = () => {
             <Avatar src={userData.AvatarImg || AvatarImg} title={userData.name} kind="bordered" size="xl" classes={styles.avatar} />
           </div>
           <div className={styles.profileInfo}>
-            <div className={styles.name}>{userData.name}</div>
+            <div className={styles.name}>{CurrentUserName}</div>
             <div className={styles.status}>{userData.status}</div>
             <div className={styles.committed}>Academic Fraud Committed: <span>{userData.fraudCommitted ? 'yes' : 'no'}</span></div>
-            <div className={styles.impact}>ImpactScore: <span>{kFormatter(userData.impactScore)}</span></div>
+            <div className={styles.impact}>ImpactScore: <span>{kFormatter(ImapctScore)}</span></div>
             <div className={styles.infoActions}>
               <Button classes={styles.btnFollow} type="button" size="md" kind="fill">Follow</Button>
               <Button classes={styles.btnSponsor} type="button" size="md" kind="outline">Sponsor</Button>
@@ -150,11 +169,11 @@ const Profile = () => {
             <div className={styles.moneyTitle}>Rosetta Tokens Available</div>
             <div className={styles.moneyRow}>
               <div className={styles.moneyCol}>
-                <div className={styles.moneyValue}>${userData.onceOffTokens}</div>
+                <div className={styles.moneyValue}>${Math.round(ImapctScore * 50000)}</div>
                 <div className={styles.moneySubtitle}>Once off accrued tokens</div>
               </div>
               <div className={styles.moneyCol}>
-                <div className={styles.moneyValue}>${userData.monthlyTokens}</div>
+                <div className={styles.moneyValue}>${Math.round(ImapctScore * 10000)}</div>
                 <div className={styles.moneySubtitle}>Monthly Ongoing Tokens</div>
               </div>
             </div>

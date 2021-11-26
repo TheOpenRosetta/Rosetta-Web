@@ -8,6 +8,7 @@ import {selectSearchResult} from '@services/Search/searchSlice';
 const SearchUsers = () => {
   const searchResult = useSelector(selectSearchResult);
   const commonAuthors = FindCommonAuthors(searchResult, 'authors_names', 'authors_ids');
+
   return <div className={styles.users}>
     {
       commonAuthors.map((author, index) => <Link to={`/user/${author.authors_names.split(" ").join("_")}_${author.authors_ids}`} key={author.authors_ids + "" + index} className={styles.usersItem}>
