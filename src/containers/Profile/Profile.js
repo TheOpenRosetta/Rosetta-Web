@@ -16,7 +16,6 @@ import {
   selectUserData,
   fetchUser,
   fetchFeaturedPaperUser,
-  selectFeaturePaperUserStatus,
   selectFeaturePaperUserData,
   selectFeaturePaperCount
 } from '@services/User/userSlice';
@@ -51,9 +50,7 @@ const Profile = () => {
   const status = useSelector(selectUserStatus);
   const userData = useSelector(selectUserData);
 
-  const featurePaperStatus = useSelector(selectFeaturePaperUserStatus);
   const featurePaperData = useSelector(selectFeaturePaperUserData);
-
 
   const dispatch = useDispatch();
   const [key, setKey] = useState('month');
@@ -64,11 +61,11 @@ const Profile = () => {
   const [FeaturePage, setFeaturePage] = useState([]);
   const count = useSelector(selectFeaturePaperCount);
   
-  useEffect(() => {
-    var urlParams = window.location.pathname.split("_")
-    var id = urlParams[urlParams.length -1]
-    dispatch(fetchFeaturedPaperUser({ authorId: id ? id : "2009723854", start: (page - 1) }));
-  }, [page, dispatch]);
+  // useEffect(() => {
+  //   var urlParams = window.location.pathname.split("_")
+  //   var id = urlParams[urlParams.length -1]
+  //   dispatch(fetchFeaturedPaperUser({ authorId: id ? id : "2009723854", start: (page - 1) }));
+  // }, [page, dispatch]);
 
   // function for making number digits to k
   function kFormatter(num) {
@@ -99,7 +96,7 @@ const Profile = () => {
     var urlParams = window.location.pathname.split("_")
     var id = urlParams[urlParams.length -1]
     dispatch(fetchFeaturedPaperUser({ authorId: id ? id : "2009723854", start: (page - 1) }));
-  }, [dispatch, username]);
+  }, [dispatch, username, page]);
 
   // Sort feature array according to highest prbscore
   useEffect(() => {
