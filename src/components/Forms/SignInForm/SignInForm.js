@@ -5,7 +5,6 @@ import Button from '@components/Button';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   signIn,
-  logout,
   selectBytes,
   getNonce,
 } from '@services/Auth/authSlice';
