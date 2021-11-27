@@ -1,9 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import arweave from 'arweave';
-
 import AvatarImg from '@assets/avatar.png';
-
 const initialState = {
   bytes: null,
   signature: null,
@@ -56,7 +54,7 @@ export const {
   saveSignature
 } = authSlice.actions;
 
-export const selectStatus = (state) => !!state.auth.id;
+export const selectStatus = (state) => state.auth.id;
 export const selectBytes = (state) => state.auth.bytes;
 export const selectSignature = (state) => state.auth.signature;
 export const selectUser = (state) => ({
