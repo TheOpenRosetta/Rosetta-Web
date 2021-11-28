@@ -88,6 +88,7 @@ export const checkAuth = () => async (dispatch) => {
         localStorage.setItem('rosetta_address', address);
         localStorage.setItem('rosetta_signature', JSON.stringify(signature));
         dispatch(login(data))
+        console.log(data);
       })
       .catch(() => {
         dispatch(logout())
@@ -106,6 +107,7 @@ export const signIn = ({ address, signature }) => async (dispatch) => {
       localStorage.setItem('rosetta_address', address);
       localStorage.setItem('rosetta_signature', JSON.stringify(signature));
       dispatch(login(data))
+      console.log(data);
     })
     .catch(() => {
       dispatch(logout())
