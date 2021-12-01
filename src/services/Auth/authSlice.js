@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import arweave from 'arweave';
-import AvatarImg from '@assets/avatar.png';
+import AvatarImg from '@assets/dummy/user.png';
 const initialState = {
   bytes: null,
   signature: null,

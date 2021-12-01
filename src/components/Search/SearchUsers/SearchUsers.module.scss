@@ -8,8 +8,7 @@
   justify-content: space-between;
   margin: 0 -4px;
   &Item {
-    flex: 1 0;
-    max-width: calc(25% - 8px);
+    flex: 1 0 calc(25% - 8px);
     margin: 0 4px 8px;
     padding: 8px;
     border-radius: 8px;
@@ -20,8 +19,7 @@
     background-color: $colorPrimaryWhite;
     text-decoration: none;
     @media(max-width: 1023px) {
-      flex: 1 0 50%;
-      max-width: calc(50% - 8px);
+      flex: 1 0 calc(50% - 8px);
       flex-wrap: wrap;
     }
     @media(max-width: 767px) {

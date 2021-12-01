@@ -33,7 +33,9 @@ import { ReactComponent as FollowersIcon } from '@assets/customIcons/customer.sv
 import { ReactComponent as FollowingIcon } from '@assets/customIcons/followers.svg';
 import { ReactComponent as CommunityIcon } from '@assets/customIcons/community.svg';
 
-import AvatarImg from '@assets/avatar.png';
+// Dummy data
+import AvatarImg from '@assets/dummy/user.png';
+
 import 'react-tabs/style/react-tabs.css';
 import styles from './Profile.module.scss';
 import { ReactComponent as EditIcons } from '@assets/icons/edit_profile.svg';
