@@ -102,6 +102,20 @@
         }
       }
     }
+    &Actions {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+    &Btn {
+      padding: 5px 18px;
+      &Sell {
+        background-color: $colorSupportRed;
+        border-color: $colorSupportRed;
+      }
+    }
   }
   &Action {
     height: 32px;
