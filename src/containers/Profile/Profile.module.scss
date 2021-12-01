@@ -343,6 +343,7 @@
   padding: 15px 12px;
   border-radius: 16px;
   margin-bottom: 32px;
+  @include BodySmall-REGULAR;
   ul{
     margin: 0;
     padding: 0;

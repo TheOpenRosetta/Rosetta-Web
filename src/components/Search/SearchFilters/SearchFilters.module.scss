@@ -3,7 +3,8 @@
 .filters {
   padding: 10px 16px 16px;
   background-color: $colorPrimaryWhite;
-  border-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
   margin-bottom: 8px;
   &Title {
     @include BodySmall-REGULAR;

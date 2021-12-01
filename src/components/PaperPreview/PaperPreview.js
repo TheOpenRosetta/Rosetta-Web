@@ -28,8 +28,8 @@ const PaperPreview = ({ data }) => {
       <div className={styles.date}>{DateTime.fromISO(data.date).toFormat('dd LLL yyyy')}</div>
     </div>
     {
-      data.preview && <div className={styles.preview}>
-        {data.preview} <Link to={`/paper/${data.id}`}>Expand</Link>
+      <div className={styles.preview}>
+        {data.preview || 'He option of phone and video visits has expanded access to vulnerable population during a time opportunities…'} <Link to={`/paper/${data.id}`}>Expand</Link>
       </div>
     }
     <div className={styles.footer}>

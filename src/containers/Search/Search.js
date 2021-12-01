@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '@components/Layout';
+import Area from '@components/Area';
 import Pagination from '@components/Pagination';
 //import SearchSidebar from './SearchSidebar';
 import { useSelector, useDispatch } from 'react-redux';
@@ -11,7 +12,7 @@ import {
 
 } from '@services/Search/searchSlice';
 import {
-  //SearchFilters,
+  SearchFilters,
   SearchResults,
   SearchUsers
 } from '@components/Search';
@@ -29,19 +30,23 @@ const Search = () => {
     dispatch(fetchSearch({ q: searchText, start: (page - 1) }));
   }, [searchText, page, dispatch]);
 
-  //const changeFilters = (params) => {
-    //console.log(params);
-  //}
+  const changeFilters = (params) => {
+    console.log(params);
+  }
 
   return <Layout navigation={false}>
     <div className={styles.grid}>
-      <div className={styles.total}>
-        {count} results for {searchText ? `"${searchText}"` : 'All Papers'}
-      </div>
       <div className={styles.results}>
-        {
-        //  <SearchFilters action={changeFilters} />
-        }
+        <Area
+          header={
+            <div className={styles.total}>
+              {count} results for {searchText ? `"${searchText}"` : 'All Papers'}
+            </div>
+          }
+          content={
+            <SearchFilters action={changeFilters} />
+          }
+        />
         <SearchUsers/>
         { status === 'loading' && 'Loading...' }
         { status === 'loaded' && <SearchResults /> }
