@@ -38,7 +38,7 @@ import 'react-tabs/style/react-tabs.css';
 import styles from './Profile.module.scss';
 import { ReactComponent as EditIcons } from '@assets/icons/edit_profile.svg';
 
-import { ReactComponent as ArcticContributor } from '@assets/icons/arcticcontributor.svg';
+import ArcticContributor from '@assets/award.png';
 
 resetIdCounter();
 
@@ -125,7 +125,7 @@ const Profile = () => {
     })
     let impactScore = a.prb / a.authorIdCount
     setImapctScore(impactScore)
-  }, [featurePaperData]);
+  }, [featurePaperData, CurrentUserName]);
 
 
   // Open and Hide modal
@@ -222,9 +222,9 @@ const Profile = () => {
 
           <div className={styles.awardsContent}>
             <ul>
-              <li> <ArcticContributor /> </li>
-              <li> <ArcticContributor /> </li>
-              <li> <ArcticContributor /> </li>
+              <li> <img src={ArcticContributor} alt="Award"/> </li>
+              <li> <img src={ArcticContributor} alt="Award"/> </li>
+              <li> <img src={ArcticContributor} alt="Award"/> </li>
             </ul>
           </div>
         </div>

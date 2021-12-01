@@ -367,7 +367,11 @@
     list-style-type: none;
     li{
       display: inline-block;
+      width: 36px;
       margin-right: 10px;
+      img {
+        width: 100%;
+      }
       &:last-child{
         margin-right: 0;
       }
@@ -512,4 +516,3 @@
     }
   }
 }
-
