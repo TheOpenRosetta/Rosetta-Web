@@ -21,7 +21,7 @@ const SignInForm = ({ className: classes }) => {
   const wallet = useArjs();
 
   const permission = { permissions: ["SIGN_TRANSACTION", "SIGNATURE", "ACCESS_ADDRESS", "ACCESS_PUBLIC_KEY"] }
-  const activate = (connector, key) => wallet.connect(connector, key);;
+  const activate = (connector, key) => wallet.connect(connector, key);
 
   const loadedHandler = () => {
     if (window.arweaveWallet) {
@@ -91,7 +91,7 @@ const SignInForm = ({ className: classes }) => {
     <div className={styles.actions}>
       {
         (extExist && wallet.status === "connected") ? <>
-          <Button kind="bordered" size="md" onClick={() => wallet.disconnect()}>Disconnect</Button>
+          <Button kind="bordered" size="md" onClick={() => {wallet.disconnect()}}>Disconnect</Button>
           <Button size="md" classes={styles.submit} type="button" onClick={() => signInAction()}>Login</Button>
         </> :
           <Button kind="fill" size="sm" onClick={() => activate('arconnect', permission)}>ArConnect</Button>

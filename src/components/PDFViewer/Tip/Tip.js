@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import TipContainer from "./TipContainer";
 import {ReactComponent as EditIcon} from '@assets/icons/edit-outline.svg';
 import styles from './Tip.module.scss';
 
@@ -14,6 +14,7 @@ const Tip = ({ onUpdate, onConfirm, onOpen }) => {
   }, [onUpdate, compact]);
 
   return (
+    <TipContainer>
     <div className={styles.tip}>
       {compact ? (
         <div
@@ -56,6 +57,7 @@ const Tip = ({ onUpdate, onConfirm, onOpen }) => {
         </form>
       )}
     </div>
+    </TipContainer>
   );
 }
 

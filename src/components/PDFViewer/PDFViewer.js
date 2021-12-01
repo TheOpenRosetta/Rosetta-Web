@@ -6,7 +6,6 @@ import {
   Popup,
   Tip,
   AreaHighlight,
-
 } from "react-pdf-highlighter";
 import Button from '@components/Button';
 import Loader from '@components/Loader';
@@ -16,7 +15,6 @@ import { useSelector } from 'react-redux';
 import {
   selectUser
 } from '@services/Auth/authSlice';
-
 
 import styles from './PDFViewer.module.scss';
 
@@ -31,7 +29,7 @@ const resetHash = () => {
 
 const HighlightPopup = ({ comment }) =>
   comment.text ? (
-    <div>
+    <div className="Highlight__popup">
       {comment.text}
     </div>
   ) : null;

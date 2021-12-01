@@ -192,7 +192,7 @@ const Paper = () => {
           </div>
 
           <div className={`${styles.paperPreview} ${previewError || !paper.url ? styles.paperPreviewError : ''}`}>
-            <PDFViewer setPreviewError={setPreviewError} url='https://arxiv.org/pdf/1708.08021.pdf' highlights={paper.highlights} setHighlights={(data) => dispatch(setHighlights(data))} />
+            <PDFViewer setPreviewError={setPreviewError} url={paper.url} highlights={paper.highlights} setHighlights={(data) => dispatch(setHighlights(data))} />
           </div>
         </div>
         <div className={styles.paperComments}>
@@ -220,7 +220,6 @@ const Paper = () => {
         <DisputeStory paper={paper} />
       </div>
     </Modal>
-    pinned
   </div>
 }
 
