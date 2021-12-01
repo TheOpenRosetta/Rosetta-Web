@@ -29,7 +29,7 @@ const PaperPreview = ({ data }) => {
     </div>
     {
       <div className={styles.preview}>
-        {data.preview || 'He option of phone and video visits has expanded access to vulnerable population during a time opportunities…'} <Link to={`/paper/${data.id}`}>Expand</Link>
+        {data.preview ? <>{data.preview} <Link to={`/paper/${data.id}`}>Expand</Link></> : `The author has not self-archived this paper on Rosetta at this moment, so we can't show the abstract because of copyright laws.` }
       </div>
     }
     <div className={styles.footer}>
