@@ -235,11 +235,16 @@ const Profile = () => {
                 <div className={styles.sectionTitle}>Bio</div>
                 <div className={styles.bioContent}>
                   <ul>
-                    {
+                    {/* {
                       userData.bio.split(',').map((bioData, index) => {
                         return <li key={index}>{bioData}</li>;
                       })
-                    }
+                    } */}
+                    <li> 1 - 👋 Hi I’m @{CurrentUserName}, </li>
+                    <li> 2 - 👀 I’m interested in ... , </li>
+                    <li> 3 - 🌱 I’m currently learning ...,</li>
+                    <li> 4 - 💞 I’m Looking to collaborate on ... ,</li>
+                    <li> 5 - 📫 How to reach me ..</li>
                   </ul>
                 </div>
               </div>
