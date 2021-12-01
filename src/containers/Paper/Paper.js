@@ -111,7 +111,10 @@ const Paper = () => {
                 </li>)
               }
             </ul>
-            <Button classes={styles.paperBadgeBtn} type="button" size="sm" kind="fill">Buy now</Button>
+            <div className={styles.paperBadgeActions}>
+              <Button classes={`${styles.paperBadgeBtn} ${styles.paperBadgeBtnBuy}`} type="button" size="sm" kind="fill">Buy</Button>
+              <Button classes={`${styles.paperBadgeBtn} ${styles.paperBadgeBtnSell}`} type="button" size="sm" kind="fill">Sell</Button>
+            </div>
           </div>
         </div>
       </div>

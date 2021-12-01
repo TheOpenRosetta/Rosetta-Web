@@ -36,7 +36,7 @@ const PaperPreview = ({ data }) => {
       <div className={styles.comments}>
         <Link to={`${data.id}/comments`}>
           <CommentIcon />
-          {data.comments || 0}
+          {data.n_citation || 0}
         </Link>
       </div>
       <div className={styles.likes}>
