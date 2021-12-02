@@ -113,10 +113,8 @@ const Profile = () => {
     featurePaperData && featurePaperData.length > 0 && featurePaperData.map((paperData, index) => {
       if (paperData.authors_names[index] !== undefined) {
         for (let i = 0; i < paperData.authors_names.length; i++) {
-          if (paperData.authors_names[i] === CurrentUserName) {
-            if (paperData.prb_score !== undefined) {
-              a.prb += paperData.prb_score
-            }
+          if (paperData.prb_score !== undefined) {
+            a.prb += paperData.prb_score
           }
           if (paperData.authors_ids[i] === id) {
             a.authorIdCount++

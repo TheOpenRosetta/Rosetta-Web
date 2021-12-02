@@ -260,6 +260,10 @@
 .version {
   @include BodyLarge-REGULAR;
   color: $colorPrimaryWhite;
+  &Link {
+    color: $colorPrimaryGold;
+    text-decoration: none;
+  }
 }
 
 .dropdown {
