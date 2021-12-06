@@ -51,7 +51,7 @@ export const selectSearchCount = (state) => state.search.count;
 
 
 export const fetchSearch = ({ q , start }) => async (dispatch) => {
-  const numrows = 20
+  const numrows = 20;
   const url = `https://searchserver1.eastus.cloudapp.azure.com:8983/solr/OAG/select?q.op=OR&q=${q}&start=${start * numrows}&rows=${numrows}`;
   dispatch(searchLoading());
   await axios.get(url)

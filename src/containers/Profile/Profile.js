@@ -47,7 +47,6 @@ resetIdCounter();
 const Profile = () => {
   // Tab index
   const [tabIndex, setTabIndex] = useState(0);
-  const [CurrentUserName, setCurrentUserName] = useState("");
   const [ImapctScore, setImapctScore] = useState(0);
   const { username } = useParams();
   const status = useSelector(selectUserStatus);
@@ -68,7 +67,6 @@ const Profile = () => {
   function kFormatter(num) {
     return Math.abs(num) > 999 ? Math.sign(num) * ((Math.abs(num) / 1000).toFixed(1)) + 'k' : Math.sign(num) * Math.abs(num)
   }
-
 
   useEffect(() => {
     switch (key) {
@@ -91,11 +89,9 @@ const Profile = () => {
     dispatch(fetchUser({ username }));
     var urlParams = window.location.pathname.split("_");
     var id = urlParams[urlParams.length - 1];
+    console.log(userData);
     dispatch(fetchFeaturedPaperUser({ authorId: id ? id : "2009723854", start: (page - 1) }));
-    var getUrlParamData = window.location.pathname.split("/");
-    var getName = getUrlParamData[2].split("_");
-    setCurrentUserName(getName[0] + " " + getName[1]);
-  }, [dispatch, username, page]);
+  }, [dispatch, username, page, userData]);
 
   // Sort feature array according to highest prbscore
   useEffect(() => {
@@ -125,7 +121,7 @@ const Profile = () => {
     })
     let impactScore = a.prb / a.authorIdCount
     setImapctScore(impactScore)
-  }, [featurePaperData, CurrentUserName]);
+  }, [featurePaperData]);
 
 
   // Open and Hide modal
@@ -156,7 +152,7 @@ const Profile = () => {
             <Avatar src={userData.AvatarImg || AvatarImg} title={userData.name} kind="bordered" size="xl" classes={styles.avatar} />
           </div>
           <div className={styles.profileInfo}>
-            <div className={styles.name}>{CurrentUserName}</div>
+            <div className={styles.name}>{userData.firstName} {userData.lastName}</div>
             <div className={styles.status}>{userData.status}</div>
             <div className={styles.committed}>Academic Fraud Committed: <span>{userData.fraudCommitted ? 'yes' : 'no'}</span></div>
             <div className={styles.impact}>ImpactScore: <span>{kFormatter(ImapctScore)}</span></div>
@@ -240,7 +236,7 @@ const Profile = () => {
                         return <li key={index}>{bioData}</li>;
                       })
                     } */}
-                    <li> 1 - 👋 Hi I’m @{CurrentUserName}, </li>
+                    <li> 1 - 👋 Hi I’m @{userData.firstName}, </li>
                     <li> 2 - 👀 I’m interested in ... , </li>
                     <li> 3 - 🌱 I’m currently learning ...,</li>
                     <li> 4 - 💞 I’m Looking to collaborate on ... ,</li>

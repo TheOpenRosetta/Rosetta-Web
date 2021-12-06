@@ -19,11 +19,19 @@ export const userSlice = createSlice({
       state.status = 'loading';
     },
     gotUserData: (state, action) => {
-      state.data = action.payload;
-      state.status = 'loaded';
+      state.data = {
+        ...action.payload,
+        bio: userData.bio,
+        impactScore: userData.impactScore,
+        status: userData.status,
+        stats: userData.stats,
+        fraudCommitted: userData.fraudCommitted,
+        monthlyTokens: userData.monthlyTokens,
+        onceOffTokens: userData.onceOffTokens
+      };
     },
     getFeaturePapersData: (state) => {
-      state.paperStatus = 'loading';
+      // state.paperStatus = 'loading';
     },
     gotFeaturePapersData: (state, action) => {
       state.papers = [...action.payload.docs];
@@ -49,12 +57,13 @@ export const selectFeaturePaperCount = (state) => state.user.paperCount;
 
 export const fetchUser = ({ username }) => async (dispatch) => {
   // COMMENT: currently username is address
-  const url = `https://rosettabackendservereast.azurewebsites.net/api/v1/getuserprofile/${username}/`;
+  // const url = `https://rosettabackendservereast.azurewebsites.net/api/v1/getuserprofile/${username}/`;
+  const url = `http://localhost:8080/api/v1/getuserprofile?username=${username}`;
   // dispatch(gotUserData(userData.data));
   dispatch(getUserData());
   await axios.get(url)
     .then(({ data }) => {
-      dispatch(gotUserData(userData.data))
+      dispatch(gotUserData(data))
     });
 }
 
