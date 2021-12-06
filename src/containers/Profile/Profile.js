@@ -46,7 +46,7 @@ resetIdCounter();
 const Profile = () => {
   // Tab index
   const [tabIndex, setTabIndex] = useState(0);
-  const [ImapctScore, setImapctScore] = useState(0);
+  const [ImpactScore, setImpactScore] = useState(0);
   const { username } = useParams();
   const status = useSelector(selectUserStatus);
   const userData = useSelector(selectUserData);
@@ -128,7 +128,7 @@ const Profile = () => {
       });
     }
 
-    setImapctScore(impactScore)
+    setImpactScore(impactScore)
   }, [featurePaperData]);
 
 
@@ -163,7 +163,7 @@ const Profile = () => {
             <div className={styles.name}>{userData.firstName} {userData.lastName}</div>
             <div className={styles.status}>{userData.status}</div>
             <div className={styles.committed}>Academic Fraud Committed: <span>{userData.fraudCommitted ? 'yes' : 'no'}</span></div>
-            <div className={styles.impact}>ImpactScore: <span>{kFormatter(ImapctScore)}</span></div>
+            <div className={styles.impact}>ImpactScore: <span>{kFormatter(ImpactScore)}</span></div>
             <div className={styles.infoActions}>
               <Button classes={styles.btnFollow} type="button" size="md" kind="fill">Follow</Button>
               <Button classes={styles.btnSponsor} type="button" size="md" kind="outline">Sponsor</Button>
@@ -173,11 +173,11 @@ const Profile = () => {
             <div className={styles.moneyTitle}>Rosetta Tokens Available</div>
             <div className={styles.moneyRow}>
               <div className={styles.moneyCol}>
-                <div className={styles.moneyValue}>${Math.round(ImapctScore * 50000)}</div>
+                <div className={styles.moneyValue}>${Math.round(ImpactScore * 0.354645437)}</div>
                 <div className={styles.moneySubtitle}>Once off accrued tokens</div>
               </div>
               <div className={styles.moneyCol}>
-                <div className={styles.moneyValue}>${Math.round(ImapctScore * 10000)}</div>
+                <div className={styles.moneyValue}>${Math.round(ImpactScore * 0.354645437 / 5)}</div>
                 <div className={styles.moneySubtitle}>Monthly Ongoing Tokens</div>
               </div>
             </div>
