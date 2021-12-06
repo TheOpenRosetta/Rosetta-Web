@@ -1,13 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-import userData from '@dataset/user';
+import { data as userData } from '@dataset/user';
 
 const initialState = {
   status: '',
   data: null,
   papers: '',
-  paperStatus: '',
   paperCount: 0,
 };
 
@@ -30,13 +29,10 @@ export const userSlice = createSlice({
         onceOffTokens: userData.onceOffTokens
       };
     },
-    getFeaturePapersData: (state) => {
-      // state.paperStatus = 'loading';
-    },
     gotFeaturePapersData: (state, action) => {
       state.papers = [...action.payload.docs];
-      state.paperStatus = 'loaded';
       state.paperCount = action.payload.numFound;
+      state.status = 'loaded';
     },
   }
 });
@@ -62,22 +58,14 @@ export const fetchUser = ({ username }) => async (dispatch) => {
   dispatch(getUserData());
   await axios.get(url)
     .then(({ data }) => {
-      dispatch(gotUserData(data));
-      const url = `https://searchserver1.eastus.cloudapp.azure.com:8983/solr/OAG/query?q=authors_ids:${data.id}&q.op=AND&indent=true&rows=100&wt=json&start=0&qt=/select`;
+      dispatch(gotUserData(data.profile));
+      const id = 198900819; // data.profile.id
+      const url = `https://searchserver1.eastus.cloudapp.azure.com:8983/solr/OAG/query?q=authors_ids:${id}&q.op=AND&indent=true&rows=100&wt=json&start=0&qt=/select`;
       return axios.get(url);
     })
-    .then(({ data }) => {
-      dispatch(gotUserData(data))
-    });
-}
-
-export const fetchFeaturedPaperUser = ({ authorId, start }) => async (dispatch) => {
-  // COMMENT: currently fetching featured paper
-  const url = `https://searchserver1.eastus.cloudapp.azure.com:8983/solr/OAG/query?q=authors_ids:${authorId}&q.op=AND&indent=true&rows=100&wt=json&start=${start * 10}&qt=/select`;
-  dispatch(getFeaturePapersData());
-  await axios.get(url)
     .then(({ data }) => {
       dispatch(gotFeaturePapersData(data.response))
     });
 }
+
 export default userSlice.reducer;

@@ -15,7 +15,6 @@ import {
   selectUserStatus,
   selectUserData,
   fetchUser,
-  fetchFeaturedPaperUser,
   selectFeaturePaperUserData,
   selectFeaturePaperCount
 } from '@services/User/userSlice';
@@ -87,11 +86,7 @@ const Profile = () => {
 
   useEffect(() => {
     dispatch(fetchUser({ username }));
-    var urlParams = window.location.pathname.split("_");
-    var id = urlParams[urlParams.length - 1];
-    console.log(userData);
-    dispatch(fetchFeaturedPaperUser({ authorId: id ? id : "2009723854", start: (page - 1) }));
-  }, [dispatch, username, page, userData]);
+  }, [dispatch, username]);
 
   // Sort feature array according to highest prbscore
   useEffect(() => {
@@ -102,24 +97,37 @@ const Profile = () => {
       setFeaturePage(modifyPaperWorks)
     }
 
-    var urlParams = window.location.pathname.split("_");
-    var id = urlParams[urlParams.length - 1];
-    let a = { prb: 0, authorIdCount: 0 }
+    // var urlParams = window.location.pathname.split("_");
+    // var id = urlParams[urlParams.length - 1];
 
-    featurePaperData && featurePaperData.length > 0 && featurePaperData.map((paperData, index) => {
-      if (paperData.authors_names[index] !== undefined) {
-        for (let i = 0; i < paperData.authors_names.length; i++) {
-          if (paperData.prb_score !== undefined) {
-            a.prb += paperData.prb_score
-          }
-          if (paperData.authors_ids[i] === id) {
-            a.authorIdCount++
-          }
+    // featurePaperData && featurePaperData.length > 0 && featurePaperData.map((paperData, index) => {
+    //   if (paperData.authors_names[index] !== undefined) {
+    //     for (let i = 0; i < paperData.authors_names.length; i++) {
+    //       if (paperData.prb_score !== undefined) {
+    //         a.prb += paperData.prb_score
+    //       }
+    //       if (paperData.authors_ids[i] === id) {
+    //         a.authorIdCount++
+    //       }
+    //     }
+    //   }
+    //   return a;
+    // })
+    // let impactScore = a.prb / a.authorIdCount
+
+    // console.log(featurePaperData);
+
+    let impactScore = 0;
+
+    if (featurePaperData && featurePaperData.length > 0) {
+      featurePaperData.map((paperData) => {
+        if (paperData.prb_score !== undefined) {
+          impactScore += paperData.prb_score / paperData.authors_names.length
         }
-      }
-      return a;
-    })
-    let impactScore = a.prb / a.authorIdCount
+        return paperData;
+      });
+    }
+
     setImapctScore(impactScore)
   }, [featurePaperData]);
 
