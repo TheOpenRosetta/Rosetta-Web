@@ -57,7 +57,7 @@ export const selectFeaturePaperCount = (state) => state.user.paperCount;
 
 export const fetchUser = ({ username }) => async (dispatch) => {
   // COMMENT: currently username is address
-  const url = `https://rosettabackendservereast.azurewebsites.net/api/v1/getuserprofile/${username}/`;
+  const url = `https://rosettabackendservereast.azurewebsites.net/api/v1/getuserprofile?username=${username}`;
   // const url = `http://localhost:8080/api/v1/getuserprofile?username=${username}`;
   dispatch(getUserData());
   await axios.get(url)
