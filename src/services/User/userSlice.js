@@ -57,11 +57,15 @@ export const selectFeaturePaperCount = (state) => state.user.paperCount;
 
 export const fetchUser = ({ username }) => async (dispatch) => {
   // COMMENT: currently username is address
-  // const url = `https://rosettabackendservereast.azurewebsites.net/api/v1/getuserprofile/${username}/`;
-  const url = `http://localhost:8080/api/v1/getuserprofile?username=${username}`;
-  // dispatch(gotUserData(userData.data));
+  const url = `https://rosettabackendservereast.azurewebsites.net/api/v1/getuserprofile/${username}/`;
+  // const url = `http://localhost:8080/api/v1/getuserprofile?username=${username}`;
   dispatch(getUserData());
   await axios.get(url)
+    .then(({ data }) => {
+      dispatch(gotUserData(data));
+      const url = `https://searchserver1.eastus.cloudapp.azure.com:8983/solr/OAG/query?q=authors_ids:${data.id}&q.op=AND&indent=true&rows=100&wt=json&start=0&qt=/select`;
+      return axios.get(url);
+    })
     .then(({ data }) => {
       dispatch(gotUserData(data))
     });
