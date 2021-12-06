@@ -163,7 +163,7 @@ const Profile = () => {
             <div className={styles.name}>{userData.firstName} {userData.lastName}</div>
             <div className={styles.status}>{userData.status}</div>
             <div className={styles.committed}>Academic Fraud Committed: <span>{userData.fraudCommitted ? 'yes' : 'no'}</span></div>
-            <div className={styles.impact}>ImpactScore: <span>{kFormatter(ImpactScore)}</span></div>
+            <div className={styles.impact}>ImpactScore: <span>{kFormatter(Math.round(ImpactScore))}</span></div>
             <div className={styles.infoActions}>
               <Button classes={styles.btnFollow} type="button" size="md" kind="fill">Follow</Button>
               <Button classes={styles.btnSponsor} type="button" size="md" kind="outline">Sponsor</Button>
