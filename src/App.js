@@ -70,10 +70,10 @@ function App() {
           <Route path='/paper/:paperId'>
             <Paper />
           </Route>
-          <Route path="/:username">
+          <Route path="/user/:username">
             <Profile />
           </Route>
-          <Route path="/user/:username">
+          <Route path="/:username">
             <Profile />
           </Route>
           <Route exact path="/">

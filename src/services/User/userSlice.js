@@ -54,7 +54,6 @@ export const selectFeaturePaperCount = (state) => state.user.paperCount;
 export const fetchUser = ({ username }) => async (dispatch) => {
   let id = 198900819;
   let name = username.substring(0, username.lastIndexOf("_"));
-  console.log(username.lastIndexOf("_"));
   if (username.lastIndexOf("_") > 0) {
     id = username.substring(username.lastIndexOf("_") + 1);
   }
