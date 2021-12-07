@@ -73,6 +73,9 @@ function App() {
           <Route path="/:username">
             <Profile />
           </Route>
+          <Route path="/user/:username">
+            <Profile />
+          </Route>
           <Route exact path="/">
             <Home />
           </Route>
