@@ -52,20 +52,44 @@ export const selectFeaturePaperUserData = (state) => state.user.papers;
 export const selectFeaturePaperCount = (state) => state.user.paperCount;
 
 export const fetchUser = ({ username }) => async (dispatch) => {
+  let id = 198900819;
+  let name = username.substring(0, username.lastIndexOf("_"));
+  console.log(username.lastIndexOf("_"));
+  if (username.lastIndexOf("_") > 0) {
+    id = username.substring(username.lastIndexOf("_") + 1);
+  }
   // COMMENT: currently username is address
-  const url = `https://rosettabackendservereast.azurewebsites.net/api/v1/getuserprofile?username=${username}`;
+  // const url = `https://rosettabackendservereast.azurewebsites.net/api/v1/getuserprofile?username=${username}`;
   // const url = `http://localhost:8080/api/v1/getuserprofile?username=${username}`;
   dispatch(getUserData());
-  await axios.get(url)
+  dispatch(gotUserData({
+    // ...data.profile,
+    firstName: name.split("_")[0],
+    lastName: name.split("_")[1]
+  }));
+
+  await axios.get(`https://searchserver1.eastus.cloudapp.azure.com:8983/solr/OAG/query?q=authors_ids:${id}&q.op=AND&indent=true&rows=100&wt=json&start=0&qt=/select`)
     .then(({ data }) => {
-      dispatch(gotUserData(data.profile));
-      const id = 198900819; // data.profile.id
-      const url = `https://searchserver1.eastus.cloudapp.azure.com:8983/solr/OAG/query?q=authors_ids:${id}&q.op=AND&indent=true&rows=100&wt=json&start=0&qt=/select`;
-      return axios.get(url);
-    })
-    .then(({ data }) => {
+      dispatch(gotUserData({
+        ...data.profile,
+        firstName: name.split("_")[0],
+        lastName: name.split("_")[1]
+      }));
       dispatch(gotFeaturePapersData(data.response))
     });
+  // await axios.get(url)
+  //   .then(({ data }) => {
+  //     dispatch(gotUserData({
+  //       ...data.profile,
+  //       firstName: name.split("_")[0],
+  //       lastName: name.split("_")[1]
+  //     }));
+  //     const url = `https://searchserver1.eastus.cloudapp.azure.com:8983/solr/OAG/query?q=authors_ids:${id}&q.op=AND&indent=true&rows=100&wt=json&start=0&qt=/select`;
+  //     return axios.get(url);
+  //   })
+  //   .then(({ data }) => {
+  //     dispatch(gotFeaturePapersData(data.response))
+  //   });
 }
 
 export default userSlice.reducer;
