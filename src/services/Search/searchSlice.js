@@ -32,7 +32,8 @@ export const searchSlice = createSlice({
     },
     searchLoaded: (state, action) => {
       state.status = 'loaded';
-      state.results = [...action.payload.docs];
+      console.log(action.payload);
+      state.results = action.payload.docs.length ? [...action.payload.docs] : [];
       state.count = action.payload.numFound;
     }
   }
@@ -50,13 +51,15 @@ export const selectSearchResult = (state) => state.search.results;
 export const selectSearchCount = (state) => state.search.count;
 
 
-export const fetchSearch = ({ q , start }) => async (dispatch) => {
+export const fetchSearch = ({ q, start }) => async (dispatch) => {
   const numrows = 20;
-  const url = `https://searchserver1.eastus.cloudapp.azure.com:8983/solr/OAG/select?q.op=OR&q=${q}&start=${start * numrows}&rows=${numrows}`;
+
+  // const url = `https://searchserver1.eastus.cloudapp.azure.com:8983/solr/OAG/select?q.op=OR&q=${q}&start=${start * numrows}&rows=${numrows}`;
+  const url = `http://localhost:8080/api/v1/search?q=${q}&rows=${numrows}&page=${start}`;
   dispatch(searchLoading());
   await axios.get(url)
     .then(({ data }) => {
-      dispatch(searchLoaded(data.response))
+      dispatch(searchLoaded(data.data))
     });
 }
 
