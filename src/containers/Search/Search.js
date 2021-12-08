@@ -9,7 +9,8 @@ import {
   selectSearchCount,
   selectSearchStatus,
   fetchSearch,
-
+  selectSearchSort,
+  selectSearchFilters,
 } from '@services/Search/searchSlice';
 import {
   SearchFilters,
@@ -25,14 +26,14 @@ const Search = () => {
   const status = useSelector(selectSearchStatus);
   const count = useSelector(selectSearchCount);
   const searchText = useSelector(selectSearchText);
+  const { type: sortType, direction: sortDirection } = useSelector(selectSearchSort);
+  const filters = useSelector(selectSearchFilters);
 
   useEffect(() => {
-    dispatch(fetchSearch({ q: searchText, start: (page - 1) }));
-  }, [searchText, page, dispatch]);
-
-  const changeFilters = (params) => {
-    console.log(params);
-  }
+    if (searchText) {
+      dispatch(fetchSearch({ q: searchText, start: (page - 1), sort: { type: sortType, direction: sortDirection }, filters }));
+    }
+  }, [searchText, page, dispatch, sortType, sortDirection, filters]);
 
   return <Layout navigation={false}>
     <div className={styles.grid}>
@@ -44,7 +45,7 @@ const Search = () => {
             </div>
           }
           content={
-            <SearchFilters action={changeFilters} />
+            <SearchFilters />
           }
         />
         <SearchUsers/>

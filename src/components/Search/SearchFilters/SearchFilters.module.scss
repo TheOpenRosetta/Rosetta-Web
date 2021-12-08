@@ -39,8 +39,8 @@
   }
   &Item {
     flex: 1 0;
-    flex-basis: calc(20% - 16px);
-    max-width: calc(20% - 16px);
+    flex-basis: calc(25% - 20px - 16px);
+    max-width: calc(25% - 20px - 16px);
     position: relative;
     @media(max-width: 767px) {
       flex-basis: 100%;
@@ -48,5 +48,13 @@
       width: 100%;
       margin-bottom: 8px;
     }
+    &Direction {
+      max-width: 80px;
+    }
   }
+}
+
+.direction {
+  opacity: 0.6;
+  display: flex;
 }

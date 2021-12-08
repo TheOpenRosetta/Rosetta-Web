@@ -1,12 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import MediaQuery from 'react-responsive';
 import { DateRange } from 'react-date-range';
 import { Popover } from 'react-tiny-popover'
 import Select from 'react-select';
+import { useSelector, useDispatch } from 'react-redux';
 
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import styles from './SearchFilters.module.scss';
+
+import {ReactComponent as DescIcon} from '@assets/icons/arrowhead-up-outline.svg';
+import {ReactComponent as AscIcon} from '@assets/icons/arrowhead-down-outline.svg';
+
+import {
+  selectSearchSort,
+  // selectSearchFilters,
+  changeFilter,
+  changeSort
+} from '@services/Search/searchSlice';
 
 const studies = [
   { value: 'chocolate', label: 'Chocolate' },
@@ -21,13 +32,15 @@ const pubTypes = [
 ];
 
 const sort = [
-  { value: 'relevance', label: 'Sort by relevance' },
-  { value: 'likes', label: 'Sort by likes' },
+  { value: 'n_citation', label: 'Sort by citations' },
+  { value: 'date', label: 'Sort by date' },
+  { value: 'title', label: 'Sort by title' },
+  { value: 'volume', label: 'Sort by volume' },
 ];
 
-const prices = [
-  { value: 'priceToLow', label: 'Price high to low' },
-  { value: 'priceToHigh', label: 'Price low to high' },
+const direction = [
+  { value: 'asc', label: <AscIcon className={styles.direction} /> },
+  { value: 'desc', label: <DescIcon className={styles.direction} /> },
 ];
 
 const customStyles = {
@@ -74,61 +87,40 @@ const customStyles = {
   })
 }
 
-const SearchFilters = ({ action }) => {
+const SearchFilters = () => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-  const [study, setStudy] = useState(null);
-  const [date, setDate] = useState([
+  const date = [
     {
       startDate: null,
       endDate: new Date(),
       key: 'selection'
     }
-  ]);
-  const [pubType, setPubType] = useState(null);
-  const [sortRelevance, setSortRelevance] = useState(null);
-  const [sortPrice, setSortPrice] = useState(null);
+  ];
 
-  useEffect(() => {
-    const asArray = Object.entries({
-      study,
-      date,
-      pubType,
-      sortRelevance,
-      sortPrice,
-    });
-
-    const filtered = asArray.filter(([key, value]) => value !== null);
-
-    action(Object.fromEntries(filtered));
-  }, [study, date, pubType, sortRelevance, sortPrice, action]);
+  const dispatch = useDispatch();
+  const sortState = useSelector(selectSearchSort);
+  // const filtersState = useSelector(selectSearchFilters);
 
   const searchAction = (param, value) => {
     switch (param) {
-      case 'study':
-        setStudy(value);
-        break;
       case 'date':
-        setDate([value.selection]);
-        break;
-      case 'pubDate':
-        setPubType(value)
+        dispatch(changeFilter({
+          key: param,
+          value: [value.selection],
+        }));
         break;
       default:
+        dispatch(changeFilter({
+          [param]: value
+        }));
         break;
     }
   }
 
-  const sortAction = (param, value) => {
-    switch (param) {
-      case 'sort':
-        setSortRelevance(value);
-        break;
-      case 'price':
-        setSortPrice(value);
-        break;
-      default:
-        break;
-    }
+  const sortAction = (param, option) => {
+    dispatch(changeSort({
+      [param]: option.value
+    }));
   }
 
   return <div className={styles.filters}>
@@ -194,19 +186,19 @@ const SearchFilters = ({ action }) => {
       <div className={styles.fieldItem}>
         <Select
           options={sort}
-          defaultValue={sort[0]}
+          defaultValue={sort.find(item => item.value === sortState.type)}
           styles={customStyles}
           className={styles.field}
-          onChange={(val) => sortAction('sort', val)}
+          onChange={(val) => sortAction('type', val)}
         />
       </div>
-      <div className={styles.fieldItem}>
+      <div className={`${styles.fieldItem} ${styles.fieldItemDirection}`}>
         <Select
-          options={prices}
-          defaultValue={prices[0]}
+          options={direction}
+          defaultValue={direction.find(item => item.value === sortState.direction)}
           styles={customStyles}
           className={styles.field}
-          onChange={(val) => sortAction('price', val)}
+          onChange={(val) => sortAction('direction', val)}
         />
       </div>
     </div>
