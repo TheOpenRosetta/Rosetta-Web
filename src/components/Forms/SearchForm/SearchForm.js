@@ -12,7 +12,7 @@ import {ReactComponent as SearchIcon} from '@assets/icons/search-outline.svg';
 
 import styles from './SearchForm.module.scss';
 
-const SearchForm = ({ className: classes }) => {
+const SearchForm = ({ className: classes, closeForm }) => {
   const history = useHistory();
   const searchText = useSelector(selectSearchText);
   const dispatch = useDispatch();
@@ -22,6 +22,7 @@ const SearchForm = ({ className: classes }) => {
      },
      onSubmit: (values) => {
        dispatch(addSearchText(values.search));
+       closeForm();
        history.push("/search");
      },
    });

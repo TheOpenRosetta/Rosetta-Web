@@ -13,6 +13,15 @@
   }
 }
 
+.calendar {
+  background-color: $colorPrimaryWhite;
+  padding: 32px 24px;
+  width: 198px;
+  @include shadow-Small;
+  border: 1px solid rgba($colorPrimaryBlack, 0.2);
+  border-radius: 4px;
+}
+
 .field {
   &Popover {
     border: 1px solid $colorPrimaryGray;
@@ -34,19 +43,27 @@
     align-items: center;
     justify-content: space-between;
     @media(max-width: 767px) {
-      flex-direction: column;
+      flex-wrap: wrap;
     }
   }
   &Item {
     flex: 1 0;
-    flex-basis: calc(25% - 20px - 16px);
-    max-width: calc(25% - 20px - 16px);
+    flex-basis: calc(33.3333% - 20px - 16px);
+    max-width: calc(33.3333% - 20px - 16px);
     position: relative;
     @media(max-width: 767px) {
       flex-basis: 100%;
       max-width: 100%;
       width: 100%;
       margin-bottom: 8px;
+    }
+    &Sort {
+      @media(max-width: 767px) {
+        flex-basis: calc(100% - 104px);
+        max-width: calc(100% - 104px);
+        width: 100%;
+        margin-bottom: 8px;
+      }
     }
     &Direction {
       max-width: 80px;

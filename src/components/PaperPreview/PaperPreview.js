@@ -12,8 +12,6 @@ const PaperPreview = ({ data }) => {
     console.log('LIKE');
   }
 
-  console.log(data);
-
   const createProfileUsername = (name, id) => `${name.replace(' ', '_')}_${id}`;
 
   return <div className={styles.paper}>
@@ -30,7 +28,7 @@ const PaperPreview = ({ data }) => {
               !authorsVisible ?
                 <div onClick={() => setAuthorVisible(true)} className={styles.authorMore}>+{data.authors_names.length - 1} authors</div>
                 :
-                data.authors_names.slice(1).map((item, index) => <div className={styles.author}><Link to={createProfileUsername(item, data.authors_ids[index + 1])}>{item}</Link>,</div>)
+                data.authors_names.slice(1).map((item, index) => <div className={styles.author} key={item}><Link to={createProfileUsername(item, data.authors_ids[index + 1])}>{item}</Link>,</div>)
             }
             </>
           }

@@ -8,8 +8,8 @@ const initialState = {
   results: [],
   filters: {
     study: null,
-    dates: null,
-    types: null
+    dates: { min: 1800, max: 2022 },
+    // types: null
   },
   sort: {
     type: 'n_citation',
@@ -28,8 +28,12 @@ export const searchSlice = createSlice({
       state.searchText = action.payload;
     },
     changeFilter: (state, action) => {
-      console.log(action.payload);
-      // state.searchText = action.payload;
+      if (action.payload.date) {
+        state.filters.dates = action.payload.date;
+      }
+      if (action.payload.study) {
+        state.filters.study = action.payload.study;
+      }
     },
     changeSort: (state, action) => {
       state.sort = {
@@ -75,6 +79,7 @@ export const fetchSearch = ({ q, start, sort, filters }) => async (dispatch) => 
   }
   dispatch(searchLoading({ text: q, page: start }));
   const url = `https://rosettabackendservereast.azurewebsites.net/api/v1/search?${queryString.stringify(params)}`;
+  // const url = `http://localhost:8080/api/v1/search?${queryString.stringify(params)}`;
   await axios.get(url)
     .then(({ data }) => {
       dispatch(searchLoaded(data.data))

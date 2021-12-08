@@ -22,7 +22,7 @@ const HeaderSearch = () => {
     <button onClick={closeModal} className={styles.closeBtn}><CloseIcon /></button>
   </div>;
   const content = <div className={styles.content}>
-    <SearchForm className={styles.searchFormModal} />
+    <SearchForm className={styles.searchFormModal} closeForm={() => setIsOpen(false)} />
   </div>;
 
   return <>
