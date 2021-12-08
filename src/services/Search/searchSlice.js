@@ -69,13 +69,15 @@ export const selectSearchFilters = (state) => state.search.filters;
 
 export const fetchSearch = ({ q, start, sort, filters }) => async (dispatch) => {
   const numrows = 20;
+
   const params = {
     q,
     rows: numrows,
     page: start,
     sort: sort && sort.type,
     sortDir: sort && sort.direction,
-    filters,
+    year: filters.dates && `[${filters.dates.min} TO ${filters.dates.max}}`,
+    doc_type: filters.study && `${filters.study.map(item => item.value).join(',')}`
   }
   dispatch(searchLoading({ text: q, page: start }));
   const url = `https://rosettabackendservereast.azurewebsites.net/api/v1/search?${queryString.stringify(params)}`;

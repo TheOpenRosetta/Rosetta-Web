@@ -23,14 +23,14 @@ import {
 } from '@services/Search/searchSlice';
 
 const pubTypes = [
-  { value: 'journal', label: 'Journal' },
-  { value: 'patent', label: 'Patent' },
-  { value: 'conference', label: 'Conference' },
-  { value: 'thesis', label: 'Thesis' },
-  { value: 'repository', label: 'Repository' },
-  { value: 'book', label: 'Book' },
-  { value: 'bookchapter', label: 'Bookchapter' },
-  { value: 'dataset', label: 'Dataset' }
+  { value: 'Journal', label: 'Journal' },
+  { value: 'Patent', label: 'Patent' },
+  { value: 'Conference', label: 'Conference' },
+  { value: 'Thesis', label: 'Thesis' },
+  { value: 'Repository', label: 'Repository' },
+  { value: 'Book', label: 'Book' },
+  { value: 'Bookchapter', label: 'Bookchapter' },
+  { value: 'Dataset', label: 'Dataset' }
 ];
 
 const sort = [
@@ -144,7 +144,7 @@ const SearchFilters = () => {
           placeholder="Publication type"
           isMulti
           className={styles.field}
-          onChange={(val) => searchAction('pubDate', val)}
+          onChange={(val) => searchAction('study', val)}
         />
       </div>
       <div className={`${styles.fieldItem} ${styles.fieldItemSort}`}>
