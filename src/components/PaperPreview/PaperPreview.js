@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import { DateTime } from "luxon";
 import { percentFormat } from '@utils/numbers';
@@ -7,9 +7,14 @@ import {ReactComponent as CommentIcon} from '@assets/customIcons/coma.svg';
 import {ReactComponent as LikeIcon} from '@assets/customIcons/thumbs-up.svg';
 
 const PaperPreview = ({ data }) => {
+  const [authorsVisible, setAuthorVisible] = useState(false);
   const like = () => {
     console.log('LIKE');
   }
+
+  console.log(data);
+
+  const createProfileUsername = (name, id) => `${name.replace(' ', '_')}_${id}`;
 
   return <div className={styles.paper}>
     <div className={styles.title}>
@@ -18,9 +23,16 @@ const PaperPreview = ({ data }) => {
     <div className={styles.subtitle}>
       {
         data.authors_names && <>
-          <div className={styles.author}>{data.authors_names[0]},</div>
+          <div className={styles.author}><Link to={createProfileUsername(data.authors_names[0], data.authors_ids[0])}>{data.authors_names[0]}</Link>,</div>
           {
-            data.authors_names.length > 1 && <div className={styles.authorMore}>+{data.authors_names.length - 1} authors</div>
+            data.authors_names.length > 1 && <>
+            {
+              !authorsVisible ?
+                <div onClick={() => setAuthorVisible(true)} className={styles.authorMore}>+{data.authors_names.length - 1} authors</div>
+                :
+                data.authors_names.slice(1).map((item, index) => <div className={styles.author}><Link to={createProfileUsername(item, data.authors_ids[index + 1])}>{item}</Link>,</div>)
+            }
+            </>
           }
         </>
       }

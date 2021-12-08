@@ -13,6 +13,14 @@
   @include CaptionLarge-REGULAR;
   color: rgba($colorPrimaryBlack, 0.6);
   margin-right: 8px;
+  a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    &:hover {
+      color: $colorPrimaryBlack;
+    }
+  }
   &More {
     background-color: $colorPrimaryGray;
     @include CaptionLarge-REGULAR;
@@ -20,18 +28,16 @@
     margin-right: 8px;
     padding: 0 4px;
     border-radius: 4px;
+    cursor: pointer;
   }
 }
 
 .subtitle {
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   margin-bottom: 8px;
   align-items: flex-start;
-  @media(max-width: 767px) {
-    flex-wrap: wrap;
-  }
 }
 
 .date {
