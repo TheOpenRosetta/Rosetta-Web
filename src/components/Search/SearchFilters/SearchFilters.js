@@ -142,7 +142,7 @@ const SearchFilters = () => {
           options={pubTypes}
           styles={customStyles}
           placeholder="Publication type"
-          isMulti
+          isClearable={true}
           className={styles.field}
           onChange={(val) => searchAction('study', val)}
         />
