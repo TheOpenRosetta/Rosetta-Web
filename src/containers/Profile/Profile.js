@@ -146,7 +146,7 @@ const Profile = () => {
     return <div className={styles.profile}>
       <Header className={styles.profileHeader} />
       <div className={styles.profileTop}>
-        <div className={styles.loading}><Loader /></div>
+        <div className={styles.loading}><Loader darkMode /></div>
       </div>
     </div>
   }
