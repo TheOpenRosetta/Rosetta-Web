@@ -22,7 +22,7 @@ const SearchForm = ({ className: classes, closeForm }) => {
      },
      onSubmit: (values) => {
        dispatch(addSearchText(values.search));
-       closeForm();
+       closeForm && closeForm();
        history.push("/search");
      },
    });

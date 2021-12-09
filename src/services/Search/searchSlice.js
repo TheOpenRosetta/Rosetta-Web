@@ -77,7 +77,7 @@ export const fetchSearch = ({ q, start, sort, filters }) => async (dispatch) => 
     sort: sort && sort.type,
     sortDir: sort && sort.direction,
     year: filters.dates && `[${filters.dates.min} TO ${filters.dates.max}}`,
-    doc_type: filters.study && `${filters.study.map(item => item.value).join(',')}`
+    doc_type: filters.study && filters.study.value
   }
   dispatch(searchLoading({ text: q, page: start }));
   const url = `https://rosettabackendservereast.azurewebsites.net/api/v1/search?${queryString.stringify(params)}`;
