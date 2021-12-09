@@ -4,6 +4,16 @@
   padding: 64px 0;
 }
 
+.tooltip {
+  background-color: $colorPrimaryWhite;
+  color: rgba($colorPrimaryBlack, 0.6);
+  max-width: 160px;
+  padding: 16px;
+  border-radius: 8px;
+  @include CaptionSmall-REGULAR;
+  @include shadow-Small;
+}
+
 .profile {
   position: relative;
   padding-bottom: 64px;
@@ -84,7 +94,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    align-items: baseline;
     position: relative;
     &:before {
       content: "";
@@ -102,6 +112,7 @@
     justify-content: space-between;
     align-items: center;
     text-align: center;
+    flex: 1 0;
   }
   &Value {
     @include HeadingSmall-BOLD;
@@ -112,6 +123,14 @@
     @include CaptionSmall-REGULAR;
     color: rgba($colorPrimaryWhite, 0.6);
     font-size: 10px;
+    padding: 0 8px;
+    svg {
+      height: 12px;
+      vertical-align: sub;
+      path {
+        fill: rgba($colorPrimaryWhite, 0.6);
+      }
+    }
   }
   &Action {
     margin-top: 24px;

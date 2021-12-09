@@ -3,6 +3,7 @@ import {
   useParams,
 } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel, resetIdCounter } from 'react-tabs';
+import { Popover } from 'react-tiny-popover'
 // import {priceFormat, percentFormat} from '@utils/numbers';
 import Header from '@components/Header';
 import Button from '@components/Button';
@@ -38,12 +39,14 @@ import AvatarImg from '@assets/dummy/user.png';
 import 'react-tabs/style/react-tabs.css';
 import styles from './Profile.module.scss';
 import { ReactComponent as EditIcons } from '@assets/icons/edit_profile.svg';
+import { ReactComponent as InfoIcon } from '@assets/icons/alert-circle-outline.svg';
 
 import ArcticContributor from '@assets/award.png';
 
 resetIdCounter();
 
 const Profile = () => {
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   // Tab index
   const [tabIndex, setTabIndex] = useState(0);
   const [ImpactScore, setImpactScore] = useState(0);
@@ -96,26 +99,6 @@ const Profile = () => {
       });
       setFeaturePage(modifyPaperWorks)
     }
-
-    // var urlParams = window.location.pathname.split("_");
-    // var id = urlParams[urlParams.length - 1];
-
-    // featurePaperData && featurePaperData.length > 0 && featurePaperData.map((paperData, index) => {
-    //   if (paperData.authors_names[index] !== undefined) {
-    //     for (let i = 0; i < paperData.authors_names.length; i++) {
-    //       if (paperData.prb_score !== undefined) {
-    //         a.prb += paperData.prb_score
-    //       }
-    //       if (paperData.authors_ids[i] === id) {
-    //         a.authorIdCount++
-    //       }
-    //     }
-    //   }
-    //   return a;
-    // })
-    // let impactScore = a.prb / a.authorIdCount
-
-    // console.log(featurePaperData);
 
     let impactScore = 0;
 
@@ -178,7 +161,20 @@ const Profile = () => {
               </div>
               <div className={styles.moneyCol}>
                 <div className={styles.moneyValue}>${Math.round(ImpactScore * 0.354645437 / 5)}</div>
-                <div className={styles.moneySubtitle}>Monthly Ongoing Tokens</div>
+                <div className={styles.moneySubtitle}>
+                  Monthly rewards to archive your papers
+                  <Popover
+                    isOpen={isPopoverOpen}
+                    positions={['top', 'right', 'left', 'bottom']}
+                    padding={10}
+                    onClickOutside={() => setIsPopoverOpen(false)}
+                    content={() => (
+                      <div className={styles.tooltip}>Monthly rewards for archiving all your past papers at the current network activity</div>
+                    )}
+                  >
+                    <InfoIcon onClick={() => setIsPopoverOpen(!isPopoverOpen)}/>
+                  </Popover>
+                </div>
               </div>
             </div>
             <div className={styles.moneyAction}>
