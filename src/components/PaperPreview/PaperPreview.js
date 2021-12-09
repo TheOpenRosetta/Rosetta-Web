@@ -6,10 +6,17 @@ import styles from './PaperPreview.module.scss';
 import {ReactComponent as CommentIcon} from '@assets/customIcons/coma.svg';
 import {ReactComponent as LikeIcon} from '@assets/customIcons/thumbs-up.svg';
 
-const PaperPreview = ({ data }) => {
+const PaperPreview = ({ data: dataset }) => {
   const [authorsVisible, setAuthorVisible] = useState(false);
   const like = () => {
     console.log('LIKE');
+  }
+
+  const data = {
+    ...dataset,
+    balance: Math.ceil(Math.random()*2000),
+    delta: Math.floor(Math.random()*10, 2),
+    apy: (Math.floor(Math.random()*5, 2) + 10),
   }
 
   const createProfileUsername = (name, id) => `${name.replace(' ', '_')}_${id}`;
@@ -55,9 +62,9 @@ const PaperPreview = ({ data }) => {
           {data.likes || 0}
         </button>
       </div>
-      { data.balance && <div className={styles.balance}>${data.balance}</div> }
-      { data.delta && <div className={`${styles.delta} ${data.delta > 0 ? styles.deltaPlus : styles.deltaMinus}`}>({data.delta > 0 ? '+' : '-'}{percentFormat(data.delta)}%)</div> }
-      { data.apy && <div className={styles.apy}>APY {percentFormat(data.apy)}%</div> }
+      <div className={styles.balance}>${data.balance || `$${Math.ceil(Math.random()*2000)}`}</div>
+      <div className={`${styles.delta} ${data.delta > 0 ? styles.deltaPlus : styles.deltaMinus}`}>({data.delta > 0 ? '+' : '-'}{percentFormat(data.delta)}%)</div>
+      <div className={styles.apy}>APY {percentFormat(data.apy)}%</div>
     </div>
   </div>;
 }

@@ -87,13 +87,14 @@
 
 
 .balance {
-  @include CaptionLarge-REGULAR;
-  color: rgba($colorPrimaryBlack, 0.6);
+  @include BodyLarge-MEDIUM;
+  color: $colorPrimaryBlack;
+  margin: 0 8px;
 }
 
 .delta {
-  @include CaptionLarge-REGULAR;
-  margin: 0 4px;
+  @include BodySmall-MEDIUM;
+  margin-right: 12px;
   &Plus {
     color: $colorSupportGreen;
   }
