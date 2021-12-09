@@ -19,7 +19,8 @@ import {
   selectSearchSort,
   selectSearchFilters,
   changeFilter,
-  changeSort
+  changeSort,
+  selectKeyParam
 } from '@services/Search/searchSlice';
 
 const pubTypes = [
@@ -38,6 +39,11 @@ const sort = [
   { value: 'date', label: 'Sort by date' },
   { value: 'title', label: 'Sort by title' },
   { value: 'volume', label: 'Sort by volume' },
+];
+
+const keyParams = [
+  { value: 'title', label: 'By title' },
+  { value: 'author', label: 'By author' },
 ];
 
 const direction = [
@@ -93,6 +99,7 @@ const SearchFilters = () => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const dispatch = useDispatch();
   const sortState = useSelector(selectSearchSort);
+  const keyParam = useSelector(selectKeyParam);
   const filtersState = useSelector(selectSearchFilters);
   const [range, setRange] = useState(filtersState.dates);
 
@@ -111,6 +118,15 @@ const SearchFilters = () => {
   return <div className={styles.filters}>
     <div className={styles.filtersTitle}>Advance search</div>
     <div className={styles.fieldList}>
+      <div className={styles.fieldItem}>
+        <Select
+          options={keyParams}
+          styles={customStyles}
+          defaultValue={keyParams.find(item => item.value === keyParam)}
+          className={styles.field}
+          onChange={(val) => searchAction('keyParam', val.value)}
+        />
+      </div>
       <div className={styles.fieldItem}>
         <Popover
           isOpen={isPopoverOpen}

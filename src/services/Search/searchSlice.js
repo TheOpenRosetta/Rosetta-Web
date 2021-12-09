@@ -6,6 +6,7 @@ const initialState = {
   searchText: '',
   status: '',
   results: [],
+  keyParam: 'title',
   filters: {
     study: null,
     dates: { min: 1800, max: 2022 },
@@ -33,6 +34,9 @@ export const searchSlice = createSlice({
       }
       if (action.payload.study) {
         state.filters.study = action.payload.study;
+      }
+      if (action.payload.keyParam) {
+        state.keyParam = action.payload.keyParam;
       }
     },
     changeSort: (state, action) => {
@@ -66,18 +70,19 @@ export const selectSearchResult = (state) => state.search.results;
 export const selectSearchCount = (state) => state.search.count;
 export const selectSearchSort = (state) => state.search.sort;
 export const selectSearchFilters = (state) => state.search.filters;
+export const selectKeyParam = (state) => state.search.keyParam;
 
-export const fetchSearch = ({ q, start, sort, filters }) => async (dispatch) => {
+export const fetchSearch = ({ keyParam, q, start, sort, filters }) => async (dispatch) => {
   const numrows = 20;
 
   const params = {
-    q,
+    q: keyParam === 'author' ? `authors_names:(${q})`: q,
     rows: numrows,
     page: start,
     sort: sort && sort.type,
     sortDir: sort && sort.direction,
     year: filters.dates && `[${filters.dates.min} TO ${filters.dates.max}}`,
-    doc_type: filters.study && filters.study.value
+    doc_type: filters.study ? filters.study.value : null
   }
   dispatch(searchLoading({ text: q, page: start }));
   const url = `https://rosettabackendservereast.azurewebsites.net/api/v1/search?${queryString.stringify(params)}`;

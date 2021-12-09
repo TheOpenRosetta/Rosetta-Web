@@ -11,6 +11,7 @@ import {
   fetchSearch,
   selectSearchSort,
   selectSearchFilters,
+  selectKeyParam
 } from '@services/Search/searchSlice';
 import {
   SearchFilters,
@@ -25,15 +26,16 @@ const Search = () => {
   const [page, setPage] = useState(1);
   const status = useSelector(selectSearchStatus);
   const count = useSelector(selectSearchCount);
+  const keyParam = useSelector(selectKeyParam);
   const searchText = useSelector(selectSearchText);
   const { type: sortType, direction: sortDirection } = useSelector(selectSearchSort);
   const filters = useSelector(selectSearchFilters);
 
   useEffect(() => {
     if (searchText) {
-      dispatch(fetchSearch({ q: searchText, start: (page - 1), sort: { type: sortType, direction: sortDirection }, filters }));
+      dispatch(fetchSearch({ keyParam, q: searchText, start: (page - 1), sort: { type: sortType, direction: sortDirection }, filters }));
     }
-  }, [searchText, page, dispatch, sortType, sortDirection, filters]);
+  }, [searchText, keyParam, page, dispatch, sortType, sortDirection, filters]);
 
   return <Layout navigation={false}>
     <div className={styles.grid}>
