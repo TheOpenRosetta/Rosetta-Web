@@ -1,0 +1,122 @@
+@import "@styles/variables";
+
+.tabs {
+  &List {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.tab {
+  display: inline-block;
+  border-bottom: 1px solid transparent;
+  position: relative;
+  list-style: none;
+  padding: 4px 12px;
+  cursor: pointer;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  @include BodyLarge-REGULAR;
+  min-width: 100px;
+  text-align: center;
+  &Active {
+    background-color: $colorPrimaryWhite;
+    border-bottom: 1px solid $colorPrimaryGold;
+    color: $colorPrimaryGold;
+  }
+  &Panel {
+    background-color: $colorPrimaryWhite;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-top-right-radius: 8px;
+    display: none;
+    &Active {
+      display: block;
+    }
+  }
+}
+
+.activity {
+  position: relative;
+  &Cell {
+    width: 10px;
+    height: 10px;
+    background-color: $colorPrimaryBlue;
+    border-radius: 2px;
+    margin: 2px;
+    display: flex;
+    flex: 1 0 auto;
+    max-width: 10px;
+    &[data-value="0"] {
+      opacity: 0.1;
+    }
+    &[data-value="1"] {
+      opacity: 0.4;
+    }
+    &[data-value="2"] {
+      opacity: 0.7;
+    }
+    &[data-value="3"] {
+      opacity: 1;
+    }
+  }
+  &Board {
+    padding: 16px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    justify-content: space-between;
+    width: 100%;
+    &Header {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: stretch;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      width: calc(52 * 14px);
+      &Item {
+        flex: 1 0 calc(100% / 12);
+        max-width: calc(100% / 12);
+        padding: 0 2px;
+        text-align: left;
+        @include CaptionSmall-REGULAR;
+        font-size: 10px;
+        color: #7C7D8C;
+      }
+    }
+    &Col {
+      background-color: #FBFBFB;
+      padding: 10px;
+      flex: 1 0;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: flex-end;
+      &Title {
+        flex-basis: 140px;
+        max-width: 140px;
+        text-align: right;
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+      }
+      &Values {
+        flex-basis: calc(100% - 140px);
+        max-width: calc(100% - 140px);
+        overflow-x: scroll;
+        overflow-y: hidden;
+      }
+    }
+    &Row {
+      @include CaptionSmall-REGULAR;
+      line-height: 120%;
+      color: #7C7D8C;
+      &Colors {
+        display: flex;
+        flex-direction: row;
+      }
+    }
+  }
+}

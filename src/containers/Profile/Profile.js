@@ -8,6 +8,7 @@ import { Popover } from 'react-tiny-popover'
 import Header from '@components/Header';
 import Button from '@components/Button';
 import Avatar from '@components/Avatar';
+import Activity from '@components/Activity';
 import Loader from '@components/Loader';
 import Chart from '@components/Chart';
 import Pagination from '@components/Pagination';
@@ -262,17 +263,7 @@ const Profile = () => {
 
             <div className={styles.section}>
               <div className={styles.sectionTitleActivity}>Activity </div>
-              <div className={styles.activityContent}>
-                <div className={styles.graph}>
-                  <div className={styles.graphFrames}>
-                    <button className={`${styles.graphToggle} ${key === 'month' ? styles.graphToggleActive : ''}`} type="button" onClick={() => setKey('month')}>1m</button>
-                    <button className={`${styles.graphToggle} ${key === 'three' ? styles.graphToggleActive : ''}`} type="button" onClick={() => setKey('three')}>3m</button>
-                    <button className={`${styles.graphToggle} ${key === 'half' ? styles.graphToggleActive : ''}`} type="button" onClick={() => setKey('half')}>6m</button>
-                    <button className={`${styles.graphToggle} ${key === 'year' ? styles.graphToggleActive : ''}`} type="button" onClick={() => setKey('year')}>1y</button>
-                  </div>
-                  <Chart data={data} />
-                </div>
-              </div>
+              <Activity />
             </div>
 
 
