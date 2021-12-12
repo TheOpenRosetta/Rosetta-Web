@@ -76,7 +76,7 @@ export const fetchSearch = ({ keyParam, q, start, sort, filters }) => async (dis
   const numrows = 20;
 
   const params = {
-    q: keyParam === 'author' ? `authors_names:(${q})`: q,
+    q: keyParam === 'author' ? `authors_names:"${q}"`: q,
     rows: numrows,
     page: start,
     sort: sort && sort.type,
