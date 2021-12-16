@@ -67,13 +67,13 @@ function App() {
           <Route path="/publish">
             { isLogin ? <Publish /> : <Redirect to="/" /> }
           </Route>
-          <Route path='/paper/:paperId'>
+          <Route exact path='/paper/:paperId'>
             <Paper />
           </Route>
           <Route path="/user/:username">
             <Profile />
           </Route>
-          <Route path="/:username">
+          <Route exact path="/:username">
             <Profile />
           </Route>
           <Route exact path="/">

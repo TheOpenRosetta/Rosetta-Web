@@ -1,0 +1,65 @@
+{
+  "feed": [
+    {
+      "postId": 1,
+      "timestamp": 1639668452420,
+      "author": {
+        "photo": "",
+        "firstName": "Anthony",
+        "lastName": "Ryan",
+        "username": "anthony",
+        "author_id": 1231
+      },
+      "liked": false,
+      "type": "paper",
+      "content": {
+        "likes": 4,
+        "msg": "Hey there, Here is my latest paper released",
+        "paper": {
+          "id": 2744808112,
+          "title": "A heuristic algorithm to optimize execution time of multi-robot path",
+          "date": "2010-01-01T00:00:00Z",
+          "n_citation": 12,
+          "authors_ids": ["2009723854", "2051074051", "2123350779", "3192690324"],
+          "authors_names": ["Simon Ware", "Alessandro Giua", "Rong Su", "Diego Deplano"],
+          "publisher": "IEEE"
+        }
+      }
+    },
+    {
+      "postId": 2,
+      "timestamp": 1639668454920,
+      "author": {
+        "photo": "",
+        "firstName": "Anthony",
+        "lastName": "Ryan",
+        "username": "anthony",
+        "author_id": 1231
+      },
+      "liked": true,
+      "type": "podcast",
+      "content": {
+        "msg": "We found a new podcast featuring David Doust on the web.",
+        "file": ""
+      }
+    },
+    {
+      "postId": 3,
+      "timestamp": 1639668454420,
+      "author": {
+        "photo": "",
+        "firstName": "Anthony",
+        "lastName": "Ryan",
+        "username": "anthony",
+        "author_id": 1231
+      },
+      "liked": false,
+      "type": "funding",
+      "content": {
+        "image": "",
+        "msg": "New funding for self-replicating manufacturing systems just became available for allocations.",
+        "author": "Anthony Ryan"
+      }
+    }
+  ]
+}
