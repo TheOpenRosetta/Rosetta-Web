@@ -17,7 +17,7 @@ const links = [
   { text: 'Home', href: '/', icon: <HomeIcon /> },
   { text: 'Inbox', href: '/inbox', icon: <InboxIcon /> },
   { text: 'Notification', href: '/notification', icon: <NotificationIcon /> },
-  { text: 'Q & A', href: '/help', icon: <QuestionIcon /> },
+  // { text: 'Q & A', href: '/help', icon: <QuestionIcon /> },
   { text: 'Portfolio', href: '/portfolio', icon: <ListIcon /> }
 ];
 
