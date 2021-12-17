@@ -15,6 +15,7 @@ const OnboardingForm = ({ className: classes }) => {
      initialValues: {
        firstName: '',
        lastName: '',
+       username: '',
        institution: '',
        email: ''
      },
@@ -49,6 +50,18 @@ const OnboardingForm = ({ className: classes }) => {
         value={formik.values.lastName}
       />
       <label htmlFor="lastName" className={styles.label}>Last Name</label>
+    </div>
+    <div className={styles.group}>
+      <input
+        id="username"
+        name="username"
+        type="text"
+        required
+        className={styles.field}
+        onChange={formik.handleChange}
+        value={formik.values.username}
+      />
+      <label htmlFor="lastName" className={styles.label}>Username</label>
     </div>
     <div className={styles.group}>
       <input

@@ -6,6 +6,7 @@ const initialState = {
   id: null,
   firstName: '',
   lastName: '',
+  username: '',
   institution: '',
   email: '',
   photo: null,
@@ -40,6 +41,7 @@ export const onboardingSlice = createSlice({
     sendFirstData: (state, action) => {
       state.firstName = action.payload.firstName || state.firstName;
       state.lastName = action.payload.lastName || state.lastName;
+      state.username = action.payload.username || state.username;
       state.institution = action.payload.institution || state.institution;
       state.email = action.payload.email || state.email;
     },
@@ -130,6 +132,7 @@ export const selectPublishData = (state) => ({
   email: state.onboarding.email,
   firstName: state.onboarding.firstName,
   lastName: state.onboarding.lastName,
+  username: state.onboarding.username,
   publickey: state.onboarding.publickey,
   duplicate_author_ids: state.onboarding.duplicate_author_ids,
   papers_claimed_by_this_author: state.onboarding.papers_claimed_by_this_author,
