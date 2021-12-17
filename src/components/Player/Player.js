@@ -15,7 +15,8 @@ const Player = ({ file }) => {
 
   useEffect(() => {
     if (init) {
-      setAudio(file)
+      const instance = new Audio(file);
+      setAudio(instance)
     }
   }, [init, file])
 
@@ -35,20 +36,18 @@ const Player = ({ file }) => {
       <img src={podcastImg} alt="Podcast"/> <span>Podcast</span>
     </div>
     {
-      init ? <div className={styles.playerWave}>Status</div> : <div className={styles.playerWave}><WaveIcon/></div>
+      init ?
+        <div className={styles.playerStatus}>
+          Status
+        </div>
+        :
+        <div className={styles.playerWave}><WaveIcon/></div>
     }
     <div className={styles.playerControl}>
       <button className={styles.playerBtn} onClick={playAction}>
         {playing ? <PauseIcon/> : <PlayIcon/> }
       </button>
     </div>
-    {
-      // <audio controlsList="nodownload" controls>
-      //   <source src={file} type="audio/mpeg" />
-      //   Your browser does not support the
-      //         <code>audio</code> element.
-      // </audio>
-    }
   </div>
 }
 

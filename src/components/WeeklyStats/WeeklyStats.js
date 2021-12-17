@@ -3,7 +3,7 @@ import Area from '@components/Area';
 import Avatar from '@components/Avatar';
 import { priceFormat } from '@utils/numbers';
 
-import AvatarImg from '@assets/avatar.png';
+import AvatarImg from '@assets/dummy/user.png';
 import {ReactComponent as PeopleIcon} from '@assets/icons/person-add-outline.svg';
 import styles from './WeeklyStats.module.scss';
 
@@ -61,7 +61,7 @@ const WeeklyStats = () => {
   const content = <div className={styles.content}>
     <div className={styles.block}>
       <span className={styles.blockCount}>{priceFormat(data.read.total)}</span>
-      <span className={styles.blockSubtitle}>Total people read</span>
+      <span className={styles.blockSubtitle}>Total new reads on your papers</span>
       <ul className={styles.blockUsers}>
         {
           data.read.people.map(item => <li key={item.userId} className={styles.blockUsersItem}>
@@ -75,7 +75,7 @@ const WeeklyStats = () => {
     </div>
     <div className={styles.block}>
       <span className={styles.blockCount}>{priceFormat(data.investors.total)}</span>
-      <span className={styles.blockSubtitle}>New investors</span>
+      <span className={styles.blockSubtitle}>New investors in your papers</span>
       <ul className={styles.blockUsers}>
         {
           data.investors.people.map(item => <li key={`investor-${item.userId}`} className={styles.blockUsersItem}>
