@@ -27,7 +27,7 @@ import half from '@dataset/half.json';
 import three from '@dataset/three.json';
 import year from '@dataset/year.json';
 
-import AvatarImg from '@assets/avatar.png';
+import AvatarImg from '@assets/dummy/user.png';
 import PrizeImg from '@assets/prize.png';
 
 import {ReactComponent as ChevronIcon} from '@assets/icons/chevron-up-outline.svg';
