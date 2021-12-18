@@ -146,7 +146,7 @@ export const selectPublishData = (state) => ({
 });
 
 export const createUser = (data) => async (dispatch) => {
-  axios.post(`https://rosettabackendservereast.azurewebsites.net/api/v1/onboarduser/`, data)
+  axios.post(`https://rosettabackendservereast.azurewebsites.net/api/v1/createUser/`, data)
     .then((response) => {
       const { data } = response;
       if (data.statusCode === 200) {

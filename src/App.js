@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -8,9 +8,10 @@ import {
 
 import {
   selectStatus,
-  checkAuth,
+  getUser
 } from '@services/Auth/authSlice';
 import { useSelector, useDispatch } from 'react-redux';
+import arweave from 'arweave';
 
 import '@styles/global.scss';
 import '@styles/modal.scss';
@@ -31,10 +32,41 @@ import Publish from '@containers/Publish';
 function App() {
   const isLogin = useSelector(selectStatus);
   const dispatch = useDispatch();
+  const [address, setAddress] = useState(null);
+  const [nonce, setNonce] = useState(null);
+
+  const loadedHandler = () => {
+    if (window.arweaveWallet) {
+      window.arweaveWallet.getActiveAddress().then((data) => setAddress(data));
+    }
+  };
 
   useEffect(() => {
-    dispatch(checkAuth());
-  }, [dispatch]);
+    const lsNonce = localStorage.getItem('rosetta_nonce');
+    if (lsNonce) {
+      setNonce(lsNonce)
+    }
+    loadedHandler();
+    window.addEventListener("arweaveWalletLoaded", loadedHandler);
+    return () => {
+      window.removeEventListener("arweaveWalletLoaded", loadedHandler);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (address && nonce) {
+      const bytes = arweave.utils.stringToBuffer(nonce);
+      window.arweaveWallet.signature(bytes, {
+        name: "RSA-PSS",
+        saltLength: 32,
+      }).then((data) => {
+        dispatch(getUser({
+          address,
+          signature: data
+        }));
+      });
+    }
+  }, [dispatch, address, nonce]);
 
   return (
     <div className="app">

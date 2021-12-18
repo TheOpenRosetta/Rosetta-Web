@@ -40,6 +40,7 @@ export const authSlice = createSlice({
     setNonce: (state, action) => {
       const { nonce } = action.payload;
       state.bytes = arweave.utils.stringToBuffer(nonce);
+      localStorage.setItem('rosetta_nonce', nonce);
     },
     saveSignature: (state, action) => {
       state.signature = action.payload;
@@ -68,6 +69,7 @@ export const selectUser = (state) => ({
 });
 
 export const getNonce = (address) => async (dispatch) => {
+  // const url = `http://localhost:8080/api/v1/getNonce?address=${address}`;
   const url = `https://rosettabackendservereast.azurewebsites.net/api/v1/getNonce/${address}`;
   await axios.get(url)
     .then(({ data }) => {
@@ -75,18 +77,17 @@ export const getNonce = (address) => async (dispatch) => {
     });
 }
 
-export const checkAuth = () => async (dispatch) => {
+export const getUser = () => async (dispatch) => {
   const address = localStorage.getItem('rosetta_address');
   const signature = JSON.parse(localStorage.getItem('rosetta_signature'));
   if (!address || !signature) {
     dispatch(logout())
   } else {
     const buf = new Uint8Array(Object.values(signature));
-    const url = `https://rosettabackendservereast.azurewebsites.net/api/v1/getuserdata/${address}/${buf}`;
+    // const url = `http://localhost:8080/api/v1/getUser?address=${address}&signature=${arweave.utils.bufferTob64Url(buf)}`;
+    const url = `https://rosettabackendservereast.azurewebsites.net/api/v1/getUser?address=${address}&signature=${arweave.utils.bufferTob64Url(buf)}`;
     await axios.get(url)
       .then(({ data }) => {
-        localStorage.setItem('rosetta_address', address);
-        localStorage.setItem('rosetta_signature', JSON.stringify(signature));
         dispatch(login(data))
         console.log(data);
       })
@@ -97,6 +98,7 @@ export const checkAuth = () => async (dispatch) => {
 }
 
 export const signIn = ({ address, signature }) => async (dispatch) => {
+  // const url = `http://localhost:8080/api/v1/login`;
   const url = `https://rosettabackendservereast.azurewebsites.net/api/v1/login`;
   const buf = new Uint8Array(Object.values(signature));
   await axios.post(url, {
