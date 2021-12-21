@@ -67,11 +67,13 @@ export const selectPaper = (state) => ({
 });
 
 export const fetchPaper = ({ id }) => async (dispatch) => {
-  const url = `https://searchserver1.eastus.cloudapp.azure.com:8983/solr/OAG/select?q=${id}&df=id`;
+  const domain = 'https://rosettabackendservereast.azurewebsites.net';
+  // const domain = 'http://localhost:8080';
+  const url = `${domain}/api/v1/paper?id=${id}`;
   dispatch(paperLoading());
   await axios.get(url)
     .then(({ data }) => {
-      dispatch(paperLoaded(data.response))
+      dispatch(paperLoaded(data.data))
     });
 }
 

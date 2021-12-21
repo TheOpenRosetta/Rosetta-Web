@@ -105,12 +105,6 @@ export const publishPaper = () => async (dispatch) => {
   console.log("PUBLISH");
 
   dispatch(publishSuccess())
-  // const url = `http://40.121.197.64:8983/solr/OAG/select?q=${id}&df=id`;
-
-  // await axios.post(url)
-  //   .then(({ data }) => {
-  //     dispatch(publishSuccess(data.response))
-  //   });
 }
 
 export default publishSlice.reducer;
