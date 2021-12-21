@@ -17,8 +17,6 @@ import {
   selectUserStatus,
   selectUserData,
   fetchUser,
-  selectFeaturePaperUserData,
-  selectFeaturePaperCount
 } from '@services/User/userSlice';
 
 import styles2 from '../../components/Search/SearchResults/SearchResults.module.scss';
@@ -50,12 +48,9 @@ const Profile = () => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   // Tab index
   const [tabIndex, setTabIndex] = useState(0);
-  const [ImpactScore, setImpactScore] = useState(0);
   const { username } = useParams();
   const status = useSelector(selectUserStatus);
   const userData = useSelector(selectUserData);
-
-  const featurePaperData = useSelector(selectFeaturePaperUserData);
 
   const dispatch = useDispatch();
   const [key, setKey] = useState('month');
@@ -64,7 +59,6 @@ const Profile = () => {
 
   const [page, setPage] = useState(1);
   const [FeaturePage, setFeaturePage] = useState([]);
-  const count = useSelector(selectFeaturePaperCount);
 
   // function for making number digits to k
   function kFormatter(num) {
@@ -94,26 +88,13 @@ const Profile = () => {
 
   // Sort feature array according to highest prbscore
   useEffect(() => {
-    if (featurePaperData) {
-      let modifyPaperWorks = featurePaperData.slice(0, 2).sort((a, b) => {
+    if (userData && userData.papers) {
+      let modifyPaperWorks = userData.papers.slice(0, 2).sort((a, b) => {
         return b.prb_score - a.prb_score;
       });
       setFeaturePage(modifyPaperWorks)
     }
-
-    let impactScore = 0;
-
-    if (featurePaperData && featurePaperData.length > 0) {
-      featurePaperData.map((paperData) => {
-        if (paperData.prb_score !== undefined) {
-          impactScore += paperData.prb_score / paperData.authors_names.length
-        }
-        return paperData;
-      });
-    }
-
-    setImpactScore(impactScore)
-  }, [featurePaperData]);
+  }, [userData]);
 
 
   // Open and Hide modal
@@ -144,10 +125,10 @@ const Profile = () => {
             <Avatar src={userData.AvatarImg || AvatarImg} title={userData.name} kind="bordered" size="xl" classes={styles.avatar} />
           </div>
           <div className={styles.profileInfo}>
-            <div className={styles.name}>{userData.firstName} {userData.lastName}</div>
+            <div className={styles.name}>{userData.name}</div>
             <div className={styles.status}>{userData.status}</div>
             <div className={styles.committed}>Academic Fraud Committed: <span>{userData.fraudCommitted ? 'yes' : 'no'}</span></div>
-            <div className={styles.impact}>ImpactScore: <span>{kFormatter(Math.round(ImpactScore))}</span></div>
+            <div className={styles.impact}>ImpactScore: <span>{kFormatter(Math.round(userData.impactScore))}</span></div>
             <div className={styles.infoActions}>
               <Button classes={styles.btnFollow} type="button" size="md" kind="fill">Follow</Button>
               <Button classes={styles.btnSponsor} type="button" size="md" kind="outline">Sponsor</Button>
@@ -157,11 +138,11 @@ const Profile = () => {
             <div className={styles.moneyTitle}>Rosetta Tokens Available</div>
             <div className={styles.moneyRow}>
               <div className={styles.moneyCol}>
-                <div className={styles.moneyValue}>${Math.round(ImpactScore * 0.354645437)}</div>
+                <div className={styles.moneyValue}>${kFormatter(userData.onceOffTokens)}</div>
                 <div className={styles.moneySubtitle}>Once off accrued tokens</div>
               </div>
               <div className={styles.moneyCol}>
-                <div className={styles.moneyValue}>${Math.round(ImpactScore * 0.354645437 / 5)}</div>
+                <div className={styles.moneyValue}>${Math.round(userData.impactScore * 0.354645437 / 5)}</div>
                 <div className={styles.moneySubtitle}>
                   Monthly rewards to archive your papers
                   <Popover
@@ -192,7 +173,7 @@ const Profile = () => {
           <div className={styles.profileMain}>
             <TabList className={styles.tabsList}>
               <Tab className={styles.tab}>Overview</Tab>
-              <Tab className={styles.tab}>Papers ({count})</Tab>
+              <Tab className={styles.tab}>Papers ({userData.papers.length})</Tab>
               <Tab className={styles.tab}>Portfolio</Tab>
               <Tab className={styles.tab}>Comments</Tab>
             </TabList>
@@ -236,16 +217,11 @@ const Profile = () => {
                 <div className={styles.sectionTitle}>Bio</div>
                 <div className={styles.bioContent}>
                   <ul>
-                    {/* {
+                    {
                       userData.bio.split(',').map((bioData, index) => {
                         return <li key={index}>{bioData}</li>;
                       })
-                    } */}
-                    <li> 1 - 👋 Hi I’m @{userData.firstName}, </li>
-                    <li> 2 - 👀 I’m interested in ... , </li>
-                    <li> 3 - 🌱 I’m currently learning ...,</li>
-                    <li> 4 - 💞 I’m Looking to collaborate on ... ,</li>
-                    <li> 5 - 📫 How to reach me ..</li>
+                    }
                   </ul>
                 </div>
               </div>
@@ -273,11 +249,11 @@ const Profile = () => {
               <div className={styles.sectionTitle}>Papers</div>
               <div className={styles.papersContent}>
                 {
-                  featurePaperData && featurePaperData.length > 0 && featurePaperData.map(item => <div className={styles2.resultsItem} key={item.id}>
+                  userData.papers && userData.papers.length > 0 && userData.papers.map(item => <div className={styles2.resultsItem} key={item.id}>
                     <PaperPreview data={item} />
                   </div>)
                 }
-                {count > 10 && <Pagination maxItems={count} itemsPerPage={10} currentPage={page} changePage={setPage} prev="Previous" next="Next" className={styles.pagination} />}
+                {userData.papers.length > 10 && <Pagination maxItems={userData.papers.length} itemsPerPage={10} currentPage={page} changePage={setPage} prev="Previous" next="Next" className={styles.pagination} />}
               </div>
             </div>
           </TabPanel>

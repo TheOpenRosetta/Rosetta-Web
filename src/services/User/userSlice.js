@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-import { data as userData } from '@dataset/user';
+// import { data as userData } from '@dataset/user';
 
 const initialState = {
   status: '',
@@ -19,21 +19,10 @@ export const userSlice = createSlice({
     },
     gotUserData: (state, action) => {
       state.data = {
-        ...action.payload,
-        bio: userData.bio,
-        impactScore: userData.impactScore,
-        status: userData.status,
-        stats: userData.stats,
-        fraudCommitted: userData.fraudCommitted,
-        monthlyTokens: userData.monthlyTokens,
-        onceOffTokens: userData.onceOffTokens
+        ...action.payload
       };
-    },
-    gotFeaturePapersData: (state, action) => {
-      state.papers = [...action.payload.docs];
-      state.paperCount = action.payload.numFound;
       state.status = 'loaded';
-    },
+    }
   }
 });
 
@@ -57,38 +46,21 @@ export const fetchUser = ({ username }) => async (dispatch) => {
   if (username.lastIndexOf("_") > 0) {
     id = username.substring(username.lastIndexOf("_") + 1);
   }
-  // COMMENT: currently username is address
-  // const url = `https://rosettabackendservereast.azurewebsites.net/api/v1/getuserprofile?username=${username}`;
-  // const url = `http://localhost:8080/api/v1/getuserprofile?username=${username}`;
-  dispatch(getUserData());
-  dispatch(gotUserData({
-    // ...data.profile,
-    firstName: name.split("_")[0],
-    lastName: name.split("_")[1]
-  }));
 
-  await axios.get(`https://searchserver1.eastus.cloudapp.azure.com:8983/solr/OAG/query?q=authors_ids:${id}&q.op=AND&indent=true&rows=100&wt=json&start=0&qt=/select`)
+  const [firstName, lastName] = name.split("_");
+  // COMMENT: currently username is address
+  const domain = 'https://rosettabackendservereast.azurewebsites.net';
+  // const domain = 'http://localhost:8080';
+  const url = `${domain}/api/v1/getProfile?firstName=${firstName}&lastName=${lastName}&author_id=${id}`;
+  dispatch(getUserData());
+
+  await axios.get(url)
     .then(({ data }) => {
+      console.log(data);
       dispatch(gotUserData({
-        ...data.profile,
-        firstName: name.split("_")[0],
-        lastName: name.split("_")[1]
+        ...data.profile
       }));
-      dispatch(gotFeaturePapersData(data.response))
     });
-  // await axios.get(url)
-  //   .then(({ data }) => {
-  //     dispatch(gotUserData({
-  //       ...data.profile,
-  //       firstName: name.split("_")[0],
-  //       lastName: name.split("_")[1]
-  //     }));
-  //     const url = `https://searchserver1.eastus.cloudapp.azure.com:8983/solr/OAG/query?q=authors_ids:${id}&q.op=AND&indent=true&rows=100&wt=json&start=0&qt=/select`;
-  //     return axios.get(url);
-  //   })
-  //   .then(({ data }) => {
-  //     dispatch(gotFeaturePapersData(data.response))
-  //   });
 }
 
 export default userSlice.reducer;
