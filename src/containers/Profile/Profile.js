@@ -4,19 +4,18 @@ import {
 } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel, resetIdCounter } from 'react-tabs';
 import { Popover } from 'react-tiny-popover'
-// import {priceFormat, percentFormat} from '@utils/numbers';
 import Header from '@components/Header';
 import Button from '@components/Button';
 import Avatar from '@components/Avatar';
 import Activity from '@components/Activity';
 import Loader from '@components/Loader';
 import Chart from '@components/Chart';
-import Pagination from '@components/Pagination';
+import ProfilePapers from '@components/ProfilePapers';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   selectUserStatus,
   selectUserData,
-  fetchUser,
+  fetchUser
 } from '@services/User/userSlice';
 
 import styles2 from '../../components/Search/SearchResults/SearchResults.module.scss';
@@ -57,9 +56,6 @@ const Profile = () => {
   const [data, setData] = useState([]);
   const [ShowEditModal, setShowEditModal] = useState(false);
 
-  const [page, setPage] = useState(1);
-  const [FeaturePage, setFeaturePage] = useState([]);
-
   // function for making number digits to k
   function kFormatter(num) {
     return Math.abs(num) > 999 ? Math.sign(num) * ((Math.abs(num) / 1000).toFixed(1)) + 'k' : Math.sign(num) * Math.abs(num)
@@ -85,17 +81,6 @@ const Profile = () => {
   useEffect(() => {
     dispatch(fetchUser({ username }));
   }, [dispatch, username]);
-
-  // Sort feature array according to highest prbscore
-  useEffect(() => {
-    if (userData && userData.papers) {
-      let modifyPaperWorks = userData.papers.slice(0, 2).sort((a, b) => {
-        return b.prb_score - a.prb_score;
-      });
-      setFeaturePage(modifyPaperWorks)
-    }
-  }, [userData]);
-
 
   // Open and Hide modal
   const activateEditModal = () => {
@@ -142,7 +127,7 @@ const Profile = () => {
                 <div className={styles.moneySubtitle}>Once off accrued tokens</div>
               </div>
               <div className={styles.moneyCol}>
-                <div className={styles.moneyValue}>${Math.round(userData.impactScore * 0.354645437 / 5)}</div>
+                <div className={styles.moneyValue}>${kFormatter(userData.monthlyTokens)}</div>
                 <div className={styles.moneySubtitle}>
                   Monthly rewards to archive your papers
                   <Popover
@@ -173,7 +158,7 @@ const Profile = () => {
           <div className={styles.profileMain}>
             <TabList className={styles.tabsList}>
               <Tab className={styles.tab}>Overview</Tab>
-              <Tab className={styles.tab}>Papers ({userData.papers.length})</Tab>
+              <Tab className={styles.tab}>Papers ({userData.papersCount})</Tab>
               <Tab className={styles.tab}>Portfolio</Tab>
               <Tab className={styles.tab}>Comments</Tab>
             </TabList>
@@ -230,7 +215,7 @@ const Profile = () => {
               <div className={styles.sectionTitle}>Featured Papers</div>
               <div className={styles.papersContent}>
                 {
-                  FeaturePage && FeaturePage.length > 0 && FeaturePage.map(item => <div className={styles2.resultsItem} key={item.id}>
+                  userData && userData.featured.length > 0 && userData.featured.map(item => <div className={styles2.resultsItem} key={item.id}>
                     <PaperPreview data={item} />
                   </div>)
                 }
@@ -248,12 +233,7 @@ const Profile = () => {
             <div className={styles.section}>
               <div className={styles.sectionTitle}>Papers</div>
               <div className={styles.papersContent}>
-                {
-                  userData.papers && userData.papers.length > 0 && userData.papers.map(item => <div className={styles2.resultsItem} key={item.id}>
-                    <PaperPreview data={item} />
-                  </div>)
-                }
-                {userData.papers.length > 10 && <Pagination maxItems={userData.papers.length} itemsPerPage={10} currentPage={page} changePage={setPage} prev="Previous" next="Next" className={styles.pagination} />}
+                <ProfilePapers />
               </div>
             </div>
           </TabPanel>
