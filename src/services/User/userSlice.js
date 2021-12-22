@@ -73,8 +73,8 @@ export const fetchUser = ({ username }) => async (dispatch) => {
 
   const [firstName, lastName] = name.split("_");
   // COMMENT: currently username is address
-  // const domain = 'https://rosettabackendservereast.azurewebsites.net';
-  const domain = 'http://localhost:8080';
+  const domain = 'https://rosettabackendservereast.azurewebsites.net';
+  // const domain = 'http://localhost:8080';
   const url = `${domain}/api/v1/getProfile?firstName=${firstName}&lastName=${lastName}&author_id=${id}`;
   dispatch(getUserData());
 
