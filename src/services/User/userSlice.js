@@ -58,7 +58,8 @@ export const getPapers = ({ id, start }) => async (dispatch) => {
     sortDir: 'desc',
   }
 
-  const domain = 'http://localhost:8080';
+  const domain = 'https://rosettabackendservereast.azurewebsites.net';
+  // const domain = 'http://localhost:8080';
   const url = `${domain}/api/v1/search?${queryString.stringify(params)}`;
 
   await axios.get(url)
