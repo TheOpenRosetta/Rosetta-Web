@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { DateTime } from "luxon";
 import { useParams, Link } from "react-router-dom";
 import Modal from "react-modal";
 import Chart from "@components/Chart";
 import DisputeStory from "@components/DisputeStory";
-import PDFViewer from "@components/PDFViewer";
 import PDFComments from "@components/PDFComments";
 import Header from "@components/Header";
 import Button from "@components/Button";
@@ -39,9 +37,9 @@ import { ReactComponent as MessageIcon } from "@assets/icons/message-circle-outl
 import { ReactComponent as AlertIcon } from "@assets/icons/alert-circle-outline.svg";
 import { ReactComponent as CloseIcon } from "@assets/icons/close-outline.svg";
 
-import styles from "./Paper.module.scss";
+import styles from "./Paperstatic.module.scss";
 
-const Paper = () => {
+const Paperstatic = () => {
   const { paperId } = useParams();
   const dispatch = useDispatch();
   const paper = useSelector(selectPaper);
@@ -84,15 +82,16 @@ const Paper = () => {
       <div className={styles.paperTop}>
         <div className="container">
           <div className={styles.paperTopContent}>
-            <div className={styles.date}>
-              {DateTime.fromISO(paper.date).toFormat("MMM-dd-yyyy")}
+            <div className={styles.date}>3/22/2022</div>
+            <div className={styles.title}>
+              Arweave: A Protocol for Economically Sustainable Information
+              Permanence
             </div>
-            <div className={styles.title}>{paper.title}</div>
-            {paper.authors.length > 0 && (
-              <div className={styles.authors}>
-                By {paper.authors.map((item) => item.name).join(", ")}
-              </div>
-            )}
+            <div className={styles.authors}>
+              By Sam Williams, Viktor Diordiiev, Lev Berman, India Raybould,
+              Ivan Uemlianin
+            </div>
+            )
             <div className={styles.version}>
               V{paper.version}{" "}
               <Link to="/" className={styles.versionLink}>
@@ -332,31 +331,9 @@ const Paper = () => {
                 </div>
               )}
             </div>
-
-            <div
-              className={`${styles.paperPreview} ${
-                previewError || !paper.url ? styles.paperPreviewError : ""
-              }`}
-            >
-              <PDFViewer
-                setPreviewError={setPreviewError}
-                url={paper.url}
-                highlights={paper.highlights}
-                setHighlights={(data) => dispatch(setHighlights(data))}
-              />
-            </div>
-          </div>
-          <div className={styles.paperComments}>
-            <div className={styles.paperCommentsTitle}>Comments</div>
-            {paper.highlights.length === 0 ? (
-              <div className={styles.paperCommentsEmpty}>No comments yet</div>
-            ) : (
-              <PDFComments highlights={paper.highlights} />
-            )}
           </div>
         </div>
       </div>
-
       <Modal
         isOpen={modalIsOpen}
         className="modal"
@@ -369,9 +346,9 @@ const Paper = () => {
           </button>
           <DisputeStory paper={paper} />
         </div>
-      </Modal>
+      </Modal>{" "}
     </div>
   );
 };
 
-export default Paper;
+export default Paperstatic;

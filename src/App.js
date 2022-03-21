@@ -22,6 +22,7 @@ import Search from "@containers/Search";
 import Onboarding from "@containers/Onboarding";
 import Profile from "@containers/Profile";
 import Paper from "@containers/Paper";
+import Paperstatic from "@containers/Paperstatic";
 import Portfolio from "@containers/Portfolio";
 import SignIn from "@containers/SignIn";
 import Publish from "@containers/Publish";
@@ -101,8 +102,8 @@ function App() {
           <Route exact path="/paper/:paperId">
             <Paper />
           </Route>
-          <Route exact path="/paper/Arweave">
-            <Paper />
+          <Route exact path="/Arweave">
+            <Paperstatic />
           </Route>
           <Route path="/user/:username">
             <Profile />
