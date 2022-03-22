@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from "react";
+import SinglePagePDFViewer from "./pdf/single-page";
+import { Document, Page, pdfjs } from "react-pdf";
+
+import samplePDF from "../../schemas/yellow-paper.pdf";
 import { useParams, Link } from "react-router-dom";
 import Modal from "react-modal";
 import Chart from "@components/Chart";
@@ -38,7 +42,7 @@ import { ReactComponent as AlertIcon } from "@assets/icons/alert-circle-outline.
 import { ReactComponent as CloseIcon } from "@assets/icons/close-outline.svg";
 
 import styles from "./Paperstatic.module.scss";
-
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 const Paperstatic = () => {
   const { paperId } = useParams();
   const dispatch = useDispatch();
@@ -347,6 +351,7 @@ const Paperstatic = () => {
           <DisputeStory paper={paper} />
         </div>
       </Modal>{" "}
+      <SinglePagePDFViewer pdf={samplePDF} />
     </div>
   );
 };
